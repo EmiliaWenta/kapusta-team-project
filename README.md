@@ -1,6 +1,6 @@
 # Project Kapusta
 
-> [_here_](emiliawenta.github.io/kapusta-team-project/).
+> [_here_](https://emiliawenta.github.io/kapusta-team-project/).
 
 ## Table of Contents
 
