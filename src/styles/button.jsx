@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { colors, above768px, above1280px } from './globalStyles';
 
 export const StyledButton = styled.button`
-  color: #52555f;
+  color: ${colors.textBasicGray};
   font-size: 12px;
   font-weight: 700px;
   text-transform: uppercase;
@@ -15,30 +16,32 @@ export const StyledButton = styled.button`
 
 export const StyledTomatoButton = styled(StyledButton)`
   color: #ffffff;
-  background-color: #ff751d;
+  background-color: ${colors.brandOrange};
   border: none;
 
-  @media (min-width: 1280px) {
+  ${above1280px(css`
     width: 136px;
-  }
+  `)}
 `;
 
 export const StyledGreyButton = styled(StyledButton)`
-  color: #52555f;
+  color: ${colors.textBasicGray};
   background-color: #f5f6fb;
   box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
   width: 116px;
-  @media (min-width: 772px) {
+
+  ${above768px(css`
     width: 122px;
-  }
+  `)}
 `;
 
 export const StyledTomatoButtonWithShadow = styled(StyledTomatoButton)`
   box-shadow: 1px 3px 5px rgba(255, 107, 8, 0.35);
   width: 116px;
-  @media (min-width: 772px) {
+
+  ${above768px(css`
     width: 122px;
-  }
+  `)}
 `;
 
 export const StyledIncomeOrExpensesButton = styled(StyledGreyButton)`
@@ -47,8 +50,8 @@ export const StyledIncomeOrExpensesButton = styled(StyledGreyButton)`
   width: 158px;
   height: 53px;
   &:active {
-    background-color: #ff751d;
+    background-color: ${colors.brandOrange};
     color: #ffffff;
-    border-color: #ff751d;
+    border-color: ${colors.brandOrange};
   }
 `;
