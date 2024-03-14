@@ -1,6 +1,12 @@
+import LeaveModal from './leaveModal/LeaveModal';
 import LoginForm from './loginForm/LoginForm';
-// import ModalWindow from './modalWindow/modalWindow';
 
 export const App = () => {
-  return <LoginForm />;
+  return (
+    <div>
+      {' '}
+      <LeaveModal text="Do you want to leave?" />;
+      <LoginForm />;
+    </div>
+  );
 };
