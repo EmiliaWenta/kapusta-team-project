@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalBox from 'components/modalWindow/ModalWindow';
+import ModalWindow from 'components/modalWindow/ModalWindow';
 import {
   LoginFormBox,
   LoginFormText,
@@ -8,20 +8,11 @@ import {
   LoginFormLabel,
   LoginFormInput,
   LoginFormBtnList,
-  CustomStyledGreyButton,
-  CustomStyledTomatoWithShadowBtn,
+  LoginFormErrorMessage,
 } from '../../styles/loginForm';
 
-// .message-invisible {
-//   display: none;
-// }
-// .message-visible {
-//   display: block;
-//   font-size: 10px;
-//   line-height: 11.72px;
-//   color: red;
-//   text-align: left;
-// }
+import { TomatoButtonWithShadow } from 'components/buttons/TomatoButtonWithShadow';
+import { GreyButton } from 'components/buttons/GreyButton';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -43,7 +34,7 @@ function LoginForm() {
 
   return (
     <div>
-      <ModalBox>
+      <ModalWindow>
         <LoginFormBox id="login-form" onSubmit={handleSubmit}>
           <LoginFormText>
             You can log in with your Google Account:
@@ -64,7 +55,9 @@ function LoginForm() {
                 required
               />
               {emailError && (
-                <div className="message-visible">This is a required field.</div>
+                <LoginFormErrorMessage>
+                  This is a required field.
+                </LoginFormErrorMessage>
               )}
             </li>
             <li>
@@ -78,22 +71,22 @@ function LoginForm() {
                 required
               />
               {passwordError && (
-                <div className="message-visible">This is a required field.</div>
+                <LoginFormErrorMessage>
+                  This is a required field.
+                </LoginFormErrorMessage>
               )}
             </li>
           </LoginFormLabelList>
           <LoginFormBtnList>
             <li>
-              <CustomStyledTomatoWithShadowBtn type="submit">
-                log in
-              </CustomStyledTomatoWithShadowBtn>
+              <TomatoButtonWithShadow text="log in" />
             </li>
             <li>
-              <CustomStyledGreyButton>registration</CustomStyledGreyButton>
+              <GreyButton text="registration" />
             </li>
           </LoginFormBtnList>
         </LoginFormBox>
-      </ModalBox>
+      </ModalWindow>
     </div>
   );
 }

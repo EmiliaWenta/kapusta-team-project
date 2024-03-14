@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 import { colors, above768px } from './globalStyles';
-import {
-  StyledGreyButton,
-  StyledTomatoButtonWithShadow,
-} from '../styles/button';
 
 export const LoginFormBox = styled.div`
   display: flex;
@@ -25,7 +21,9 @@ export const LoginFormGoogleBtn = styled.button`
   border-radius: 26px;
   border: none;
   box-shadow: 1px 2px 3px 0px rgba(170, 178, 197, 0.2);
-  margin: 16px 0px 32px 0px;
+
+  ${above768px`
+  margin: 15px 0px;`}
 `;
 export const LoginFormLabelList = styled.ul`
   list-style: none;
@@ -73,16 +71,12 @@ export const LoginFormBtnList = styled.ul`
   list-style: none;
   column-gap: 8px;
   padding: 0px;
+  margin-top: -5px;
 `;
 
-export const CustomStyledGreyButton = styled(StyledGreyButton)`
-  font-weight: 700;
-  font-size: 12px;
-`;
-
-export const CustomStyledTomatoWithShadowBtn = styled(
-  StyledTomatoButtonWithShadow
-)`
-  font-weight: 700;
-  font-size: 12px;
+export const LoginFormErrorMessage = styled.p`
+  font-size: 10px;
+  line-height: 11.72px;
+  color: red;
+  text-align: left;
 `;

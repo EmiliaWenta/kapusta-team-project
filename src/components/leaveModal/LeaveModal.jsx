@@ -1,10 +1,4 @@
-import {
-  CustomModalWindow,
-  BtnList,
-  LeaveModalText,
-  // CustomTomatoBtn,
-  // CustomBtn,
-} from 'styles/leaveModal';
+import { CustomModalWindow, BtnList, LeaveModalText } from 'styles/leaveModal';
 
 import { TomatoButton } from 'components/buttons/TomatoButton';
 import { GreyButton } from 'components/buttons/GreyButton';
