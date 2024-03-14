@@ -1,12 +1,16 @@
-import LeaveModal from './leaveModal/LeaveModal';
-import LoginForm from './loginForm/LoginForm';
-
 export const App = () => {
   return (
-    <div>
-      {' '}
-      <LeaveModal text="Do you want to leave?" />;
-      <LoginForm />;
+    <div
+      style={{
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 40,
+        color: '#010101',
+      }}
+    >
+      React homework template
     </div>
   );
 };
