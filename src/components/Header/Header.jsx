@@ -1,8 +1,9 @@
-import { AuthorizedMenu } from './AuthorizedMenu';
 import { StyledWrapper } from '../../styles/Hearder/StyledHeader';
+
+import AuthorizedMenu from './AuthorizedMenu';
 import sprite from '../../svg/icons_sprite.svg';
 
-export const Header = () => {
+const Header = () => {
   const isLoggedIn = true;
   return (
     <StyledWrapper>
@@ -13,3 +14,5 @@ export const Header = () => {
     </StyledWrapper>
   );
 };
+
+export default Header;
