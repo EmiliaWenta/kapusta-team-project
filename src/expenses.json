@@ -1,0 +1,13 @@
+{
+  "products": 5000.0,
+  "alcohol": 3000.0,
+  "entertainment": 2400.0,
+  "health": 2200.0,
+  "transport": 2000.0,
+  "housing": 1800.0,
+  "technique": 1500.0,
+  "communal": 900.0,
+  "hobbies": 800.0,
+  "education": 800.0,
+  "other": 200.0
+}

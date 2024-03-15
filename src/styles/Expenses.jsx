@@ -6,7 +6,6 @@ export const ExpensesBox = styled.div`
   flex-direction: column;
   width: 320px;
   height: 300px;
-  background-color: grey;
 `;
 
 export const ExpensesHeader = styled.p`
@@ -24,12 +23,24 @@ export const ExpensesList = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
-  //   column-gap: 35px;
   justify-content: space-around;
-  row-gap: 20px;
+  row-gap: 10px;
   background-color: beige;
   padding: 0px 20px;
   margin: 0px;
+`;
+
+export const ExpensesListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ExpensesListItemText = styled.p`
+  font-size: 12px;
+  line-height: 14.06px;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${colors.textBasicGray};
 `;
 
 export const ExpensesSvg = styled.svg`

@@ -5,7 +5,10 @@ import {
   ExpensesSvg,
   ExpensesHeader,
   ExpensesDivider,
+  ExpensesListItem,
+  ExpensesListItemText,
 } from 'styles/Expenses';
+import expenses from 'expenses.json';
 
 const icons = {
   productsSvg: `${icons_sprite}#products`,
@@ -20,69 +23,92 @@ const icons = {
   educationSvg: `${icons_sprite}#education`,
   otherSvg: `${icons_sprite}#other`,
 };
+
 export function Expenses() {
   return (
     <ExpensesBox>
       <ExpensesHeader>expenses</ExpensesHeader>
       <ExpensesList>
-        <li>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.products}</ExpensesListItemText>
           <ExpensesSvg width="65" height="56">
             <use href={icons.productsSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>products</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.alcohol}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.alcoholSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>alcohol</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.entertainment}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.entertainmentSvg} />
           </ExpensesSvg>
-        </li>
+          <ExpensesListItemText>entertain</ExpensesListItemText>
+        </ExpensesListItem>
         <ExpensesDivider />
-        <li>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.health}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.healthSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>health</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.transport}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.transportSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>transport</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.housing}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.housingSvg} />
           </ExpensesSvg>
-        </li>
+          <ExpensesListItemText>housing</ExpensesListItemText>
+        </ExpensesListItem>
         <ExpensesDivider />
-        <li>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.technique}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.techniqueSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>technique</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.communal}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.communalSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>communal</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.hobbies}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.hobbiesSvg} />
           </ExpensesSvg>
-        </li>
+          <ExpensesListItemText>hobbies</ExpensesListItemText>
+        </ExpensesListItem>
         <ExpensesDivider />
-        <li>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.education}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.educationSvg} />
           </ExpensesSvg>
-        </li>
-        <li>
+          <ExpensesListItemText>education</ExpensesListItemText>
+        </ExpensesListItem>
+        <ExpensesListItem>
+          <ExpensesListItemText>{expenses.other}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.otherSvg} />
           </ExpensesSvg>
-        </li>
+          <ExpensesListItemText>other</ExpensesListItemText>
+        </ExpensesListItem>
       </ExpensesList>
     </ExpensesBox>
   );
