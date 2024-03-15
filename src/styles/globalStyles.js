@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 
 export const colors = {
   modalBackgroundColor: `#FFFFFF`,
+  expensesDivider: `#E0E5EB`,
   backgroundColor: `#f6f7fb`,
   brandOrange: `#ff751d`,
   lightOrange: `#FFDAC0`,

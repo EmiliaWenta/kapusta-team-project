@@ -1,3 +1,4 @@
+import { colors } from './globalStyles';
 const { default: styled } = require('styled-components');
 
 export const ExpensesBox = styled.div`
@@ -8,7 +9,7 @@ export const ExpensesBox = styled.div`
   background-color: grey;
 `;
 
-export const ExpensesText = styled.p`
+export const ExpensesHeader = styled.p`
   font-size: 14px;
   line-height: 16.41px;
   font-weight: 700;
@@ -23,8 +24,25 @@ export const ExpensesList = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
-  gap: 13px;
+  //   column-gap: 35px;
+  justify-content: space-around;
+  row-gap: 20px;
   background-color: beige;
   padding: 0px 20px;
   margin: 0px;
+`;
+
+export const ExpensesSvg = styled.svg`
+  fill: ${colors.iconsBlue};
+
+  &:active,
+  &:hover {
+    fill: ${colors.brandOrange};
+  }
+`;
+
+export const ExpensesDivider = styled.div`
+  min-width: 280px;
+  height: 1px;
+  background-color: ${colors.expensesDivider};
 `;

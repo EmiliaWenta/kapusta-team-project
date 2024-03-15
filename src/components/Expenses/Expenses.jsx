@@ -1,5 +1,11 @@
 import icons_sprite from '../../svg/icons_sprite.svg';
-import { ExpensesList, ExpensesBox, ExpensesText } from 'styles/Expenses';
+import {
+  ExpensesList,
+  ExpensesBox,
+  ExpensesSvg,
+  ExpensesHeader,
+  ExpensesDivider,
+} from 'styles/Expenses';
 
 const icons = {
   productsSvg: `${icons_sprite}#products`,
@@ -17,62 +23,65 @@ const icons = {
 export function Expenses() {
   return (
     <ExpensesBox>
-      <ExpensesText>expenses</ExpensesText>
+      <ExpensesHeader>expenses</ExpensesHeader>
       <ExpensesList>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="65" height="56">
             <use href={icons.productsSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.alcoholSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.entertainmentSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
+        <ExpensesDivider />
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.healthSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.transportSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.housingSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
+        <ExpensesDivider />
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.techniqueSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.communalSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.hobbiesSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
+        <ExpensesDivider />
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.educationSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
         <li>
-          <svg width="84" height="103">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.otherSvg} />
-          </svg>
+          </ExpensesSvg>
         </li>
       </ExpensesList>
     </ExpensesBox>
