@@ -55,3 +55,18 @@ export const StyledIncomeOrExpensesButton = styled(StyledGreyButton)`
     border-color: ${colors.brandOrange};
   }
 `;
+export const StyledButtonSvg = styled.button`
+  background-color: #fff;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  padding: 0px;
+`;
+
+export const StyledSvg = styled.svg`
+  fill: ${colors.textBasicGray};
+`;
