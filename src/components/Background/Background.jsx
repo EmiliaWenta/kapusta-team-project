@@ -11,11 +11,7 @@ import {
 } from '../../styles/background';
 
 const BackgroundTemplate = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const toggleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  const [isLoggedIn] = useState(false);
 
   return (
     <>
@@ -32,9 +28,6 @@ const BackgroundTemplate = () => {
           <DownCabbage />
         </BackgroundContainer>
       )}
-      <button onClick={toggleLogin}>
-        {isLoggedIn ? 'Wyloguj się' : 'Zaloguj się'}
-      </button>
     </>
   );
 };
