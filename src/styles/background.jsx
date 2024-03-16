@@ -3,10 +3,12 @@ import BgCabbage from '../images/home_bg.png';
 import CabbageUp from '../images/home_bg_mobile.png';
 import CabbageDown from '../images/single_cabbage.png';
 import DoubleCabbage from '../images/double_cabbage.png';
+import WalletBgr from '../images/home_bg.png';
+import BgDoubleCab from '../images/double_cabbage.png';
 
-import { above768px, above1280px } from './globalStyles';
+import { colors, above768px, above1280px } from './globalStyles';
 
-export const Container = styled.div`
+export const BackgroundContainer = styled.div`
   position: absolute;
   overflow: hidden;
   width: 100%;
@@ -76,11 +78,59 @@ export const ImageWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 342px;
-  background-color: #f5f6fb;
+  background-color: ${colors.backgroundColor};
   z-index: -1000;
   border-bottom-left-radius: 125px;
 
   ${above768px(css`
     height: 582px;
+  `)}
+`;
+export const LogBackgroundContainer = styled.main`
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 856px;
+  top: 0;
+  left: 0;
+  z-index: -99;
+
+  ${above768px(css`
+    height: 1024px;
+  `)}
+`;
+
+export const LogImageWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 352px;
+  background-color: ${colors.backgroundColor};
+  z-index: -1000;
+  border-bottom-left-radius: 125px;
+
+  ${above768px(css`
+    height: 583px;
+  `)}
+`;
+
+export const DoubleCabb = styled.div`
+  ${above768px(css`
+    position: absolute;
+    width: 183px;
+    height: 146px;
+    bottom: 30px;
+    right: 80px;
+    background-image: url(${BgDoubleCab});
+    background-repeat: no-repeat;
+  `)}
+
+  ${above1280px(css`
+    background-image: url(${WalletBgr});
+    width: 100%;
+    height: 232px;
+    top: 84, 5px;
+    left: calc(100vw - 1270px);
   `)}
 `;

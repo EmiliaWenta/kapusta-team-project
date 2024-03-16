@@ -1,19 +1,42 @@
-import {
-  ImageWrapper,
-  UpCabbage,
-  DownCabbage,
-  Container,
-} from '../../styles/Background.styled';
+import React, { useState } from 'react';
 
-const CabbagesBg = () => {
+import {
+  UpCabbage,
+  BackgroundContainer,
+  DownCabbage,
+  ImageWrapper,
+  LogImageWrapper,
+  LogBackgroundContainer,
+  DoubleCabb,
+} from '../../styles/background';
+
+const BackgroundTemplate = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const toggleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+  };
+
   return (
-    <Container>
-      <ImageWrapper>
-        <UpCabbage />
-      </ImageWrapper>
-      <DownCabbage />
-    </Container>
+    <>
+      {isLoggedIn ? (
+        <LogBackgroundContainer>
+          <LogImageWrapper />
+          <DoubleCabb />
+        </LogBackgroundContainer>
+      ) : (
+        <BackgroundContainer>
+          <ImageWrapper>
+            <UpCabbage />
+          </ImageWrapper>
+          <DownCabbage />
+        </BackgroundContainer>
+      )}
+      <button onClick={toggleLogin}>
+        {isLoggedIn ? 'Wyloguj się' : 'Zaloguj się'}
+      </button>
+    </>
   );
 };
 
-export default CabbagesBg;
+export default BackgroundTemplate;
