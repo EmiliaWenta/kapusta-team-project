@@ -1,4 +1,3 @@
-import icons_sprite from '../../svg/icons_sprite.svg';
 import {
   ExpensesList,
   ExpensesBox,
@@ -7,9 +6,11 @@ import {
   ExpensesDivider,
   ExpensesListItem,
   ExpensesListItemText,
-} from 'styles/Expenses';
+  ExpensesHeaderBox,
+} from 'styles/ReportBox/Expenses';
 import expenses from 'expenses.json';
 
+import icons_sprite from '../../svg/icons_sprite.svg';
 const icons = {
   productsSvg: `${icons_sprite}#products`,
   alcoholSvg: `${icons_sprite}#alcohol`,
@@ -22,16 +23,26 @@ const icons = {
   hobbiesSvg: `${icons_sprite}#hobbies`,
   educationSvg: `${icons_sprite}#education`,
   otherSvg: `${icons_sprite}#other`,
+  arrowLeft: `${icons_sprite}#arrow_left`,
+  arrowRight: `${icons_sprite}#arrow_right`,
 };
 
-export function Expenses() {
+export function Expenses({ changeComponentVisibility }) {
   return (
     <ExpensesBox>
-      <ExpensesHeader>expenses</ExpensesHeader>
+      <ExpensesHeaderBox>
+        <ExpensesSvg width="15" height="20" onClick={changeComponentVisibility}>
+          <use href={icons.arrowLeft}></use>
+        </ExpensesSvg>
+        <ExpensesHeader>expenses</ExpensesHeader>
+        <ExpensesSvg width="15" height="20" onClick={changeComponentVisibility}>
+          <use href={icons.arrowRight}></use>
+        </ExpensesSvg>
+      </ExpensesHeaderBox>
       <ExpensesList>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.products}</ExpensesListItemText>
-          <ExpensesSvg width="65" height="56">
+          <ExpensesSvg width="56" height="56">
             <use href={icons.productsSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>products</ExpensesListItemText>
@@ -109,6 +120,7 @@ export function Expenses() {
           </ExpensesSvg>
           <ExpensesListItemText>other</ExpensesListItemText>
         </ExpensesListItem>
+        <ExpensesDivider />
       </ExpensesList>
     </ExpensesBox>
   );

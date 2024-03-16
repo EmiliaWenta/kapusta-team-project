@@ -9,5 +9,7 @@
   "communal": 900.0,
   "hobbies": 800.0,
   "education": 800.0,
-  "other": 200.0
+  "other": 200.0,
+  "salary": 4500.0,
+  "addIncome": 1500
 }
