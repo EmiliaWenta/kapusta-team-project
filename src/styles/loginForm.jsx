@@ -21,9 +21,10 @@ export const LoginFormGoogleBtn = styled.button`
   border-radius: 26px;
   border: none;
   box-shadow: 1px 2px 3px 0px rgba(170, 178, 197, 0.2);
+  margin: 15px 0px;
 
   ${above768px`
-  margin: 15px 0px;`}
+  `}
 `;
 export const LoginFormLabelList = styled.ul`
   list-style: none;
@@ -71,7 +72,6 @@ export const LoginFormBtnList = styled.ul`
   list-style: none;
   column-gap: 8px;
   padding: 0px;
-  margin-top: -5px;
 `;
 
 export const LoginFormErrorMessage = styled.p`
