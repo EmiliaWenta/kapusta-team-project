@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors, above768px } from './globalStyles';
 
-export const LoginFormBox = styled.div`
+export const LoginFormBox = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;

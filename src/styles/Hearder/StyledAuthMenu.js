@@ -43,4 +43,11 @@ export const NoMobileExit = styled.a`
   padding-left: 20px;
   text-decoration: underline;
   color: ${textBasicGray};
+  cursor: pointer;
+`;
+
+export const NoStyledButton = styled.button`
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
 `;
