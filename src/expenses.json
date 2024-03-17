@@ -11,5 +11,7 @@
   "education": 800.0,
   "other": 200.0,
   "salary": 4500.0,
-  "addIncome": 1500
+  "addIncome": 1500,
+  "expenses": 18000.0,
+  "income": 45000.0
 }
