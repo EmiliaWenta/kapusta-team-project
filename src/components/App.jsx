@@ -6,7 +6,6 @@ import { RestricterRoute } from './RestrictedRoute';
 
 export const App = () => {
   return (
-
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
