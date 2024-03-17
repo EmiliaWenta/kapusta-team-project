@@ -1,0 +1,27 @@
+[
+  {
+    "date": "2024-01",
+    "description": "invoice",
+    "category": "964.82",
+    "sum": "-20"
+  },
+  {
+    "date": "2024-5",
+    "description": "igdhjklkjhgfdfghjklkjhgfghjkl;lkodnmmsmrpoihjdnsxm;lweprjikdnvoice",
+    "category": "686.50",
+    "sum": "30"
+  },
+  {
+    "date": "2024-02",
+    "description": "invoice",
+    "category": "964.82",
+    "sum": "-50"
+  },
+
+  {
+    "date": "2024-03",
+    "description": "invoice",
+    "category": "964.82",
+    "sum": "60"
+  }
+]

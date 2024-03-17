@@ -9,7 +9,7 @@ import {
 } from '../../styles/Hearder/StyledAuthMenu';
 import sprite from '../../svg/icons_sprite.svg';
 
-export const AuthorizedMenu = () => {
+const AuthorizedMenu = () => {
   const [isMobile, setIsMobile] = useState();
 
   useEffect(() => {
@@ -42,3 +42,5 @@ export const AuthorizedMenu = () => {
     </UserWrapper>
   );
 };
+
+export default AuthorizedMenu;

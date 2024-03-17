@@ -9,6 +9,7 @@ export const StyledWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
 
   ${above768px`
     padding-left: 32px;

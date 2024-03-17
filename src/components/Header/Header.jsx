@@ -1,9 +1,12 @@
-import { AuthorizedMenu } from './AuthorizedMenu';
 import { StyledWrapper } from '../../styles/Hearder/StyledHeader';
-import sprite from '../../svg/icons_sprite.svg';
 
-export const Header = () => {
-  const isLoggedIn = true;
+import AuthorizedMenu from './AuthorizedMenu';
+import sprite from '../../svg/icons_sprite.svg';
+import { useSelector } from 'react-redux';
+import { selectIsLogged } from '../../redux/selectors';
+
+const Header = () => {
+  const isLoggedIn = useSelector(selectIsLogged);
   return (
     <StyledWrapper>
       <svg width="90" height="31">
@@ -13,3 +16,5 @@ export const Header = () => {
     </StyledWrapper>
   );
 };
+
+export default Header;
