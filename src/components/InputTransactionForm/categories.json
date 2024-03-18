@@ -1,0 +1,13 @@
+[
+  { "category": "Alcohol" },
+  { "category": "Entertainment" },
+  { "category": "Health" },
+  { "category": "Transport" },
+  { "category": "Housekeeping" },
+  { "category": "Electronics" },
+  { "category": "Communications" },
+  { "category": "Activities" },
+  { "category": "Education" },
+  { "category": "Other" },
+  { "category": "Products" }
+]

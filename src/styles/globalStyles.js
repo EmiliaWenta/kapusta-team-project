@@ -11,6 +11,8 @@ export const colors = {
   moneyGreen: `#407946`,
   moneyRed: `#E7192E`,
   iconsBlue: `#071F41`,
+  textInputGray: `#C7CCDC`,
+  inputBorder: `#F5F6FB`,
 };
 
 export const above768px = styles => css`
