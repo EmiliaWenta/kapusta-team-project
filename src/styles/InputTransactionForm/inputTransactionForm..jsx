@@ -24,7 +24,6 @@ export const MainContainer = styled.div`
 `;
 
 export const InputForm = styled.form`
-  display: ${p => (p.isShown ? 'flex' : 'none')};
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
