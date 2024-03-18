@@ -12,6 +12,8 @@ export const colors = {
   iconsBlue: `#071F41`,
   textInputGray: `#C7CCDC`,
   inputBorder: `#F5F6FB`,
+  tabActive: `#FEFEFE`,
+  tabInactive: `#FAFBFD`,
 };
 
 export const above768px = styles => css`
