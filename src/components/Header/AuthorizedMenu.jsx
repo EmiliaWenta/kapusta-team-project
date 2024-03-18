@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectToken, selectUserEmail } from '../../redux/selectors';
 
 import {
   NoMobileExit,
   NoMobileMenu,
+  NoStyledButton,
   StyledLetter,
   StyledName,
   UserWrapper,
 } from '../../styles/Hearder/StyledAuthMenu';
 import sprite from '../../svg/icons_sprite.svg';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/operations';
 
 const AuthorizedMenu = () => {
   const [isMobile, setIsMobile] = useState();
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const email = useSelector(selectUserEmail);
+  const firstLetter = email[0].toUpperCase();
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
@@ -26,17 +35,23 @@ const AuthorizedMenu = () => {
     };
   }, []);
 
+  const handleExit = () => {
+    dispatch(logout(token));
+  };
+
   return (
     <UserWrapper>
-      <StyledLetter>U</StyledLetter>
+      <StyledLetter>{firstLetter}</StyledLetter>
       {isMobile ? (
-        <svg width="16" height="16">
-          <use xlinkHref={`${sprite}#logout`} />
-        </svg>
+        <NoStyledButton onClick={handleExit}>
+          <svg width="16" height="16">
+            <use xlinkHref={`${sprite}#logout`} />
+          </svg>
+        </NoStyledButton>
       ) : (
         <NoMobileMenu>
-          <StyledName>User Name</StyledName>
-          <NoMobileExit>Exit</NoMobileExit>
+          <StyledName>{email}</StyledName>
+          <NoMobileExit onClick={handleExit}>Exit</NoMobileExit>
         </NoMobileMenu>
       )}
     </UserWrapper>

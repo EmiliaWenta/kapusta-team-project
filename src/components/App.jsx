@@ -1,16 +1,23 @@
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Home from 'pages/Home';
 import Layout from 'components/Layout/Layout';
-import { RestricterRoute } from './RestrictedRoute';
+import Finance from 'pages/Finance';
+import { selectIsLogged } from '../redux/selectors';
 
 export const App = () => {
+  const isLoggedIn = useSelector(selectIsLogged);
+
   return (
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<RestricterRoute component={Home} path="" />} />
-
+          {isLoggedIn ? (
+            <Route path="/" element={<Finance />} />
+          ) : (
+            <Route path="/" element={<Home />} />
+          )}
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>

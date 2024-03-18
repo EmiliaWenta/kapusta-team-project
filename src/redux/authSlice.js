@@ -3,14 +3,13 @@ import { register, login, logout } from './operations';
 
 const initialState = {
   isLogged: false,
-  user: { email: null, password: null },
-  token: null,
+  user: { email: '', token: null },
 };
 
 const setCommonState = (state, action) => {
   state.isLogged = true;
   state.user.email = action.payload.user.email;
-  state.token = action.payload.token;
+  state.user.token = action.payload.token;
 };
 
 const authSlice = createSlice({

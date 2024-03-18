@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
 import ModalWindow from 'components/modalWindow/ModalWindow';
 import {
   LoginFormBox,
@@ -13,22 +15,36 @@ import {
 
 import { TomatoButtonWithShadow } from 'components/buttons/TomatoButtonWithShadow';
 import { GreyButton } from 'components/buttons/GreyButton';
+import { login, register } from '../../redux/operations';
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+
+  const dispatch = useDispatch();
+  let typeOfOperation;
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (email === '' || password === '') {
+    const userData = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+
+    if (userData.email === '' || userData.password === '') {
       setEmailError(true);
       setPasswordError(true);
+      return;
+    }
+
+    setEmailError(false);
+    setPasswordError(false);
+
+    if (typeOfOperation === 'register') {
+      dispatch(register(userData));
     } else {
-      setEmailError(false);
-      setPasswordError(false);
+      dispatch(login(userData));
     }
   }
 
@@ -50,9 +66,6 @@ function LoginForm() {
                 type="email"
                 name="email"
                 placeholder="your@email.com"
-                value={email}
-                onChange={event => setEmail(event.target.value)}
-                required
               />
               {emailError && (
                 <LoginFormErrorMessage>
@@ -66,9 +79,6 @@ function LoginForm() {
                 type="password"
                 name="password"
                 placeholder="Password"
-                value={password}
-                onChange={event => setPassword(event.target.value)}
-                required
               />
               {passwordError && (
                 <LoginFormErrorMessage>
@@ -79,10 +89,22 @@ function LoginForm() {
           </LoginFormLabelList>
           <LoginFormBtnList>
             <li>
-              <TomatoButtonWithShadow text="log in" />
+              <TomatoButtonWithShadow
+                type="submit"
+                text="log in"
+                onClick={() => {
+                  typeOfOperation = 'login';
+                }}
+              />
             </li>
             <li>
-              <GreyButton text="registration" />
+              <GreyButton
+                type="submit"
+                text="registration"
+                onClick={() => {
+                  typeOfOperation = 'register';
+                }}
+              />
             </li>
           </LoginFormBtnList>
         </LoginFormBox>
