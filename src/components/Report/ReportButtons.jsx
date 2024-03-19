@@ -1,0 +1,51 @@
+import svg from '../../svg/icons_sprite.svg';
+import {
+  BalanceContainer,
+  PeriodContainer,
+  MainPageSvg,
+  Period,
+  PeriodArrow,
+  PeriodData,
+  PeriodBtn,
+  StyledLink,
+  MainPageText,
+  MounthBox,
+  MounthContainer,
+  DataWrapper,
+} from '../../styles/reportButtons';
+
+export function BalanceReport() {
+  return (
+    <BalanceContainer>
+      <PeriodContainer>
+        <StyledLink to="/wallet">
+          <MainPageSvg>
+            <use href={`${svg}#arrow_back`}></use>
+          </MainPageSvg>
+
+          <MainPageText>Main Page</MainPageText>
+        </StyledLink>
+        <DataWrapper>
+          <MounthBox>
+            <Period>Current period:</Period>
+            <MounthContainer>
+              <PeriodBtn type="button">
+                <PeriodArrow>
+                  <use href={`${svg}#arrow_left`} />
+                </PeriodArrow>
+              </PeriodBtn>
+
+              <PeriodData>Month Year</PeriodData>
+
+              <PeriodBtn type="button">
+                <PeriodArrow>
+                  <use href={`${svg}#arrow_right`} />
+                </PeriodArrow>
+              </PeriodBtn>
+            </MounthContainer>
+          </MounthBox>
+        </DataWrapper>
+      </PeriodContainer>
+    </BalanceContainer>
+  );
+}
