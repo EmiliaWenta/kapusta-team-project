@@ -1,13 +1,13 @@
 [
-  { "category": "Alcohol" },
-  { "category": "Entertainment" },
-  { "category": "Health" },
-  { "category": "Transport" },
-  { "category": "Housekeeping" },
-  { "category": "Electronics" },
-  { "category": "Communications" },
-  { "category": "Activities" },
-  { "category": "Education" },
-  { "category": "Other" },
-  { "category": "Products" }
+  { "value": "Alcohol", "label": "Alcohol" },
+  { "value": "Entertainment", "label": "Entertainment" },
+  { "value": "Health", "label": "Health" },
+  { "value": "Transport", "label": "Transport" },
+  { "value": "Housekeeping", "label": "Housekeeping" },
+  { "value": "Electronics", "label": "Electronics" },
+  { "value": "Communications", "label": "Communications" },
+  { "value": "Activities", "label": "Activities" },
+  { "value": "Education", "label": "Education" },
+  { "value": "Other", "label": "Other" },
+  { "value": "Product", "label": "Product" }
 ]
