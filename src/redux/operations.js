@@ -64,6 +64,8 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+//TRANSATIONS
+
 export const getIncome = createAsyncThunk(
   'transations/getIncome',
   async (token, thunkAPI) => {
