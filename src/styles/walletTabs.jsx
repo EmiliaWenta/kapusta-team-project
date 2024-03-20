@@ -23,6 +23,10 @@ export const Box = styled.div`
     justify-content: flex-start;
     gap: 0;
   `)}
+
+  ${above1280px(css`
+    min-width: 1098px;
+  `)}
 `;
 
 export const TabLink = styled.div`
@@ -76,7 +80,7 @@ export const Outlet = styled.div`
   `)}
   ${above1280px(css`
     padding: 32px 32px 61px 32px;
-    width: 1098px;
+    min-width: 100%;
     height: 579px;
   `)}
 `;
