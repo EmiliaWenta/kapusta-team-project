@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import CabbagesBg from 'components/Background/Background';
+import BackgroundTemplate from 'components/Background/Background';
 import Header from 'components/Header/Header';
 
 const Layout = () => {
@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <Header></Header>
       <Outlet></Outlet>
-      <CabbagesBg></CabbagesBg>
+      <BackgroundTemplate></BackgroundTemplate>
     </>
   );
 };
