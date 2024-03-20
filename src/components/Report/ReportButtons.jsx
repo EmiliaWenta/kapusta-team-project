@@ -14,7 +14,10 @@ import {
   DataWrapper,
 } from '../../styles/reportButtons';
 
+import BalanceReportPage from 'components/ReportPage/BalanceReportPage';
+
 export function BalanceReport() {
+  const isWideScreen = window.innerWidth >= 768;
   return (
     <BalanceContainer>
       <PeriodContainer>
@@ -25,6 +28,7 @@ export function BalanceReport() {
 
           <MainPageText>Main Page</MainPageText>
         </StyledLink>
+        {isWideScreen && <BalanceReportPage />}
         <DataWrapper>
           <MounthBox>
             <Period>Current period:</Period>

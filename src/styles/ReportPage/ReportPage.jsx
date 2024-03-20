@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { above768px } from 'styles/globalStyles';
 
 export const ReportWrapper = styled.div`
   display: flex;
@@ -9,6 +10,15 @@ export const ReportWrapper = styled.div`
 `;
 
 export const BalanceReportBox = styled.div`
-  margin: 16px 0px 32px 0px;
+  margin: 16px 0px 10px 0px;
   width: 280px;
+  display: flex;
+  row-gap: 32px;
+  flex-direction: column;
+
+  ${above768px`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  `};
 `;

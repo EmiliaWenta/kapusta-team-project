@@ -8,6 +8,7 @@ import { ExpIncInfo } from 'components/ExpIncSummary/ExpIncSummary';
 import { ReportBox } from 'components/ReportBox/ReportBox';
 
 export function ReportPage() {
+  const isWideScreen = window.innerWidth <= 768;
   return (
     <div>
       <Header />
@@ -15,8 +16,9 @@ export function ReportPage() {
         <BackgroundTemplate />
         <BalanceReportBox>
           <BalanceReport />
+          {isWideScreen && <BalanceReportPage />}
+          {/* <BalanceReportPage /> */}
         </BalanceReportBox>
-        <BalanceReportPage />
         <ExpIncInfo />
         <ReportBox />
       </ReportWrapper>

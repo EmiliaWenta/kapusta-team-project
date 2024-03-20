@@ -6,19 +6,18 @@ export const StyledForm = styled.form`
   height: 72px;
   align-items: center;
   text-align: center;
-
+  margin-bottom: 32px;
   ${above768px(css`
     width: 369px;
     height: 44px;
     display: flex;
-    justify-content: flex-start;
     gap: 15px;
-  `)}
-
-  ${above1280px(css`
+    margin: 0px;
+  `)} ${above1280px(css`
     width: 334px;
     gap: 16px;
-  `)}
+    margin-left: 143px;
+  `)};
 `;
 
 export const StyledParagraph = styled.p`
@@ -59,7 +58,6 @@ export const StyledInput = styled.input`
 
   ${above768px(css`
     width: 125px;
-    padding-right: 20px;
     border-radius: 22px;
   `)}
 `;

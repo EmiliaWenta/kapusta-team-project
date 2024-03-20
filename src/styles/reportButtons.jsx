@@ -1,5 +1,5 @@
 import { css, styled } from 'styled-components';
-import { colors, above768px } from './globalStyles';
+import { colors, above768px, above1280px } from './globalStyles';
 import { NavLink } from 'react-router-dom';
 
 export const BalanceContainer = styled.div`
@@ -13,10 +13,15 @@ export const BalanceContainer = styled.div`
   flex-direction: column-reverse;
 
   ${above768px(css`
-    justify-content: space-between;
+    min-width: 704px;
+
     height: 44px;
     flex-direction: row;
   `)}
+
+  ${above1280px`
+  min-width: 1034px;
+  `}
 `;
 
 export const StyledBtn = styled.button`
@@ -76,6 +81,9 @@ export const StyledLink = styled(NavLink)`
     margin-bottom: 0;
     flex-grow: 2;
   `)}
+
+  ${above1280px`
+  flex-grow: 0`}
 `;
 
 export const DataWrapper = styled.div`
@@ -87,9 +95,6 @@ export const DataWrapper = styled.div`
 
   ${above768px(css`
     flex-direction: row;
-    gap: unset;
-    flex-grow: 2;
-    justify-content: space-between;
   `)}
 `;
 
@@ -175,5 +180,6 @@ export const MainPageText = styled.p`
   `)}
 `;
 export const MounthBox = styled.div`
-  min-width: 150px;
+  display: flex;
+  flex-direction: column;
 `;

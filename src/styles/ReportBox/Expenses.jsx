@@ -5,12 +5,6 @@ export const ExpensesBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${above768px`
-  min-width: 704px;
-  height: 348px;
-  border-radius: 30px;
-  box-shadow: 0px 10px 60px 0px #AAB2C533`}
-
   ${above1280px`
   width: 1034px;`}
 `;
