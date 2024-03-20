@@ -1,17 +1,18 @@
-import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { Route, Routes } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
 
-import Home from 'pages/Home';
-import Layout from 'components/Layout/Layout';
-import Finance from 'pages/Finance';
-import { selectIsLogged } from '../redux/selectors';
+// import Home from 'pages/Home';
+// import Layout from 'components/Layout/Layout';
+// import Finance from 'pages/Finance';
+// import { selectIsLogged } from '../redux/selectors';
+import { ReportPage } from '../pages/ReportPage';
 
 export const App = () => {
-  const isLoggedIn = useSelector(selectIsLogged);
+  // const isLoggedIn = useSelector(selectIsLogged);
 
   return (
     <div>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Layout />}>
           {isLoggedIn ? (
             <Route path="/" element={<Finance />} />
@@ -20,7 +21,8 @@ export const App = () => {
           )}
           <Route path="*" element={<Home />} />
         </Route>
-      </Routes>
+      </Routes> */}
+      <ReportPage />
     </div>
   );
 };

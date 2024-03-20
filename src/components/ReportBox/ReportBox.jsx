@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Expenses } from './Expenses';
 import { Income } from './Income';
+import { ReportBoxWrapper } from 'styles/ReportBox/ReportBox';
 
 export function ReportBox() {
   const [showIncome, setShowIncome] = useState(false);
@@ -9,12 +10,12 @@ export function ReportBox() {
     setShowIncome(!showIncome);
   };
   return (
-    <div>
+    <ReportBoxWrapper>
       {showIncome ? (
         <Income changeComponentVisibility={changeComponentVisibility} />
       ) : (
         <Expenses changeComponentVisibility={changeComponentVisibility} />
       )}
-    </div>
+    </ReportBoxWrapper>
   );
 }

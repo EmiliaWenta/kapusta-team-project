@@ -4,8 +4,6 @@ const { default: styled } = require('styled-components');
 export const ExpensesBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 320px;
-  height: 300px;
 
   ${above768px`
   min-width: 704px;
@@ -41,8 +39,7 @@ export const ExpensesList = styled.ul`
   list-style: none;
   justify-content: space-around;
   row-gap: 10px;
-  padding: 0px 20px;
-  margin: 0px;
+  padding: 0px;
 
   ${above768px`
   column-gap: 40px;
