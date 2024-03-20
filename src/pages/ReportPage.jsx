@@ -6,6 +6,7 @@ import { BalanceReport } from 'components/Report/ReportButtons';
 import { BalanceReportPage } from 'components/ReportPage/BalanceReportPage';
 import { ExpIncInfo } from 'components/ExpIncSummary/ExpIncSummary';
 import { ReportBox } from 'components/ReportBox/ReportBox';
+import { TempGrid } from 'components/ReportPage/TempGrid';
 
 export function ReportPage() {
   const isWideScreen = window.innerWidth <= 768;
@@ -21,6 +22,7 @@ export function ReportPage() {
         </BalanceReportBox>
         <ExpIncInfo />
         <ReportBox />
+        <TempGrid />
       </ReportWrapper>
     </div>
   );
