@@ -22,6 +22,9 @@ export const LoginFormGoogleBtn = styled.button`
   border: none;
   box-shadow: 1px 2px 3px 0px rgba(170, 178, 197, 0.2);
   margin: 15px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 
   ${above768px`
   `}
