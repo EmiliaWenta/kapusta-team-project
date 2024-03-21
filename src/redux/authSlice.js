@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout } from './operations';
+import { getCurrentUser, register, login, logout } from './operations';
 
 const initialState = {
   isLogged: false,
-  user: { email: '', token: null },
+  user: { email: '', id: '', balance: 0, token: null },
 };
 
 const setCommonState = (state, action) => {
@@ -19,7 +19,11 @@ const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, setCommonState)
       .addCase(login.fulfilled, setCommonState)
-      .addCase(logout.fulfilled, () => initialState);
+      .addCase(logout.fulfilled, () => initialState)
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.user.balance = action.payload.user.balance;
+        state.user.id = action.payload.user._id;
+      });
   },
 });
 
