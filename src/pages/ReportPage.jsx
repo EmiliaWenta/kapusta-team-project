@@ -1,5 +1,4 @@
 import { BalanceReportBox, ReportWrapper } from 'styles/ReportPage/ReportPage';
-import { useState } from 'react';
 import BackgroundTemplate from 'components/Background/Background';
 import Header from 'components/Header/Header';
 import { BalanceReport } from 'components/Report/ReportButtons';
