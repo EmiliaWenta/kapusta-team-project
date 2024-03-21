@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 
 import { authReducer } from './authSlice';
 import { transactionsReducer } from './transactionsSlice';
+import { pageSettingsReducer } from './pageSettingsSlice';
 
 const authPersistCfg = {
   key: 'auth',
@@ -14,6 +15,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistCfg, authReducer),
     transations: transactionsReducer,
+    pageSettings: pageSettingsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

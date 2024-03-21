@@ -14,7 +14,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           {isLoggedIn ? (
-            <Route path="/" element={<Finance />} />
+            <Route path="/" element={<Finance />}></Route>
           ) : (
             <Route path="/" element={<Home />} />
           )}

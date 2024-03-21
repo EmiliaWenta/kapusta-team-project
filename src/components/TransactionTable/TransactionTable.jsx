@@ -15,6 +15,7 @@ export const TransactionTable = ({ items, headers, columns }) => {
   }));
 
   const allItems = [...items, ...emptyRows];
+
   return (
     <StyledTableContainer>
       <StyledTable>

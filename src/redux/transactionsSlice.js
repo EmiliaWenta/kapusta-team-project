@@ -7,8 +7,8 @@ import {
 } from './operations';
 
 const initialState = {
-  income: {},
-  expenses: {},
+  income: [],
+  expences: [],
 };
 
 const transactionsSlice = createSlice({
