@@ -64,6 +64,24 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+export const updateBalance = createAsyncThunk(
+  'users/updateBalance',
+  async (credentials, thunkAPI) => {
+    try {
+      const { token } = credentials;
+      const response = axios.get('users/balance', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {},
+      });
+      console.log(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 //TRANSATIONS
 
 export const getIncome = createAsyncThunk(

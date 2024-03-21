@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, above768px, above1280px } from './globalStyles';
+import { above768px, above1280px } from './globalStyles';
 
 export const StyledForm = styled.form`
   width: 282px;

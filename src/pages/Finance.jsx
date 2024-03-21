@@ -1,5 +1,4 @@
 import BackgroundTemplate from 'components/Background/Background';
-import Header from 'components/Header/Header';
 import { Balance } from 'components/Balance/Balance';
 import { Report } from 'components/Report/Report';
 import { Tabs } from 'components/WalletTabs';
@@ -20,7 +19,6 @@ const Finance = () => {
   return (
     <StyledFinance>
       <BackgroundTemplate />
-      <Header />
       <BalanceWrapper>
         <Balance />
         <Report />
