@@ -11,7 +11,7 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-import { StyledChartContainer } from '../../styles/chart.jsx';
+import { StyledChartContainer, StyledDiv } from '../../styles/chart.jsx';
 
 ChartJS.register(
   CategoryScale,
@@ -126,13 +126,15 @@ export const Chart = ({ data, categories }) => {
   };
 
   return (
-    <StyledChartContainer>
-      <Bar
-        height="350px"
-        options={determineOptions()}
-        data={dataSettings}
-        plugins={[ChartDataLabels]}
-      />
-    </StyledChartContainer>
+    <StyledDiv>
+      <StyledChartContainer>
+        <Bar
+          options={determineOptions()}
+          data={dataSettings}
+          plugins={[ChartDataLabels]}
+          height={400}
+        />
+      </StyledChartContainer>
+    </StyledDiv>
   );
 };
