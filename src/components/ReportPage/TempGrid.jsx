@@ -1,7 +1,8 @@
-import { TempBox } from 'styles/ReportPage/TempGrid';
+import React from 'react';
+import { ExpensesGrid, IncomeGrid } from 'styles/ReportPage/TempGrid';
 
-export function TempGrid() {
-  return <TempBox />;
+export function TempGrid({ showIncome }) {
+  return <div>{showIncome ? <IncomeGrid /> : <ExpensesGrid />}</div>;
 }
 
 export default TempGrid;
