@@ -88,7 +88,7 @@ export const updateBalance = createAsyncThunk(
 //TRANSATIONS
 
 export const getIncome = createAsyncThunk(
-  'transations/getIncome',
+  'transactions/getIncome',
   async (token, thunkAPI) => {
     try {
       console.log('income!');
@@ -105,7 +105,7 @@ export const getIncome = createAsyncThunk(
 );
 
 export const getExpences = createAsyncThunk(
-  'transations/getExpences',
+  'transactions/getExpences',
   async (token, thunkAPI) => {
     try {
       console.log('expences!');
@@ -121,8 +121,8 @@ export const getExpences = createAsyncThunk(
   }
 );
 
-export const addTransation = createAsyncThunk(
-  'transations/addTransation',
+export const addTransaction = createAsyncThunk(
+  'transactions/addTransation',
   async ({ token, credentials }, thunkAPI) => {
     try {
       console.log(credentials);
@@ -139,8 +139,8 @@ export const addTransation = createAsyncThunk(
   }
 );
 
-export const deleteTransation = createAsyncThunk(
-  'transations/deleteTransation',
+export const deleteTransaction = createAsyncThunk(
+  'transactions/deleteTransation',
   async (credentials, thunkAPI) => {
     try {
       const { token, _id, type } = credentials;

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { CustomSelectStyled } from '../../styles/InputTransactionForm/customSelect';
 import expencesCategories from './expencesCategories.json';
 import incomeCategories from './incomeCategories.json';
-import { selectTransationType } from '../../redux/selectors';
+import { selectTransactionType } from '../../redux/selectors';
 
 export const CustomSelect = ({
   keyName,
@@ -14,15 +14,15 @@ export const CustomSelect = ({
   value,
 }) => {
   const [categories, setCategories] = useState([]);
-  const transationType = useSelector(selectTransationType);
+  const transactionType = useSelector(selectTransactionType);
 
   useEffect(() => {
-    if (transationType === 'Expenses') {
+    if (transactionType === 'Expenses') {
       setCategories(expencesCategories);
     } else {
       setCategories(incomeCategories);
     }
-  }, [transationType]);
+  }, [transactionType]);
 
   return (
     <CustomSelectStyled

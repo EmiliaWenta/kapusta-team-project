@@ -18,12 +18,12 @@ import {
 } from '../../styles/InputTransactionForm/inputTransactionForm.';
 import {
   selectToken,
-  selectTransationType,
+  selectTransactionType,
   selectUserId,
 } from '../../redux/selectors';
 
 import { CustomSelect } from '../InputTransactionForm/CustomSelect';
-import { addTransation } from '../../redux/operations';
+import { addTransaction } from '../../redux/operations';
 
 export default function InputTransactionForm({ type }) {
   // const TRANSACTION_FORM_DATA = {
@@ -45,7 +45,7 @@ export default function InputTransactionForm({ type }) {
   const [isActiveInput, setIsActiveInput] = useState(false);
   const [isActiveClear, setIsActiveClear] = useState(false);
 
-  const transationType = useSelector(selectTransationType);
+  const transactionType = useSelector(selectTransactionType);
   const token = useSelector(selectToken);
   const userId = useSelector(selectUserId);
 
@@ -66,7 +66,7 @@ export default function InputTransactionForm({ type }) {
     const formattedDate = format(dateObject, 'yyyy-MM-dd');
     const data = {
       date: formattedDate,
-      type: transationType,
+      type: transactionType,
       description: event.target.product.value,
       category: category.value,
 
@@ -74,7 +74,7 @@ export default function InputTransactionForm({ type }) {
       user: userId,
     };
     const credentials = JSON.stringify(data);
-    dispatch(addTransation({ token, credentials }));
+    dispatch(addTransaction({ token, credentials }));
   };
 
   return (

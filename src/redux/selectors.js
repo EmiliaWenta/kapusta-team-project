@@ -3,6 +3,6 @@ export const selectUserEmail = state => state.auth.user.email;
 export const selectToken = state => state.auth.user.token;
 export const selectUserId = state => state.auth.user.id;
 export const selectBalance = state => state.auth.user.balance;
-export const selectTransationType = state => state.pageSettings;
+export const selectTransactionType = state => state.pageSettings;
 export const selectExpences = state => state.transactions.expences;
 export const selectIncome = state => state.transactions.income;
