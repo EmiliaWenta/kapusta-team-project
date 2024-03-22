@@ -16,7 +16,6 @@ export function ReportPage() {
         <BalanceReportBox>
           <BalanceReport />
           {isWideScreen && <BalanceReportPage />}
-          {/* <BalanceReportPage /> */}
         </BalanceReportBox>
         <ExpIncInfo />
         <ReportBox />
