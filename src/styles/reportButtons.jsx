@@ -1,5 +1,6 @@
 import { css, styled } from 'styled-components';
 import { colors, above768px, above1280px } from './globalStyles';
+import { NavLink } from 'react-router-dom';
 
 export const BalanceContainer = styled.div`
   box-sizing: border-box;
@@ -17,7 +18,6 @@ export const BalanceContainer = styled.div`
     width: auto;
   `)}
 `;
-
 
 export const StyledBtn = styled.button`
   box-sizing: border-box;
@@ -80,7 +80,6 @@ export const StyledLink = styled(NavLink)`
   ${above1280px`
   flex-grow: 0`}
 `;
-
 
 export const DataWrapper = styled.div`
   display: flex;
