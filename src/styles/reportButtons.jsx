@@ -1,6 +1,5 @@
 import { css, styled } from 'styled-components';
 import { colors, above768px, above1280px } from './globalStyles';
-import { NavLink } from 'react-router-dom';
 
 export const BalanceContainer = styled.div`
   box-sizing: border-box;
@@ -18,6 +17,7 @@ export const BalanceContainer = styled.div`
     width: auto;
   `)}
 `;
+
 
 export const StyledBtn = styled.button`
   box-sizing: border-box;
@@ -81,6 +81,7 @@ export const StyledLink = styled(NavLink)`
   flex-grow: 0`}
 `;
 
+
 export const DataWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
@@ -93,10 +94,6 @@ export const DataWrapper = styled.div`
   `)}
 `;
 
-export const FormWrapper = styled.div`
-  justify-content: flex-start;
-`;
-
 export const PeriodContainer = styled.div`
   flex-direction: column;
   width: 100%;
@@ -106,13 +103,6 @@ export const PeriodContainer = styled.div`
   ${above768px(css`
     flex-direction: row;
   `)}
-`;
-
-export const MainPageSvg = styled.svg`
-  height: 18px;
-  width: 18px;
-
-  margin-right: 19px;
 `;
 
 export const Period = styled.p`
@@ -164,15 +154,6 @@ export const PeriodData = styled.p`
   user-select: none;
 `;
 
-export const MainPageText = styled.p`
-  margin: 0;
-  display: none;
-  color: ${colors.textInputGray};
-
-  ${above768px(css`
-    display: inline-flex;
-  `)}
-`;
 export const MounthBox = styled.div`
   display: flex;
   flex-direction: column;

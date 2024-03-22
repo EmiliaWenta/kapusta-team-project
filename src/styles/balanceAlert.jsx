@@ -1,10 +1,16 @@
 import { css, styled } from 'styled-components';
-import { above1280px, colors } from './globalStyles';
+import { above1280px, above768px, colors } from './globalStyles';
 
 export const AlertWrapper = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
+  top: -10px;
+  left: 4px;
+  ${above768px(css`
+    top: -10px;
+    left: 115px;
+  `)};
 `;
 
 export const AlertWindow = styled.div`

@@ -1,0 +1,15 @@
+[
+  { "label": "pork", "value": "1000" },
+  { "label": "beef", "value": "900" },
+  { "label": "chicken", "value": "800" },
+  { "label": "fish", "value": "700" },
+  { "label": "panini", "value": "600" },
+  { "label": "coffe", "value": "500" },
+  { "label": "spaghetti", "value": "400" },
+  { "label": "chockolate", "value": "300" },
+  { "label": "olives", "value": "100" },
+  { "label": "grens", "value": "50" },
+  { "label": "pork", "value": "1000" },
+  { "label": "beef", "value": "900" },
+  { "label": "chicken", "value": "800" }
+]
