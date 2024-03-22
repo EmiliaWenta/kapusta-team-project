@@ -19,7 +19,7 @@ export const Tabs = () => {
 
   const handleTab1 = () => {
     setActiveTab('tab1');
-    dispatch(setTransactionType('Expences'));
+    dispatch(setTransactionType('Expenses'));
     dispatch(getExpences(token));
   };
   const handleTab2 = () => {

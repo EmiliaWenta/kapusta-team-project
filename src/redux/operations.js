@@ -68,13 +68,16 @@ export const updateBalance = createAsyncThunk(
   'users/updateBalance',
   async (credentials, thunkAPI) => {
     try {
-      const { token } = credentials;
-      const response = axios.get('users/balance', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {},
-      });
+      const { token, balance } = credentials;
+      const response = axios.patch(
+        'users/balance',
+        { balance },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -120,14 +123,15 @@ export const getExpences = createAsyncThunk(
 
 export const addTransation = createAsyncThunk(
   'transations/addTransation',
-  async (credentials, thunkAPI) => {
+  async ({ token, credentials }, thunkAPI) => {
     try {
-      const { token } = credentials;
-      const response = await axios.post('transations', {
+      console.log(credentials);
+      const response = await axios.post('transactions', credentials, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

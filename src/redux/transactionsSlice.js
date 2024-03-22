@@ -30,7 +30,7 @@ const transactionsSlice = createSlice({
         }
       })
       .addCase(deleteTransation.fulfilled, (state, action) => {
-        if (action.payload.type === 'Expeces') {
+        if (action.payload.type === 'Expences') {
           const index = state.expences.findIndex(
             transation => transation._id === action.payload._id
           );

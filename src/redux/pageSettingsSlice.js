@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const pageSettingsSlice = createSlice({
-  initialState: 'Expences',
+  initialState: 'Expenses',
   name: 'transationType',
   reducers: {
     setTransactionType(state, action) {
