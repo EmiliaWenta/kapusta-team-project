@@ -1,6 +1,7 @@
 import { Bar } from 'react-chartjs-2';
 import React, { useState, useEffect } from 'react';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -63,23 +64,32 @@ export const Chart = ({ data, categories }) => {
       x: {
         grid: {
           color: 'transparent',
+          drawBorder: false,
         },
+
         ticks: {
           color: 'rgba(82, 85, 95, 1)',
         },
       },
       y: {
+        display: false,
         ticks: {
           display: false,
         },
         grid: {
           color: `rgba(245, 246, 251, 1)`,
           width: '2px',
+          drawBorder: false,
         },
       },
     },
   };
   const mobileOptions = {
+    layout: {
+      padding: {
+        right: 15,
+      },
+    },
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -90,25 +100,34 @@ export const Chart = ({ data, categories }) => {
         display: true,
         text: `${categories}`,
       },
+
       datalabels: {
+        display: true,
         anchor: 'end',
-        align: 'end',
         color: 'rgba(82, 85, 95, 1)',
+        align: 'top',
       },
     },
     scales: {
       x: {
+        display: false,
         grid: {
           display: false,
+          drawBorder: false,
         },
         ticks: {
           display: false,
         },
       },
       y: {
+        ticks: {
+          padding: -5,
+          top: 10,
+        },
         position: 'left',
         grid: {
           display: false,
+          drawBorder: false,
         },
       },
     },

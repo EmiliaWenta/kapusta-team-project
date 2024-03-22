@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
+    "chart.js-plugin-labels-dv": "^5.0.1-beta",
     "chartjs-plugin-datalabels": "^2.2.0",
     "component": "^1.1.0",
     "date-fns": "^3.6.0",
