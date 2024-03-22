@@ -1,13 +1,13 @@
-import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { useGoogleLogin } from '@react-oauth/google';
 import { LoginFormGoogleBtn } from 'styles/loginForm';
 import googleLogo from '../../svg/icons_sprite.svg';
 
 export const GoogleBtn = () => {
   const login = useGoogleLogin({
-    onSucess: async response => {
+    onSuccess: async response => {
       try {
-        const res = await axios.post(
+        const res = await axios.get(
           'https://www.googleapis.com/oauth2/v3/userinfo',
           {
             headers: {
@@ -15,17 +15,15 @@ export const GoogleBtn = () => {
             },
           }
         );
-        console.log(res);
+        console.log('Login Success', res.data);
       } catch (error) {
-        console.log(error);
+        console.log('Login Failed', error);
       }
     },
-    onFail: response => {
-      console.log(response.error);
-    },
   });
+
   return (
-    <LoginFormGoogleBtn onClick={() => login()}>
+    <LoginFormGoogleBtn onClick={login}>
       <svg width="17.17px" height="18px">
         <use xlinkHref={`${googleLogo}#googleLogo`} />
       </svg>
