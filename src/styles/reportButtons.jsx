@@ -13,15 +13,10 @@ export const BalanceContainer = styled.div`
   flex-direction: column-reverse;
 
   ${above768px(css`
-    min-width: 704px;
-
-    height: 44px;
     flex-direction: row;
+    order: 3;
+    width: auto;
   `)}
-
-  ${above1280px`
-  min-width: 1034px;
-  `}
 `;
 
 export const StyledBtn = styled.button`
@@ -106,7 +101,6 @@ export const PeriodContainer = styled.div`
   flex-direction: column;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   ${above768px(css`

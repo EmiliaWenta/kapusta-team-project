@@ -8,8 +8,6 @@ export const StyledForm = styled.form`
   text-align: center;
   margin-bottom: 32px;
   ${above768px(css`
-    width: 369px;
-    height: 44px;
     display: flex;
     gap: 15px;
     margin: 0px;

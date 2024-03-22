@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { above768px } from 'styles/globalStyles';
+import { above1280px, above768px } from 'styles/globalStyles';
 
 export const ReportWrapper = styled.div`
   display: flex;
@@ -10,15 +10,22 @@ export const ReportWrapper = styled.div`
 `;
 
 export const BalanceReportBox = styled.div`
-  margin: 16px 0px 10px 0px;
+  margin-top: 16px;
   width: 280px;
   display: flex;
   row-gap: 32px;
   flex-direction: column;
 
   ${above768px`
+  width: 704px;
+  height: 44px;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-top: 32px;
   `};
+
+  ${above1280px`
+  width: 1034px;`}
 `;

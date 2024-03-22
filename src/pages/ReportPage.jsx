@@ -5,17 +5,18 @@ import { BalanceReport } from 'components/Report/ReportButtons';
 import { BalanceReportPage } from 'components/ReportPage/BalanceReportPage';
 import { ExpIncInfo } from 'components/ExpIncSummary/ExpIncSummary';
 import { ReportBox } from 'components/ReportBox/ReportBox';
+import ReportButtonBack from 'components/Report/ReportButtonBack';
 
 export function ReportPage() {
-  const isWideScreen = window.innerWidth <= 768;
   return (
     <div>
       <Header />
       <ReportWrapper>
         <BackgroundTemplate />
         <BalanceReportBox>
+          <ReportButtonBack />
           <BalanceReport />
-          {isWideScreen && <BalanceReportPage />}
+          <BalanceReportPage />
         </BalanceReportBox>
         <ExpIncInfo />
         <ReportBox />
