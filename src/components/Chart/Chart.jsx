@@ -1,3 +1,6 @@
+import { Bar } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +10,6 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { StyledChartContainer, StyledDiv } from '../../styles/chart.jsx';
 
@@ -23,7 +23,19 @@ ChartJS.register(
 );
 
 export const Chart = ({ data, categories }) => {
-  const screenWidth = window.innerWidth;
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   const colorCallback = context => {
     const index = context.dataIndex;
     return index % 3 === 0 ? 'rgba(255, 117, 29, 1)' : 'rgba(255, 218, 192, 1)';
@@ -102,11 +114,16 @@ export const Chart = ({ data, categories }) => {
         },
       },
     },
-    indexAxis: 'y',
   };
 
+  // const determineOptions = () => {
+  //   return screenWidth < 768 ? mobileOptions : otherOptions;
+  // };
+
   const determineOptions = () => {
-    return screenWidth < 768 ? mobileOptions : otherOptions;
+    return screenWidth < 768
+      ? { ...mobileOptions, indexAxis: 'y' }
+      : { ...otherOptions, indexAxis: 'x' };
   };
 
   const determineBarThickness = () => {
