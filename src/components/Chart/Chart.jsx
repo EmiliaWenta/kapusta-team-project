@@ -106,19 +106,13 @@ export const Chart = ({ data, categories }) => {
         },
       },
       y: {
-        ticks: {
-          display: false,
-        },
+        position: 'left',
         grid: {
           display: false,
         },
       },
     },
   };
-
-  // const determineOptions = () => {
-  //   return screenWidth < 768 ? mobileOptions : otherOptions;
-  // };
 
   const determineOptions = () => {
     return screenWidth < 768
