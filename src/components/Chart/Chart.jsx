@@ -88,6 +88,7 @@ export const Chart = ({ data, categories }) => {
     layout: {
       padding: {
         right: 15,
+        left: 15,
       },
     },
     responsive: true,
@@ -121,8 +122,7 @@ export const Chart = ({ data, categories }) => {
       },
       y: {
         ticks: {
-          padding: -5,
-          top: 10,
+          labelOffset: -16,
         },
         position: 'left',
         grid: {
