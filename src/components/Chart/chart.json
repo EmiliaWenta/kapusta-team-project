@@ -8,5 +8,8 @@
   { "label": "spaghetti", "value": "400" },
   { "label": "chockolate", "value": "300" },
   { "label": "olives", "value": "100" },
-  { "label": "grens", "value": "50" }
+  { "label": "grens", "value": "50" },
+  { "label": "pork", "value": "1000" },
+  { "label": "beef", "value": "900" },
+  { "label": "chicken", "value": "800" }
 ]

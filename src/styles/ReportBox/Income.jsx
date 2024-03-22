@@ -5,15 +5,6 @@ const { default: styled } = require('styled-components');
 export const IncomeBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 320px;
-  height: 190px;
-
-  ${above768px`
-  width: 704px; 
-  height: 195px;
-  border-radius: 30px;
-  box-shadow: 0px 10px 60px 0px #AAB2C533;
-  `}
 
   ${above1280px`
   width: 1034px;`}

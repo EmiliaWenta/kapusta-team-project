@@ -2,13 +2,10 @@ import svg from '../../svg/icons_sprite.svg';
 import {
   BalanceContainer,
   PeriodContainer,
-  MainPageSvg,
   Period,
   PeriodArrow,
   PeriodData,
   PeriodBtn,
-  StyledLink,
-  MainPageText,
   MounthBox,
   MounthContainer,
   DataWrapper,
@@ -18,13 +15,6 @@ export function BalanceReport() {
   return (
     <BalanceContainer>
       <PeriodContainer>
-        <StyledLink to="/wallet">
-          <MainPageSvg>
-            <use href={`${svg}#arrow_back`}></use>
-          </MainPageSvg>
-
-          <MainPageText>Main Page</MainPageText>
-        </StyledLink>
         <DataWrapper>
           <MounthBox>
             <Period>Current period:</Period>

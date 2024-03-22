@@ -50,5 +50,10 @@ export const StyledTableBody = styled.tbody`
         padding-right: 12px;
       `)}
     }
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 170px;
+    }
   }
 `;

@@ -1,9 +1,11 @@
+
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledForm, StyledInput, StyledParagraph } from '../../styles/balance';
 import { GreyButtonWithR } from 'components/buttons/GreyButtonWithR';
 import { getCurrentUser, updateBalance } from '../../redux/operations';
 import { selectBalance, selectToken } from '../../redux/selectors';
+import { BalanceAlert } from 'components/BalanceAlert/BalanceAlert';
 
 export const Balance = () => {
   const token = useSelector(selectToken);
@@ -26,6 +28,7 @@ export const Balance = () => {
   };
 
   return (
+     <>
     <StyledForm onSubmit={handleSubmit}>
       <StyledParagraph>Balance:</StyledParagraph>
       <label>
@@ -37,5 +40,9 @@ export const Balance = () => {
       </label>
       <GreyButtonWithR type="submit" text={'confirm'}></GreyButtonWithR>
     </StyledForm>
+
+      {inputValue.trim() === '' && <BalanceAlert />}
+    </>
+
   );
 };

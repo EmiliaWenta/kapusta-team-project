@@ -1,5 +1,5 @@
 import { css, styled } from 'styled-components';
-import { colors, above768px } from './globalStyles';
+import { colors, above768px, above1280px } from './globalStyles';
 import { NavLink } from 'react-router-dom';
 
 export const BalanceContainer = styled.div`
@@ -13,9 +13,9 @@ export const BalanceContainer = styled.div`
   flex-direction: column-reverse;
 
   ${above768px(css`
-    justify-content: space-between;
-    height: 44px;
     flex-direction: row;
+    order: 3;
+    width: auto;
   `)}
 `;
 
@@ -76,6 +76,9 @@ export const StyledLink = styled(NavLink)`
     margin-bottom: 0;
     flex-grow: 2;
   `)}
+
+  ${above1280px`
+  flex-grow: 0`}
 `;
 
 export const DataWrapper = styled.div`
@@ -87,33 +90,18 @@ export const DataWrapper = styled.div`
 
   ${above768px(css`
     flex-direction: row;
-    gap: unset;
-    flex-grow: 2;
-    justify-content: space-between;
   `)}
-`;
-
-export const FormWrapper = styled.div`
-  justify-content: flex-start;
 `;
 
 export const PeriodContainer = styled.div`
   flex-direction: column;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   ${above768px(css`
     flex-direction: row;
   `)}
-`;
-
-export const MainPageSvg = styled.svg`
-  height: 18px;
-  width: 18px;
-
-  margin-right: 19px;
 `;
 
 export const Period = styled.p`
@@ -165,15 +153,7 @@ export const PeriodData = styled.p`
   user-select: none;
 `;
 
-export const MainPageText = styled.p`
-  margin: 0;
-  display: none;
-  color: ${colors.textInputGray};
-
-  ${above768px(css`
-    display: inline-flex;
-  `)}
-`;
 export const MounthBox = styled.div`
-  min-width: 150px;
+  display: flex;
+  flex-direction: column;
 `;
