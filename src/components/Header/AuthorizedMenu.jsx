@@ -13,6 +13,7 @@ import {
 import sprite from '../../svg/icons_sprite.svg';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/operations';
+import { NavLink } from 'react-router-dom';
 
 const AuthorizedMenu = () => {
   const [isMobile, setIsMobile] = useState();
@@ -43,11 +44,13 @@ const AuthorizedMenu = () => {
     <UserWrapper>
       <StyledLetter>{firstLetter}</StyledLetter>
       {isMobile ? (
-        <NoStyledButton onClick={handleExit}>
-          <svg width="16" height="16">
-            <use xlinkHref={`${sprite}#logout`} />
-          </svg>
-        </NoStyledButton>
+        <NavLink to="/home">
+          <NoStyledButton onClick={handleExit}>
+            <svg width="16" height="16">
+              <use xlinkHref={`${sprite}#logout`} />
+            </svg>
+          </NoStyledButton>
+        </NavLink>
       ) : (
         <NoMobileMenu>
           <StyledName>{email}</StyledName>

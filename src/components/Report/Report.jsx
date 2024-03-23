@@ -1,13 +1,13 @@
 import sprite from '../../svg/icons_sprite.svg';
-import { StyledDiv, StyledSvg } from '../../styles/reports';
+import { StyledLink, StyledSvg } from '../../styles/reports';
 
 export const Report = () => {
   return (
-    <StyledDiv>
+    <StyledLink to="/reports">
       <p>Reports</p>
       <StyledSvg width="14" height="14">
         <use href={sprite + `#reports`}></use>
       </StyledSvg>
-    </StyledDiv>
+    </StyledLink>
   );
 };
