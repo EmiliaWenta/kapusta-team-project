@@ -88,17 +88,16 @@ export default function InputTransactionForm({ type }) {
           handler={date => setDate(date)}
         />
         <InputGroupWrapper>
-
           <InputProduct
             type="text"
-            value={formData.product}
+            //  value={formData.product}
             name="product"
             placeholder="Product description"
-            onChange={e =>
-              setFormData(oldData => {
-                return { ...oldData, product: e.target.value };
-              })
-            }
+            // onChange={e =>
+            //   setFormData(oldData => {
+            //     return { ...oldData, product: e.target.value };
+            //   })
+            //    }
           />
 
           <SelectAmountWrapper>

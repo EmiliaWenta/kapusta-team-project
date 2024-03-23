@@ -78,7 +78,7 @@ export const Outlet = styled.div`
     height: 540px;
   `)}
   ${above1280px(css`
-    width: calc(100% - 300px);
+    width: calc(100% - 200px);
     height: 579px;
     flex-direction: row;
     justify-content: center;
