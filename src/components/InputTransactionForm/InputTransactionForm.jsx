@@ -66,7 +66,7 @@ export default function InputTransactionForm({ type }) {
             type="text"
             value={formData.product}
             name="product"
-            placeholder="TRANSACTION"
+            placeholder="Product description"
             onChange={e =>
               setFormData(oldData => {
                 return { ...oldData, product: e.target.value };

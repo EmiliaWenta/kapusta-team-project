@@ -4,9 +4,8 @@ import { above768px, colors } from 'styles/globalStyles';
 
 export const CustomSelectStyled = styled(Select)`
   & .react-select__control {
-    /* z-index: 1000; */
     box-sizing: border-box;
-    width: 168px;
+    min-width: 168px;
     height: 44px;
     background-color: ${colors.modalBackgroundColor};
     color: ${colors.textInputGray};
@@ -34,6 +33,8 @@ export const CustomSelectStyled = styled(Select)`
     ${above768px(css`
       border-radius: 0;
       height: 40px;
+      width: 100%;
+      min-width: 168px;
     `)}
   }
 
@@ -49,7 +50,7 @@ export const CustomSelectStyled = styled(Select)`
     box-sizing: border-box;
     position: absolute;
     top: 33px;
-    width: 168px;
+    min-width: 168px;
     background-color: ${colors.modalBackgroundColor};
     z-index: 200;
     border: 1px solid ${colors.inputBorder};

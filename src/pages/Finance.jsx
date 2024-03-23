@@ -11,6 +11,7 @@ import transactions from '../components/TransactionTable/transactions.json';
 import {
   StyledFinance,
   TableWrapper,
+  ReportWrapper,
   BalanceWrapper,
   ExpensesWrapper,
   TransactionWrapper,
@@ -23,11 +24,12 @@ const Finance = () => {
       <Header />
       <BalanceWrapper>
         <Balance />
-        <Report />
+        <ReportWrapper>
+          <Report />
+        </ReportWrapper>
       </BalanceWrapper>
       <ExpensesWrapper>
         <Tabs />
-
         <TableWrapper>
           <InputTransactionForm />
           <TransactionWrapper>

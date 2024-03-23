@@ -91,7 +91,7 @@ export const Wrapper = styled.div`
 
   & .date {
     background-color: transparent;
-    height: 40px;
+    height: 38px;
     width: 74px;
     margin-left: 10px;
     border: none;

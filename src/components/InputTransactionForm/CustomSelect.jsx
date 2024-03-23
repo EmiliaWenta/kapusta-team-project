@@ -3,7 +3,7 @@ import categories from './categories.json';
 
 export const CustomSelect = ({
   keyName,
-  // options,
+
   placeholder,
   isLoading,
   onChange,
@@ -15,7 +15,6 @@ export const CustomSelect = ({
       key={keyName}
       defaultOptions
       placeholder={placeholder}
-      // styles={selectStyles}
       options={categories}
       isLoading={isLoading}
       closeMenuOnSelect={true}
