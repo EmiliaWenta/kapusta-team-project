@@ -16,7 +16,6 @@ export const GoogleBtn = () => {
             },
           }
         );
-        console.log('Login Success', res);
         console.log('Login Success', response);
       } catch (error) {
         console.log('Login Failed', error);
