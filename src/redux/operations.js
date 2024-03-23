@@ -31,6 +31,21 @@ export const login = createAsyncThunk(
   }
 );
 
+export const loginGoogle = createAsyncThunk(
+  // trzeba zmienić ścieżkę
+  '/users/loginGoogle',
+  async (credentials, thunkAPI) => {
+    try {
+      //trzeba zmienić ścieżkę
+      const response = await axios.post('users/loginGoogle', credentials);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logout = createAsyncThunk(
   '/users/logout',
   async (token, thunkAPI) => {
