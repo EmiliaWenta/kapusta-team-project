@@ -7,7 +7,7 @@ import { selectTransactionType } from '../../redux/selectors';
 
 export const CustomSelect = ({
   keyName,
-  // options,
+
   placeholder,
   isLoading,
   onChange,
@@ -30,7 +30,6 @@ export const CustomSelect = ({
       key={keyName}
       defaultOptions
       placeholder={placeholder}
-      // styles={selectStyles}
       options={categories}
       isLoading={isLoading}
       closeMenuOnSelect={true}

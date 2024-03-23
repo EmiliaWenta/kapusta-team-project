@@ -1,13 +1,21 @@
 import styled, { css } from 'styled-components';
-import { above1280px } from './globalStyles';
+import { above1280px, above768px } from './globalStyles';
 
 export const StyledTableContainer = styled.div`
   max-height: 384px;
+  height: auto;
+  display: flex;
   overflow-y: auto;
-  width: 624px;
+  margin-left: 40px;
+  width: calc(100% - 140px);
   position: relative;
+
+  ${above768px(css`
+    height: 624px;
+  `)}
+
   ${above1280px(css`
-    width: 746px;
+    margin-top: 60px;
   `)}
 `;
 
@@ -15,6 +23,7 @@ export const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
+  height: 100%;
 `;
 
 export const StyledTableHeader = styled.thead`
@@ -22,6 +31,7 @@ export const StyledTableHeader = styled.thead`
   height: 40px;
   font-weight: bold;
   position: sticky;
+
   top: 0;
   :first-child {
     border-top-left-radius: 16px;
@@ -60,4 +70,3 @@ export const StyledIconCell = styled.td`
   alignitems: 'center';
   height: '40px';
 `;
-
