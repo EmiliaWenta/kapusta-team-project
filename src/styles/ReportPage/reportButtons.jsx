@@ -1,5 +1,5 @@
 import { css, styled } from 'styled-components';
-import { colors, above768px, above1280px } from './globalStyles';
+import { colors, above768px, above1280px } from '../globalStyles';
 import { NavLink } from 'react-router-dom';
 
 export const BalanceContainer = styled.div`
@@ -16,6 +16,7 @@ export const BalanceContainer = styled.div`
     flex-direction: row;
     order: 3;
     width: auto;
+    // min-width: 136px;
   `)}
 `;
 
