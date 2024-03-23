@@ -65,7 +65,11 @@ export function Expenses({ changeComponentVisibility }) {
       <ExpensesList>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.products}</ExpensesListItemText>
-          <ExpensesSvg width="56" height="56">
+          <ExpensesSvg
+            width="56"
+            height="56"
+            onClick={() => handleIconClick('products')}
+          >
             <use href={icons.productsSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>products</ExpensesListItemText>
