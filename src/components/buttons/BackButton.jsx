@@ -1,12 +1,12 @@
 import React from 'react';
 
-const BackButton = ({ leftArrowIcon, buttonText }) => {
+const BackButton = ({ leftArrowIcon, buttonText, addStyles, addStylesDiv }) => {
   return (
-    <div>
+    <div style={addStylesDiv}>
       <svg width="18" height="18">
         <use href={leftArrowIcon} />
       </svg>
-      <span>{buttonText}</span>
+      <span style={addStyles}>{buttonText}</span>
     </div>
   );
 };
