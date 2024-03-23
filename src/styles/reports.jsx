@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { colors } from './globalStyles';
-export const StyledDiv = styled.div`
+export const StyledLink = styled(NavLink)`
   display: flex;
   width: 84px;
   height: 24px;

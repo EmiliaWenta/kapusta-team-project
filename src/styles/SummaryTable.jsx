@@ -1,13 +1,16 @@
 import styled, { css } from 'styled-components';
-import { above1280px } from './globalStyles';
+import { above1280px, above768px } from './globalStyles';
 
 export const StyledTable = styled.table`
   width: 230px;
   border-collapse: collapse;
   font-size: 12px;
-
+  ${above768px(css`
+    margin: 40px 0 60px 0;
+  `)}
   ${above1280px(css`
-    width: 213px;
+    max-width: 213px;
+    margin: 60px 0 0 74px;
   `)}
 `;
 

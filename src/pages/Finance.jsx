@@ -1,5 +1,4 @@
 import BackgroundTemplate from 'components/Background/Background';
-import Header from 'components/Header/Header';
 import { Balance } from 'components/Balance/Balance';
 import { Report } from 'components/Report/Report';
 import { Tabs } from 'components/WalletTabs';
@@ -11,6 +10,7 @@ import transactions from '../components/TransactionTable/transactions.json';
 import {
   StyledFinance,
   TableWrapper,
+  ReportWrapper,
   BalanceWrapper,
   ExpensesWrapper,
   TransactionWrapper,
@@ -20,22 +20,18 @@ const Finance = () => {
   return (
     <StyledFinance>
       <BackgroundTemplate />
-      <Header />
       <BalanceWrapper>
         <Balance />
-        <Report />
+        <ReportWrapper>
+          <Report />
+        </ReportWrapper>
       </BalanceWrapper>
       <ExpensesWrapper>
         <Tabs />
-
         <TableWrapper>
           <InputTransactionForm />
           <TransactionWrapper>
-            <TransactionTable
-              items={transactions}
-              headers={headers}
-              columns={headers}
-            />
+            <TransactionTable headers={headers} columns={headers} />
             <SummaryTable items={transactions} />
           </TransactionWrapper>
         </TableWrapper>

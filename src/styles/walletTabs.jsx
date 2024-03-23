@@ -1,10 +1,11 @@
 import { css, styled } from 'styled-components';
-
+import { NavLink } from 'react-router-dom';
 import { colors, above768px, above1280px } from './globalStyles';
 
 export const Container = styled.div`
-  margin-top: 8px;
+  margin: 0 32px 0 0;
   position: relative;
+  width: 100%;
 `;
 
 export const Box = styled.div`
@@ -12,37 +13,34 @@ export const Box = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 4px 0;
+  gap: 4px;
   position: fixed;
   bottom: 0;
   left: 0;
 
   ${above768px(css`
-    position: static;
+   position: static;
     width: fit-content;
     justify-content: flex-start;
     gap: 0;
-  `)}
-
-  ${above1280px(css`
-    min-width: 1098px;
+  }
   `)}
 `;
 
-export const TabLink = styled.div`
-  width: calc(50%);
+export const TabLink = styled(NavLink)`
+  width: calc(50% - 2px);
   height: 53px;
   border-radius: 0;
   box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: ${colors.inputBorder};
   text-transform: uppercase;
   font-weight: bold;
-
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   filter: none;
-  &:hover,
+
   &:focus {
     filter: none;
     background-color: ${colors.brandOrange};
@@ -56,7 +54,6 @@ export const TabLink = styled.div`
     border-top-right-radius: 16px;
     background-color: ${colors.tabInactive};
 
-    &:hover,
     &:focus {
       filter: none;
       background-color: ${colors.tabActive};
@@ -68,27 +65,43 @@ export const TabLink = styled.div`
 export const Outlet = styled.div`
   padding: 0px;
   margin-top: 0px;
+  width: 100%;
   border-radius: 30px;
+  position: relative;
 
   ${above768px(css`
-    padding: 24px 40px 42px;
-    width: 704px;
-    height: 616px;
+    padding: 24px 40px 0;
     background-color: ${colors.modalBackgroundColor};
     border-radius: 0px 30px 30px 0px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    width: calc(100% - 120px);
+    height: 540px;
   `)}
   ${above1280px(css`
-    padding: 32px 32px 61px 32px;
-    min-width: 100%;
+    width: calc(100% - 200px);
     height: 579px;
+    flex-direction: row;
+    justify-content: center;
   `)}
 `;
 
 export const TabWrapper = styled.div`
   background-color: ${colors.inputBorder};
+  position: absolute;
+  ${above768px(css`
+    width: 100%;
+    height: auto;
+  `)}
 `;
 
 export const TransactWrapper = styled.div`
   background-color: ${colors.modalBackgroundColor};
+
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  ${above768px(css`
+    width: 100%;
+    height: auto;
+  `)}
 `;

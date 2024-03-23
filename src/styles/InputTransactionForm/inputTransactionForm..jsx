@@ -8,15 +8,14 @@ export const MainContainer = styled.div`
   flex-wrap: wrap;
   background-color: transparent;
   ${above768px(css`
-    width: 100%;
+    width: fit-content;
     justify-content: center;
-    /* background-color: white; */
+    background-color: transparent;
     border-bottom-left-radius: 0;
-    margin-bottom: 48px;
   `)}
 
   ${above1280px(css`
-    flex-wrap: nowrap;
+    flex-wrap: no-wrap;
     min-width: 1034px;
     height: 44px;
     margin-bottom: 0;
@@ -33,6 +32,9 @@ export const InputForm = styled.form`
   ${above768px(css`
     display: flex;
     flex-direction: row;
+    justify-content center;
+    margin-right: 72px;
+
     row-gap: 34px;
     column-gap: 34px;
   `)}
@@ -40,8 +42,9 @@ export const InputForm = styled.form`
   ${above1280px(css`
     height: 44px;
     display: inline-flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     column-gap: 32px;
+    margin-left: 80px;
     min-width: 1034px;
   `)}
 `;
@@ -59,17 +62,15 @@ export const InputGroupWrapper = styled.div`
     flex-direction: row;
     flex-wrap: nowrap;
     height: 44px;
-    width: 478px;
+    width: calc(100% - 220px);
+    margin-right: 32px;
+    justify-content: flex-end;
     border: 2px solid ${colors.inputBorder};
     border-radius: 16px 16px 16px 0;
   `)}
 
   ${above1280px(css`
-    display: flex;
-    flex-wrap: nowrap;
-    width: 578px;
-    height: 44px;
-    border-radius: 16px 16px 16px 0;
+    width: calc(100% - 485px);
   `)}
 `;
 
@@ -82,10 +83,10 @@ export const Input = styled.input`
   font-size: 12px;
   outline: none;
 
-  /* &:focus {
-    border: 2px solid ${colors.textBasicGray} ;
+  &:focus {
+    border: 2px solid ${colors.textBasicGray};
     background-color: white;
-  } */
+  }
 
   ::placeholder {
     font-family: inherit;
@@ -116,7 +117,6 @@ export const InputProduct = styled(Input)`
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   color: black;
-  /* color: white; */
 
   &::placeholder {
     font-family: inherit;
@@ -131,7 +131,7 @@ export const InputProduct = styled(Input)`
   }
 
   ${above768px(css`
-    width: 200px;
+    min-width: 200px;
     border-top-left-radius: 16px;
     border-top-right-radius: 0;
   `)}
@@ -143,7 +143,7 @@ export const InputProduct = styled(Input)`
 export const SelectAmountWrapper = styled.div`
   display: flex;
   padding: 0 20px;
-  width: 280px;
+  min-width: 280px;
   justify-content: center;
   margin-bottom: 12px;
 
@@ -174,10 +174,11 @@ export const InputAmountWrapper = styled.div`
 
   &:hover svg,
   &:focus svg {
-    fill: orange;
+    fill: ${colors.brandOrange};
   }
 
   ${above768px(css`
+    // left: 0;
     margin-left: auto;
     margin-right: auto;
     border-radius: 0 16px 16px 0;
@@ -205,7 +206,7 @@ export const InputAmount = styled(Input)`
   }
   ${above768px(css`
     flex-shrink: 0;
-    width: 110px;
+    min-width: 110px;
     border-radius: 0 16px 16px 0;
   `)}
 `;
