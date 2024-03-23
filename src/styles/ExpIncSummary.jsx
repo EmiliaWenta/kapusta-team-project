@@ -6,17 +6,17 @@ export const ExpIncBox = styled.div`
   width: 280px;
   height: 85px;
   flex-direction: row;
-  margin: 0px 20px;
   border-radius: 20px;
   justify-content: center;
+  background-color: white;
+  box-shadow: 5px 10px 20px 0px #aab2c566;
+  margin: 32px 0px;
 
   ${above768px`
   height: 50px;
   width: 704px;
-  border-radius: 30px; `}
-
-  ${above1280px`
-  width: 1034px;`}
+  border-radius: 30px; `} ${above1280px`
+  width: 1034px;`};
 `;
 
 export const ExpIncList = styled.ul`

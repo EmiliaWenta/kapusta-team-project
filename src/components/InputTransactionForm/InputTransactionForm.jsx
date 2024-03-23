@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../svg/icons_sprite.svg';
 import { Button } from '../buttons/Button';
 import { TomatoButton } from 'components/buttons/TomatoButton';
 import { DatePickerComponent } from '../DatePicker/DatePicker';
+import { format } from 'date-fns';
 import {
   ButtonsWrapper,
   InputAmount,
@@ -14,8 +16,14 @@ import {
   SelectAmountWrapper,
   SelectWrapper,
 } from '../../styles/InputTransactionForm/inputTransactionForm.';
+import {
+  selectToken,
+  selectTransactionType,
+  selectUserId,
+} from '../../redux/selectors';
 
 import { CustomSelect } from '../InputTransactionForm/CustomSelect';
+import { addTransaction } from '../../redux/operations';
 
 export default function InputTransactionForm({ type }) {
   // const TRANSACTION_FORM_DATA = {
@@ -28,19 +36,18 @@ export default function InputTransactionForm({ type }) {
   //     selectCategoryPlaceholder: 'Income category',
   //   },
   // };
-
+  const dispatch = useDispatch();
   const today = new Date();
-  const initialFormData = {
-    product: '',
-    sum: '',
-  };
 
-  const [formData, setFormData] = useState(initialFormData);
   const [date, setDate] = useState(today);
   const [category, setCategory] = useState(null);
 
   const [isActiveInput, setIsActiveInput] = useState(false);
   const [isActiveClear, setIsActiveClear] = useState(false);
+
+  const transactionType = useSelector(selectTransactionType);
+  const token = useSelector(selectToken);
+  const userId = useSelector(selectUserId);
 
   const handleInputClick = () => {
     setIsActiveInput(true);
@@ -52,9 +59,28 @@ export default function InputTransactionForm({ type }) {
     setIsActiveClear(true);
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    const date = event.target.date.value;
+    const dateObject = new Date(date.split('.').reverse().join('-'));
+    const formattedDate = format(dateObject, 'yyyy-MM-dd');
+    const amount = event.target.amount.value;
+    const positiveAmount = Math.abs(amount);
+    const data = {
+      date: formattedDate,
+      type: transactionType,
+      description: event.target.product.value,
+      category: category.value,
+      amount: positiveAmount,
+      user: userId,
+    };
+    const credentials = JSON.stringify(data);
+    dispatch(addTransaction({ token, credentials }));
+  };
+
   return (
     <MainContainer>
-      <InputForm>
+      <InputForm onSubmit={handleSubmit}>
         <DatePickerComponent
           name="date"
           date={date}
@@ -62,6 +88,7 @@ export default function InputTransactionForm({ type }) {
           handler={date => setDate(date)}
         />
         <InputGroupWrapper>
+
           <InputProduct
             type="text"
             value={formData.product}
@@ -73,10 +100,12 @@ export default function InputTransactionForm({ type }) {
               })
             }
           />
+
           <SelectAmountWrapper>
             <SelectWrapper>
               <CustomSelect
                 keyName={type}
+                name="category"
                 value={category}
                 placeholder="Product category"
                 onChange={selectedOption => setCategory(selectedOption)}
@@ -86,8 +115,7 @@ export default function InputTransactionForm({ type }) {
               <InputAmount
                 type="number"
                 placeholder="0,00"
-                value={formData.sum}
-                name="product"
+                name="amount"
                 min="00.00"
                 max="10000000.00"
                 step="0.1"
@@ -101,9 +129,13 @@ export default function InputTransactionForm({ type }) {
         </InputGroupWrapper>
         <ButtonsWrapper>
           {isActiveInput ? (
-            <TomatoButton text="INPUT" onClick={handleInputClick} />
+            <TomatoButton
+              type="submit"
+              text="INPUT"
+              onClick={handleInputClick}
+            />
           ) : (
-            <Button text="INPUT" onClick={handleInputClick} />
+            <Button type="submit" text="INPUT" onClick={handleInputClick} />
           )}
           {isActiveClear ? (
             <TomatoButton text="CLEAR" onClick={handleClearClick} />

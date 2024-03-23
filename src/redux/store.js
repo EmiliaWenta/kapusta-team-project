@@ -4,6 +4,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 
 import { authReducer } from './authSlice';
 import { transactionsReducer } from './transactionsSlice';
+import { pageSettingsReducer } from './pageSettingsSlice';
+import { reportReducer } from './reportSlice';
 
 const authPersistCfg = {
   key: 'auth',
@@ -13,7 +15,9 @@ const authPersistCfg = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistCfg, authReducer),
-    transations: transactionsReducer,
+    transactions: transactionsReducer,
+    pageSettings: pageSettingsReducer,
+    report: reportReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
