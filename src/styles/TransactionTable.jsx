@@ -64,7 +64,7 @@ export const ColoredTextCell = styled.td`
 `;
 
 export const StyledIconCell = styled.td`
-  width: '50px';
+  width: 50px;
   justify-content: 'center';
   display: 'flex';
   alignitems: 'center';

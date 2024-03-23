@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-//import { } from './operations';
-
-const initialState = {};
-
+import { getDetailedReport } from './operations';
+const initialState = { detailedData: [] };
 const reportSlice = createSlice({
   name: 'report',
   initialState,
-  extraReducers: builder => {},
+  extraReducers: builder => {
+    builder.addCase(
+      getDetailedReport.fulfilled,
+      (state, action) => (state.detailedData = action.payload)
+    );
+  },
 });
-
 export const reportReducer = reportSlice.reducer;

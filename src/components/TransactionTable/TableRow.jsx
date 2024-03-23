@@ -1,19 +1,38 @@
-import { useSelector } from 'react-redux';
-import { DeleteIcon } from '../buttons/DeleteIcon';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { ColoredTextCell, StyledIconCell } from 'styles/TransactionTable';
-import { selectTransactionType } from '../../redux/selectors';
+import { selectToken, selectTransactionType } from '../../redux/selectors';
 import { parseISO, format } from 'date-fns';
+import { StyledButtonSvg, StyledSvg } from '../../styles/button.jsx';
+import sprite from '../../svg/icons_sprite.svg';
+import { deleteTransaction } from '../../redux/operations';
 
 export const TableRow = ({ item, deleteIcon }) => {
   const transactionType = useSelector(selectTransactionType);
-  let amount;
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
   const originalDate = item.date;
-  const parsedDate = parseISO(originalDate);
-  const formattedDate = format(parsedDate, 'yyyy-MM-dd');
+  let formattedDate;
+  if (originalDate) {
+    const parsedDate = parseISO(originalDate);
+    formattedDate = format(parsedDate, 'yyyy-MM-dd');
+  } else {
+    formattedDate = '';
+  }
+  let amount;
 
   transactionType === 'Expenses'
     ? (amount = -item.amount)
     : (amount = item.amount);
+
+  const handleDelete = event => {
+    const credentials = {
+      id: event.currentTarget.id,
+      token,
+      type: transactionType,
+    };
+    dispatch(deleteTransaction(credentials));
+  };
 
   if (!amount) {
     return <tr></tr>;
@@ -28,7 +47,11 @@ export const TableRow = ({ item, deleteIcon }) => {
 
       {deleteIcon && (
         <StyledIconCell>
-          <DeleteIcon />
+          <StyledButtonSvg id={item._id} onClick={handleDelete} type="button">
+            <StyledSvg width="18" height="18">
+              <use href={sprite + `#delete`}></use>
+            </StyledSvg>
+          </StyledButtonSvg>
         </StyledIconCell>
       )}
     </tr>

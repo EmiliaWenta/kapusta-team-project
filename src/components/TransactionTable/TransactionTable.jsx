@@ -9,6 +9,7 @@ import { TableHeader } from './TableHeader.jsx';
 import { useEffect, useState } from 'react';
 import {
   selectAddedTransaction,
+  selectDeletedId,
   selectToken,
   selectTransactionType,
 } from '../../redux/selectors.js';
@@ -20,6 +21,7 @@ export const TransactionTable = ({ headers, columns }) => {
   const token = useSelector(selectToken);
   const [items, setItems] = useState([]);
   const addedTransaction = useSelector(selectAddedTransaction);
+  const deletedId = useSelector(selectDeletedId);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,14 +33,13 @@ export const TransactionTable = ({ headers, columns }) => {
           const incomeData = await dispatch(getIncome(token));
           setItems(incomeData.payload);
         }
-        console.log(addedTransaction);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, [dispatch, transactionType, token, addedTransaction]);
+  }, [dispatch, transactionType, token, addedTransaction, deletedId]);
 
   const rowsToAdd = Math.max(0, 9 - (items.length || 0));
 

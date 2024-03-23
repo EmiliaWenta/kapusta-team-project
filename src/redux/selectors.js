@@ -8,3 +8,8 @@ export const selectExpenses = state => state.transactions.expenses;
 export const selectIncome = state => state.transactions.income;
 export const selectAddedTransaction = state =>
   state.transactions.addedTransaction;
+export const selectDeletedId = state => state.transactions.idToDelete;
+export const selectExpensesCategory = state =>
+  state.transactions.expensesCategories;
+export const selectIncomeCategory = state =>
+  state.transactions.incomeCategories;
