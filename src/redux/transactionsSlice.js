@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addTransaction,
   deleteTransaction,
-  getExpences,
+  getExpenses,
   getIncome,
 } from './operations';
 
@@ -19,7 +19,7 @@ const transactionsSlice = createSlice({
       .addCase(getIncome.fulfilled, (state, action) => {
         state.income = action.payload;
       })
-      .addCase(getExpences.fulfilled, (state, action) => {
+      .addCase(getExpenses.fulfilled, (state, action) => {
         state.expenses = action.payload;
       })
       .addCase(addTransaction.fulfilled, (state, action) => {

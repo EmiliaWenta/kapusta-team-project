@@ -64,13 +64,14 @@ export default function InputTransactionForm({ type }) {
     const date = event.target.date.value;
     const dateObject = new Date(date.split('.').reverse().join('-'));
     const formattedDate = format(dateObject, 'yyyy-MM-dd');
+    const amount = event.target.amount.value;
+    const positiveAmount = Math.abs(amount);
     const data = {
       date: formattedDate,
       type: transactionType,
       description: event.target.product.value,
       category: category.value,
-
-      amount: event.target.amount.value,
+      amount: positiveAmount,
       user: userId,
     };
     const credentials = JSON.stringify(data);

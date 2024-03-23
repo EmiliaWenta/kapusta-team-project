@@ -9,7 +9,7 @@ import {
 } from '../styles/walletTabs';
 import { setTransactionType } from './../redux/pageSettingsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpences, getIncome } from './../redux/operations';
+import { getExpenses, getIncome } from './../redux/operations';
 import { selectToken } from './../redux/selectors';
 
 export const Tabs = () => {
@@ -20,7 +20,7 @@ export const Tabs = () => {
   const handleTab1 = () => {
     setActiveTab('tab1');
     dispatch(setTransactionType('Expenses'));
-    dispatch(getExpences(token));
+    dispatch(getExpenses(token));
   };
   const handleTab2 = () => {
     setActiveTab('tab2');

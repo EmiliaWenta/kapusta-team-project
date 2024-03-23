@@ -91,7 +91,6 @@ export const getIncome = createAsyncThunk(
   'transactions/getIncome',
   async (token, thunkAPI) => {
     try {
-      console.log('income!');
       const response = await axios.get('transactions/income', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -104,11 +103,10 @@ export const getIncome = createAsyncThunk(
   }
 );
 
-export const getExpences = createAsyncThunk(
+export const getExpenses = createAsyncThunk(
   'transactions/getExpences',
   async (token, thunkAPI) => {
     try {
-      console.log('expences!');
       const response = await axios.get('transactions/expenses', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -125,13 +123,13 @@ export const addTransaction = createAsyncThunk(
   'transactions/addTransation',
   async ({ token, credentials }, thunkAPI) => {
     try {
-      console.log(credentials);
       const response = await axios.post('transactions', credentials, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       });
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -150,6 +148,76 @@ export const deleteTransaction = createAsyncThunk(
         },
       });
       return { _id, type };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// REPORT
+
+export const getDetailedReport = createAsyncThunk(
+  'report/getDetailedReport',
+  async ({ token, credentials }, thunkAPI) => {
+    try {
+      const response = await axios.post('report/detailed', credentials, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getDetailedCategory = createAsyncThunk(
+  'report/getDetailedCategory',
+  async ({ token, credentials }, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        'report/detailed/category',
+        credentials,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getExpensesReport = createAsyncThunk(
+  'report/getExpenses',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.get('report/expenses', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getIncomeReport = createAsyncThunk(
+  'report/getIncome',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.get('report/income', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
