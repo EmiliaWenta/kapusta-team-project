@@ -123,12 +123,16 @@ export const addTransaction = createAsyncThunk(
   'transactions/addTransation',
   async ({ token, credentials }, thunkAPI) => {
     try {
-      const response = await axios.post('transactions', credentials, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post(
+        'transactions',
+        JSON.stringify(credentials),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       return response.data;
     } catch (error) {

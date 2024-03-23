@@ -9,6 +9,7 @@ import {
 const initialState = {
   income: [],
   expenses: [],
+  addedTransaction: {},
 };
 
 const transactionsSlice = createSlice({
@@ -28,6 +29,7 @@ const transactionsSlice = createSlice({
         } else {
           state.income.push(action.payload);
         }
+        state.addedTransaction = action.payload;
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         if (action.payload.type === 'Expenses') {
