@@ -5,7 +5,6 @@ import ModalWindow from 'components/modalWindow/ModalWindow';
 import {
   LoginFormBox,
   LoginFormText,
-  LoginFormGoogleBtn,
   LoginFormLabelList,
   LoginFormLabel,
   LoginFormInput,
@@ -15,6 +14,7 @@ import {
 
 import { TomatoButtonWithShadow } from 'components/buttons/TomatoButtonWithShadow';
 import { GreyButton } from 'components/buttons/GreyButton';
+import { GoogleBtn } from 'components/buttons/GoogleBtn';
 import { login, register } from '../../redux/operations';
 
 function LoginForm() {
@@ -51,11 +51,9 @@ function LoginForm() {
   return (
     <div>
       <ModalWindow>
+        <LoginFormText>You can log in with your Google Account:</LoginFormText>
+        <GoogleBtn />
         <LoginFormBox id="login-form" onSubmit={handleSubmit}>
-          <LoginFormText>
-            You can log in with your Google Account:
-          </LoginFormText>
-          <LoginFormGoogleBtn>Google</LoginFormGoogleBtn>
           <LoginFormText>
             Or log in using an email and password, after registering:
           </LoginFormText>

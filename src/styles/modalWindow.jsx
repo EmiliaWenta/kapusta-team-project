@@ -10,6 +10,7 @@ export const ModalWindowStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   box-shadow: 5px 10px 20px 0px rgba(170, 178, 197, 0.4);
   ${above768px`
   width: 406px;
