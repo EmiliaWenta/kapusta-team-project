@@ -1,4 +1,4 @@
-import { colors, above768px, above1280px } from '../globalStyles';
+import { colors, above1280px } from '../globalStyles';
 
 const { default: styled } = require('styled-components');
 

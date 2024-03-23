@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Expenses } from './Expenses';
 import { Income } from './Income';
-import { ReportBoxWrapper } from 'styles/ReportBox/ReportBox';
-import TempGrid from 'components/ReportPage/TempGrid';
+import { ChartWrapper, ReportBoxWrapper } from 'styles/ReportBox/ReportBox';
+import { Chart } from 'components/Chart/Chart.jsx';
+import chartData from 'components/Chart/chartData';
 
 export function ReportBox() {
   const [showIncome, setShowIncome] = useState(false);
@@ -19,7 +20,9 @@ export function ReportBox() {
           <Expenses changeComponentVisibility={changeComponentVisibility} />
         )}
       </ReportBoxWrapper>
-      <TempGrid showIncome={showIncome} />
+      <ChartWrapper>
+        <Chart data={chartData} categories={''} />
+      </ChartWrapper>
     </div>
   );
 }
