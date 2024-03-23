@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { above768px, above1280px } from './globalStyles';
 
 export const StyledForm = styled.form`
-  width: 282px;
+  min-width: 282px;
   height: 72px;
   aign-items: center;
   text-align: center;

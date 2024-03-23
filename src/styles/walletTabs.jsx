@@ -36,6 +36,7 @@ export const TabLink = styled(NavLink)`
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;

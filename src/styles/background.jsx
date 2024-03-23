@@ -3,7 +3,7 @@ import BgCabbage from '../images/home_bg.png';
 import CabbageUp from '../images/home_bg_mobile.png';
 import CabbageDown from '../images/single_cabbage.png';
 import DoubleCabbage from '../images/double_cabbage.png';
-import WalletBgr from '../images/home_bg.png';
+import WalletBgr from '../images/Banner.png';
 import BgDoubleCab from '../images/double_cabbage.png';
 
 import { colors, above768px, above1280px } from './globalStyles';
@@ -128,9 +128,11 @@ export const DoubleCabb = styled.div`
 
   ${above1280px(css`
     background-image: url(${WalletBgr});
-    width: 100%;
+    background-repeat: repeat-x;
+    width: calc(100% - 150px);
     height: 232px;
-    top: 84, 5px;
-    left: calc(100vw - 1270px);
+    background-position: calc(100%-150px) calc(100% - 50px);
+    // top: 84, 5px;
+    // left: calc(100vw - 1270px);
   `)}
 `;
