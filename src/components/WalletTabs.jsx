@@ -7,14 +7,25 @@ import {
   TransactWrapper,
   TabWrapper,
 } from '../styles/walletTabs';
+import { setTransactionType } from './../redux/pageSettingsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getExpenses, getIncome } from './../redux/operations';
+import { selectToken } from './../redux/selectors';
 
 export const Tabs = () => {
   const [activeTab, setActiveTab] = useState('tab1');
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+
   const handleTab1 = () => {
     setActiveTab('tab1');
+    dispatch(setTransactionType('Expenses'));
+    dispatch(getExpenses(token));
   };
   const handleTab2 = () => {
     setActiveTab('tab2');
+    dispatch(setTransactionType('Income'));
+    dispatch(getIncome(token));
   };
   return (
     <Container>

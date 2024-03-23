@@ -3,18 +3,45 @@ import {
   StyledTableBody,
   StyledTableContainer,
 } from '../../styles/TransactionTable.jsx';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { TableRow } from './TableRow.jsx';
 import { TableHeader } from './TableHeader.jsx';
+import { useEffect, useState } from 'react';
+import { selectToken, selectTransactionType } from '../../redux/selectors.js';
+import { getExpenses, getIncome } from '../../redux/operations.js';
 
-export const TransactionTable = ({ items, headers, columns }) => {
-  const rowsToAdd = Math.max(0, 9 - items.length);
+export const TransactionTable = ({ headers, columns }) => {
+  const transactionType = useSelector(selectTransactionType);
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (transactionType === 'Expenses') {
+          const expensesData = await dispatch(getExpenses(token));
+          setItems(expensesData.payload);
+        } else {
+          const incomeData = await dispatch(getIncome(token));
+          setItems(incomeData.payload);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [dispatch, transactionType, token]);
+
+  const rowsToAdd = Math.max(0, 9 - (items.length || 0));
 
   const emptyRows = Array.from({ length: rowsToAdd }, (_, index) => ({
     id: `empty_${index}`,
   }));
 
   const allItems = [...items, ...emptyRows];
+
   return (
     <StyledTableContainer>
       <StyledTable>

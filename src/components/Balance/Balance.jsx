@@ -1,18 +1,33 @@
-import { BalanceAlert } from 'components/BalanceAlert/BalanceAlert';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledForm, StyledInput, StyledParagraph } from '../../styles/balance';
 import { GreyButtonWithR } from 'components/buttons/GreyButtonWithR';
-import { useState } from 'react';
+import { getCurrentUser, updateBalance } from '../../redux/operations';
+import { selectBalance, selectToken } from '../../redux/selectors';
 
 export const Balance = () => {
-  const [inputValue, setInputValue] = useState('');
+  const token = useSelector(selectToken);
+  const balance = useSelector(selectBalance);
+  const [localBalance, setLocalBalance] = useState(balance);
 
-  const handleInputChange = event => {
-    setInputValue(event.target.value);
-  };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser(token));
+  }, [dispatch, token]);
 
   const handleSubmit = event => {
     event.preventDefault();
+    const newBalance = event.target.balance.value;
+    const userData = {
+      token,
+      balance: newBalance,
+    };
+    setLocalBalance(newBalance);
+    dispatch(updateBalance(userData));
+    event.target.reset();
   };
+
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
@@ -21,14 +36,11 @@ export const Balance = () => {
           <StyledInput
             type="number"
             name="balance"
-            placeholder="00.00 UAH"
-            value={inputValue}
-            onChange={handleInputChange}
+            placeholder={`${localBalance} PLN`}
           />
         </label>
         <GreyButtonWithR type="submit" text={'confirm'}></GreyButtonWithR>
       </StyledForm>
-      {inputValue.trim() === '' && <BalanceAlert />}
     </>
   );
 };
