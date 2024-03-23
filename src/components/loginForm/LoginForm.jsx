@@ -51,11 +51,9 @@ function LoginForm() {
   return (
     <div>
       <ModalWindow>
+        <LoginFormText>You can log in with your Google Account:</LoginFormText>
+        <GoogleBtn />
         <LoginFormBox id="login-form" onSubmit={handleSubmit}>
-          <LoginFormText>
-            You can log in with your Google Account:
-          </LoginFormText>
-          <GoogleBtn />
           <LoginFormText>
             Or log in using an email and password, after registering:
           </LoginFormText>

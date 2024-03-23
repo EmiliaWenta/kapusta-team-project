@@ -7,6 +7,7 @@ export const GoogleBtn = () => {
   const login = useGoogleLogin({
     onSuccess: async response => {
       try {
+        console.log('Login Success', response.profileObj);
         const res = await axios.get(
           'https://www.googleapis.com/oauth2/v3/userinfo',
           {
@@ -15,7 +16,7 @@ export const GoogleBtn = () => {
             },
           }
         );
-        console.log('Login Success', res.data);
+        console.log('Login Success', response);
       } catch (error) {
         console.log('Login Failed', error);
       }

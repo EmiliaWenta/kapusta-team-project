@@ -25,6 +25,7 @@ export const LoginFormGoogleBtn = styled.button`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: ponter;
 
   ${above768px`
   `}
