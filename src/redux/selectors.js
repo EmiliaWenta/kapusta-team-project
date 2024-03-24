@@ -9,6 +9,7 @@ export const selectIncome = state => state.transactions.income;
 export const selectReportData = state => state.report.detailedData;
 export const selectDetailedExpenses = state => state.report.detailedExpenses;
 export const selectDetailedIncome = state => state.report.detailedIncome;
+export const selectDetailedBalance = state => state.report.detailedBalance;
 export const selectCategoryData = state => state.report.categoryData;
 export const selectAddedTransaction = state =>
   state.transactions.addedTransaction;

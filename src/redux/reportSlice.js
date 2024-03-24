@@ -11,6 +11,7 @@ const initialState = {
   detailedIncome: {},
   expensesReport: {},
   incomeReport: {},
+  detailedBalance: 0,
   reportData: null,
   categoryData: null,
 };
@@ -24,6 +25,7 @@ const reportSlice = createSlice({
         state.detailedData = action.payload;
         state.detailedExpenses = action.payload.report.ExpenseCategories;
         state.detailedIncome = action.payload.report.IncomeCategories;
+        state.detailedBalance = action.payload.report.Balance;
       })
       .addCase(getExpensesReport.fulfilled, (state, action) => {
         state.expensesReport = action.payload.expensesReport;

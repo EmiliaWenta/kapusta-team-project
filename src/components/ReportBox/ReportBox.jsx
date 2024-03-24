@@ -4,6 +4,8 @@ import { Income } from './Income';
 import { ChartWrapper, ReportBoxWrapper } from 'styles/ReportBox/ReportBox';
 import { Chart } from 'components/Chart/Chart.jsx';
 import chartData from 'components/Chart/chartData';
+// import { useSelector } from 'react-redux';
+// import { selectDetailedExpenses } from '../../redux/selectors';
 
 export function ReportBox() {
   const [showIncome, setShowIncome] = useState(false);

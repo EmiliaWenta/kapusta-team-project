@@ -48,7 +48,6 @@ export function Expenses({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
-  console.log(expensesAmount);
   return (
     <ExpensesBox>
       <ExpensesHeaderBox>
