@@ -200,11 +200,17 @@ export const getExpensesReport = createAsyncThunk(
   'report/getExpenses',
   async (token, thunkAPI) => {
     try {
-      const response = await axios.get('report/expenses', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      console.log(token);
+      const response = await axios.post(
+        'report/expenses',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -216,11 +222,17 @@ export const getIncomeReport = createAsyncThunk(
   'report/getIncome',
   async (token, thunkAPI) => {
     try {
-      const response = await axios.get('report/income', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      console.log(token);
+      const response = await axios.post(
+        'report/income',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

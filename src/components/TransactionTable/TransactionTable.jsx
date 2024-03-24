@@ -15,7 +15,7 @@ import {
 } from '../../redux/selectors.js';
 import { getExpenses, getIncome } from '../../redux/operations.js';
 
-export const TransactionTable = ({ headers, columns }) => {
+export const TransactionTable = ({ headers }) => {
   const transactionType = useSelector(selectTransactionType);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);

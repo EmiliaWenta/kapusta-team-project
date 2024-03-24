@@ -13,3 +13,5 @@ export const selectExpensesCategory = state =>
   state.transactions.expensesCategories;
 export const selectIncomeCategory = state =>
   state.transactions.incomeCategories;
+export const selectExpensesReport = state => state.report.expensesReport;
+export const selectIncomeReport = state => state.report.incomeReport;
