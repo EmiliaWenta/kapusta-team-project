@@ -31,6 +31,7 @@ export const login = createAsyncThunk(
 
 export const loginGoogle = createAsyncThunk(
   '/users/loginGoogle',
+
   async (credentials, thunkAPI) => {
     try {
       const data = {
@@ -45,7 +46,7 @@ export const loginGoogle = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

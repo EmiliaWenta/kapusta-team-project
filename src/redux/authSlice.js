@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCurrentUser, register, login, logout } from './operations';
+import {
+  getCurrentUser,
+  register,
+  login,
+  logout,
+  loginGoogle,
+} from './operations';
 
 const initialState = {
   isLogged: false,
@@ -26,6 +32,13 @@ const authSlice = createSlice({
         state.errors.registerError = null;
         state.errors.loginError = null;
       })
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        state.isLogged = true;
+        state.user.token = action.payload.token;
+        state.user.email = action.payload.user.email;
+        state.errors.registerError = null;
+        state.errors.loginError = null;
+      })
       .addCase(logout.fulfilled, () => initialState)
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.user.balance = action.payload.user.balance;
@@ -37,7 +50,10 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.errors.loginError = action.payload.response.data.message;
-        state.registerSuccess = null;
+        state.registerSuccess = false;
+      })
+      .addCase(loginGoogle.rejected, (state, action) => {
+        state.errors.loginError = 'Login failure. Try again...';
       });
   },
 });
