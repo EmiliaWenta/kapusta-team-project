@@ -180,9 +180,9 @@ export const getDetailedCategory = createAsyncThunk(
   'report/getDetailedCategory',
   async ({ token, credentials }, thunkAPI) => {
     try {
+      const { type, category } = credentials;
       const response = await axios.get(
-        'report/detailed/category',
-        credentials,
+        `report/detailed/category?type=${type}&category=${category}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

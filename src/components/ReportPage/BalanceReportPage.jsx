@@ -9,7 +9,7 @@ export const BalanceReportPage = () => {
     <StyledForm>
       <StyledParagraph>Balance:</StyledParagraph>
       <label>
-        <StyledInput type="number" name="balance" placeholder="00.00 UAH" />
+        <StyledInput type="number" name="balance" placeholder="00.00 PLN" />
       </label>
     </StyledForm>
   );

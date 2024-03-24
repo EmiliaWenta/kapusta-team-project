@@ -1,5 +1,4 @@
-import { selectToken } from '../../redux/selectors';
-import axios from 'axios';
+import { selectCategoryData, selectToken } from '../../redux/selectors';
 import {
   ExpensesList,
   ExpensesBox,
@@ -13,7 +12,10 @@ import {
 import expenses from 'expenses.json';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpensesCategories } from '../../redux/operations';
+import {
+  getExpensesCategories,
+  getDetailedCategory,
+} from '../../redux/operations';
 
 import icons_sprite from '../../svg/icons_sprite.svg';
 const icons = {
@@ -35,24 +37,8 @@ const icons = {
 export function Expenses({ changeComponentVisibility }) {
   const dispatch = useDispatch();
   const [expenseCategories, setExpenseCategories] = useState([]);
+  const [expenseCategoriesData, setExpenseCategoriesData] = useState({});
   const token = useSelector(selectToken);
-  const handleIconClick = async categoryName => {
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const response = await axios.get(
-        `https://kapusta-team-project-backend.onrender.com/api/report/detailed/category?type=Expenses&category=${categoryName}`,
-        config
-      );
-      console.log(categoryName);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Błąd podczas pobierania nazwy kategorii:', error);
-    }
-  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -66,6 +52,33 @@ export function Expenses({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const categoryData = {};
+        for (const category of Object.values(expenseCategories)) {
+          const response = await dispatch(
+            getDetailedCategory({
+              token,
+              credentials: { type: 'Expenses', category },
+            })
+          );
+          categoryData[category] = response.payload;
+        }
+        setExpenseCategoriesData(categoryData);
+        console.log(categoryData);
+      } catch (error) {
+        console.error('Error fetching category data:', error);
+      }
+    };
+
+    fetchCategoryData();
+  }, [dispatch, expenseCategories, token]);
+
+  const categoryData = useSelector(selectCategoryData);
+  const catData = categoryData?.Alcohol?.report[0]?.amount || 0;
+  console.log(categoryData);
 
   return (
     <ExpensesBox>
@@ -81,33 +94,21 @@ export function Expenses({ changeComponentVisibility }) {
       <ExpensesList>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.products}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('products')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.productsSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[2]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.alcohol}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('alcohol')}
-          >
+          <ExpensesListItemText>{catData}</ExpensesListItemText>
+          <ExpensesSvg width="56" height="56">
             <use href={icons.alcoholSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[4]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.entertainment}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('entertainment')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.entertainmentSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[5]}</ExpensesListItemText>
@@ -115,33 +116,21 @@ export function Expenses({ changeComponentVisibility }) {
         <ExpensesDivider />
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.health}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('health')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.healthSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[3]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.transport}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('transport')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.transportSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[0]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.housing}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('housing')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.housingSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[1]}</ExpensesListItemText>
@@ -149,33 +138,21 @@ export function Expenses({ changeComponentVisibility }) {
         <ExpensesDivider />
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.technique}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('technique')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.techniqueSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[6]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.communal}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('communal')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.communalSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[7]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.hobbies}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('hobbies')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.hobbiesSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[8]}</ExpensesListItemText>
@@ -183,22 +160,14 @@ export function Expenses({ changeComponentVisibility }) {
         <ExpensesDivider />
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.education}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('education')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.educationSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[9]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.other}</ExpensesListItemText>
-          <ExpensesSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('other')}
-          >
+          <ExpensesSvg width="56" height="56">
             <use href={icons.otherSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[10]}</ExpensesListItemText>

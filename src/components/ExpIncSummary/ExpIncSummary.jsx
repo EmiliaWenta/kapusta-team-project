@@ -45,7 +45,7 @@ export function ExpIncInfo() {
         <ExpIncDivider />
         <ExpIncListItem>
           <ExpIncText>Income:</ExpIncText>
-          <ExpIncTextGreen>+ {income}UAH.</ExpIncTextGreen>
+          <ExpIncTextGreen>+ {income} PLN.</ExpIncTextGreen>
         </ExpIncListItem>
       </ExpIncList>
     </ExpIncBox>
