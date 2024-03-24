@@ -17,3 +17,6 @@ export const selectIncomeCategory = state =>
   state.transactions.incomeCategories;
 export const selectExpensesReport = state => state.report.expensesReport;
 export const selectIncomeReport = state => state.report.incomeReport;
+export const selectRegisterError = state => state.auth.errors.registerError;
+export const selectRegisterSuccess = state => state.auth.registerSuccess;
+export const selectLoginError = state => state.auth.errors.loginError;
