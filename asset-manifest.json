@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/kapusta-team-project/static/css/main.bec6ea3e.css",
-    "main.js": "/kapusta-team-project/static/js/main.44176c4b.js",
+    "main.js": "/kapusta-team-project/static/js/main.91289681.js",
     "static/media/Banner.png": "/kapusta-team-project/static/media/Banner.121d6511689a4736d283.png",
     "static/media/icons_sprite.svg": "/kapusta-team-project/static/media/icons_sprite.e053f3872c62880a2447fdb658f9ae5d.svg",
     "static/media/home_bg.png": "/kapusta-team-project/static/media/home_bg.004749b3c92d6742bed7.png",
     "index.html": "/kapusta-team-project/index.html",
     "main.bec6ea3e.css.map": "/kapusta-team-project/static/css/main.bec6ea3e.css.map",
-    "main.44176c4b.js.map": "/kapusta-team-project/static/js/main.44176c4b.js.map"
+    "main.91289681.js.map": "/kapusta-team-project/static/js/main.91289681.js.map"
   },
   "entrypoints": [
     "static/css/main.bec6ea3e.css",
-    "static/js/main.44176c4b.js"
+    "static/js/main.91289681.js"
   ]
 }
