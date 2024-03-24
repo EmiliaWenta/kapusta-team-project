@@ -3,7 +3,7 @@ import BgCabbage from '../images/home_bg.png';
 import CabbageUp from '../images/home_bg_mobile.png';
 import CabbageDown from '../images/single_cabbage.png';
 import DoubleCabbage from '../images/double_cabbage.png';
-import WalletBgr from '../images/home_bg.png';
+import WalletBgr from '../images/Banner.png';
 import BgDoubleCab from '../images/double_cabbage.png';
 
 import { colors, above768px, above1280px } from './globalStyles';
@@ -77,7 +77,7 @@ export const ImageWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 342px;
+  height: 400px;
   background-color: ${colors.backgroundColor};
   z-index: -1000;
   border-bottom-left-radius: 125px;
@@ -127,10 +127,12 @@ export const DoubleCabb = styled.div`
   `)}
 
   ${above1280px(css`
+    z-index: -1;
+    bottom: 0;
+    right: 0;
     background-image: url(${WalletBgr});
-    width: 100%;
-    height: 232px;
-    top: 84, 5px;
-    left: calc(100vw - 1270px);
+    background-repeat: repeat-x;
+    width: calc(100% - 1px);
+    height: 29%;
   `)}
 `;

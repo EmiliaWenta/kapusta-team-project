@@ -6,9 +6,11 @@ export const MainContainer = styled.div`
   min-width: 280px;
   display: flex;
   flex-wrap: wrap;
+  padding-top: 200px;
   background-color: transparent;
   ${above768px(css`
     width: fit-content;
+    padding: 0;
     justify-content: center;
     background-color: transparent;
     border-bottom-left-radius: 0;

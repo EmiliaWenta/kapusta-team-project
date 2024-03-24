@@ -4,13 +4,16 @@ import { above768px, above1280px } from 'styles/globalStyles';
 export const StyledFinance = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  padding: 13px 20px 12px 20px;
 `;
 
 export const BalanceWrapper = styled.div`
-  justify-content: space-evenly;
-  margin: 40px 32px 60px;
-
+  justify-content: center;
+  margin-top: 104px;
+  display: flex;
+  flex-wrap: no-wrap;
+  width: 100%;
   ${above768px(css`
     display: flex;
     flex-wrap: no-wrap;
@@ -26,8 +29,12 @@ export const BalanceWrapper = styled.div`
   `)}
 `;
 export const ReportWrapper = styled.div`
+  position: absolute;
+  top: 104px;
+  left: 40%;
   ${above768px(css`
     margin-right: 60px;
+    position: static;
     justify-content: flex-end;
     padding-top: 10px;
   `)}
@@ -79,3 +86,16 @@ export const TransactionWrapper = styled.div`
     flex-wrap: no-wrap;
   `)}
 `;
+export const MobileButtonStyled = styled.div`
+  padding: 0 0 0 20px;
+  hight: 20px;
+
+  ${above768px(css`
+    display: none;
+  `)}
+`;
+export const BalanceReportWrapper = styled.div``;
+
+export const InputWrapper = styled.div``;
+
+export const DateWrapper = styled.div``;

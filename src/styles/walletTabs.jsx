@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { colors, above768px, above1280px } from './globalStyles';
 
 export const Container = styled.div`
-  margin: 0 32px 0 0;
-  position: relative;
+  box-sizing: border-box;
   width: 100%;
+  padding: 13px 20px 12px 20px;
+  position: relative;
 `;
 
 export const Box = styled.div`
@@ -13,7 +14,7 @@ export const Box = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 4px;
+  // gap: 4px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -28,7 +29,7 @@ export const Box = styled.div`
 `;
 
 export const TabLink = styled(NavLink)`
-  width: calc(50% - 2px);
+  width: calc(50%);
   height: 53px;
   border-radius: 0;
   box-shadow: none;
@@ -36,6 +37,7 @@ export const TabLink = styled(NavLink)`
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,10 +80,10 @@ export const Outlet = styled.div`
     height: 540px;
   `)}
   ${above1280px(css`
-    width: calc(100% - 200px);
-    height: 579px;
+    width: calc(100% - 178px);
+    min-height: 579px;
     flex-direction: row;
-    justify-content: center;
+    padding-left: 0;
   `)}
 `;
 
