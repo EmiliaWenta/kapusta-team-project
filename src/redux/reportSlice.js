@@ -24,6 +24,7 @@ const reportSlice = createSlice({
     builder
       .addCase(getDetailedReport.fulfilled, (state, action) => {
         state.detailedData = action.payload;
+        console.log(state.detailedData);
       })
       .addCase(getExpensesReport.fulfilled, (state, action) => {
         state.expensesReport = action.payload.expensesReport;

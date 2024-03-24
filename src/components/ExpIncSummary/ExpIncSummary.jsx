@@ -33,6 +33,7 @@ export function ExpIncInfo() {
   }, [dispatch, token]);
 
   const reportData = useSelector(selectReportData);
+  console.log(reportData);
   const expenses = reportData?.report?.Expenses || 0;
   const income = reportData?.report?.Income || 0;
   return (
