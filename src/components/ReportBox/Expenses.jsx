@@ -1,4 +1,4 @@
-import { selectToken } from '../../redux/selectors';
+import { selectToken, selectDetailedExpenses } from '../../redux/selectors';
 import {
   ExpensesList,
   ExpensesBox,
@@ -11,10 +11,7 @@ import {
 } from 'styles/ReportBox/Expenses';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getExpensesCategories,
-  getDetailedCategory,
-} from '../../redux/operations';
+import { getExpensesCategories } from '../../redux/operations';
 
 import icons_sprite from '../../svg/icons_sprite.svg';
 const icons = {
@@ -34,9 +31,9 @@ const icons = {
 };
 
 export function Expenses({ changeComponentVisibility }) {
+  const expensesAmount = useSelector(selectDetailedExpenses);
   const dispatch = useDispatch();
   const [expenseCategories, setExpenseCategories] = useState([]);
-  const [expensesCategoriesData, setExpenseCategoriesData] = useState({});
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -51,47 +48,7 @@ export function Expenses({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
-
-  useEffect(() => {
-    const fetchCategoryData = async () => {
-      try {
-        const categoryData = {};
-        for (const category of Object.values(expenseCategories)) {
-          try {
-            const response = await dispatch(
-              getDetailedCategory({
-                token,
-                credentials: { type: 'Expenses', category },
-              })
-            );
-            categoryData[category] = response.payload;
-          } catch (error) {
-            if (error.response && error.response.status === 404) {
-              categoryData[category] = { report: [{ amount: 0 }] };
-            } else {
-              throw error;
-            }
-          }
-        }
-        setExpenseCategoriesData(categoryData);
-      } catch (error) {
-        console.error('Error fetching category data:', error);
-      }
-    };
-
-    if (expenseCategories.length > 0 && token) {
-      fetchCategoryData();
-    }
-  }, [dispatch, expenseCategories, token]);
-
-  const categoryAmounts = {};
-
-  for (const category in expensesCategoriesData) {
-    const report = expensesCategoriesData[category]?.report;
-    const amount = report ? report[0]?.amount : 0;
-    categoryAmounts[category] = amount || 0;
-  }
-
+  console.log(expensesAmount);
   return (
     <ExpensesBox>
       <ExpensesHeaderBox>
@@ -106,7 +63,7 @@ export function Expenses({ changeComponentVisibility }) {
       <ExpensesList>
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts.Products}
+            {expensesAmount.Products > 0 ? expensesAmount.Products : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.productsSvg} />
@@ -114,7 +71,9 @@ export function Expenses({ changeComponentVisibility }) {
           <ExpensesListItemText>{expenseCategories[2]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{categoryAmounts.Alcohol}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {expensesAmount.Alcohol > 0 ? expensesAmount.Alcohol : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.alcoholSvg} />
           </ExpensesSvg>
@@ -122,7 +81,9 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts.Entertainment}
+            {expensesAmount.Entertainment > 0
+              ? expensesAmount.Entertainment
+              : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.entertainmentSvg} />
@@ -131,7 +92,9 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
-          <ExpensesListItemText>{categoryAmounts.Health}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {expensesAmount.Health > 0 ? expensesAmount.Health : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.healthSvg} />
           </ExpensesSvg>
@@ -139,7 +102,7 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts.Transport}
+            {expensesAmount.Transport > 0 ? expensesAmount.Transport : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.transportSvg} />
@@ -147,7 +110,9 @@ export function Expenses({ changeComponentVisibility }) {
           <ExpensesListItemText>{expenseCategories[0]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{categoryAmounts.Housing}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {expensesAmount.Housing > 0 ? expensesAmount.Housing : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.housingSvg} />
           </ExpensesSvg>
@@ -156,7 +121,7 @@ export function Expenses({ changeComponentVisibility }) {
         <ExpensesDivider />
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts.Technique}
+            {expensesAmount.Technique > 0 ? expensesAmount.Technique : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.techniqueSvg} />
@@ -165,7 +130,9 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts['Communal, communication']}
+            {expensesAmount['Communal, communication'] > 0
+              ? expensesAmount['Communal, communication']
+              : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.communalSvg} />
@@ -174,7 +141,9 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts['Sports, hobbies']}
+            {expensesAmount['Sports, hobbies'] > 0
+              ? expensesAmount['Sports, hobbies']
+              : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.hobbiesSvg} />
@@ -184,7 +153,7 @@ export function Expenses({ changeComponentVisibility }) {
         <ExpensesDivider />
         <ExpensesListItem>
           <ExpensesListItemText>
-            {categoryAmounts.Education}
+            {expensesAmount.Education > 0 ? expensesAmount.Education : 0}
           </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.educationSvg} />
@@ -192,7 +161,9 @@ export function Expenses({ changeComponentVisibility }) {
           <ExpensesListItemText>{expenseCategories[9]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{categoryAmounts.Other}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {expensesAmount.Other > 0 ? expensesAmount.Other : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.otherSvg} />
           </ExpensesSvg>

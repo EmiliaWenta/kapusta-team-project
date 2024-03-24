@@ -1,29 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import {
   getDetailedCategory,
   getDetailedReport,
   getExpensesReport,
   getIncomeReport,
 } from './operations';
-
 const initialState = {
   detailedData: [],
+  detailedExpenses: {},
+  detailedIncome: {},
   expensesReport: {},
   incomeReport: {},
   reportData: null,
   categoryData: null,
 };
-
 const reportSlice = createSlice({
   name: 'report',
   initialState,
-
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getDetailedReport.fulfilled, (state, action) => {
         state.detailedData = action.payload;
+        state.detailedExpenses = action.payload.report.ExpenseCategories;
+        state.detailedIncome = action.payload.report.IncomeCategories;
       })
       .addCase(getExpensesReport.fulfilled, (state, action) => {
         state.expensesReport = action.payload.expensesReport;
@@ -36,5 +36,4 @@ const reportSlice = createSlice({
       });
   },
 });
-
 export const reportReducer = reportSlice.reducer;

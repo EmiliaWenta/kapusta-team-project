@@ -1,11 +1,8 @@
-import { selectToken } from '../../redux/selectors';
+import { selectToken, selectDetailedIncome } from '../../redux/selectors';
 import icons_sprite from '../../svg/icons_sprite.svg';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getIncomeCategories,
-  getDetailedCategory,
-} from '../../redux/operations';
+import { getIncomeCategories } from '../../redux/operations';
 
 import {
   IncomeBox,
@@ -25,9 +22,9 @@ const icons = {
 };
 
 export function Income({ changeComponentVisibility }) {
+  const incomeAmount = useSelector(selectDetailedIncome);
   const dispatch = useDispatch();
   const [incomeCategories, setIncomeCategories] = useState([]);
-  const [incomeCategoriesData, setIncomeCategoriesData] = useState({});
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -42,46 +39,6 @@ export function Income({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
-
-  useEffect(() => {
-    const fetchCategoryData = async () => {
-      try {
-        const categoryData = {};
-        for (const category of Object.values(incomeCategories)) {
-          try {
-            const response = await dispatch(
-              getDetailedCategory({
-                token,
-                credentials: { type: 'Income', category },
-              })
-            );
-            categoryData[category] = response.payload;
-          } catch (error) {
-            if (error.response && error.response.status === 404) {
-              categoryData[category] = { report: [{ amount: 0 }] };
-            } else {
-              throw error;
-            }
-          }
-        }
-        setIncomeCategoriesData(categoryData);
-      } catch (error) {
-        console.error('Error fetching category data:', error);
-      }
-    };
-
-    if (incomeCategories.length > 0 && token) {
-      fetchCategoryData();
-    }
-  }, [dispatch, incomeCategories, token]);
-
-  const incomeCategoryAmounts = {};
-
-  for (const category in incomeCategoriesData) {
-    const report = incomeCategoriesData[category]?.report;
-    const amount = report ? report[0]?.amount : 0;
-    incomeCategoryAmounts[category] = amount || 0;
-  }
 
   return (
     <IncomeBox>
@@ -101,7 +58,7 @@ export function Income({ changeComponentVisibility }) {
             <use href={icons.salarySvg}></use>
           </IncomeSvg>
           <IncomeListItemText>
-            {incomeCategoryAmounts.Salary}
+            {incomeAmount.Salary > 0 ? incomeAmount.Salary : 0}
           </IncomeListItemText>
         </IncomeListItem>
         <IncomeListItem>
@@ -110,7 +67,7 @@ export function Income({ changeComponentVisibility }) {
             <use href={icons.incomeSvg}></use>
           </IncomeSvg>
           <IncomeListItemText>
-            {incomeCategoryAmounts['Add.Income']}
+            {incomeAmount['Add.Income'] > 0 ? incomeAmount['Add.Income'] : 0}
           </IncomeListItemText>
         </IncomeListItem>
       </IncomeList>
