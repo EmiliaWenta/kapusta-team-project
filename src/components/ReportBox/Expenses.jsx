@@ -1,4 +1,9 @@
-import { selectToken, selectDetailedExpenses } from '../../redux/selectors';
+import {
+  selectToken,
+  selectDetailedExpenses,
+  selectCurrentYear,
+  selectCurrentMonth,
+} from '../../redux/selectors';
 import {
   ExpensesList,
   ExpensesBox,
@@ -11,7 +16,10 @@ import {
 } from 'styles/ReportBox/Expenses';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpensesCategories } from '../../redux/operations';
+import {
+  getDetailedCategory,
+  getExpensesCategories,
+} from '../../redux/operations';
 
 import icons_sprite from '../../svg/icons_sprite.svg';
 const icons = {
@@ -35,6 +43,8 @@ export function Expenses({ changeComponentVisibility, setSelectedCategory }) {
   const dispatch = useDispatch();
   const [expenseCategories, setExpenseCategories] = useState([]);
   const token = useSelector(selectToken);
+  const storeCurrentYear = useSelector(selectCurrentYear);
+  const storeCurrentMonth = useSelector(selectCurrentMonth);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -51,7 +61,13 @@ export function Expenses({ changeComponentVisibility, setSelectedCategory }) {
 
   const handleCategoryClick = category => {
     setSelectedCategory(category);
-    console.log('selected');
+    const credentials = {
+      year: storeCurrentYear,
+      month: storeCurrentMonth,
+      type: 'Expenses',
+      category: category,
+    };
+    dispatch(getDetailedCategory({ token, credentials }));
   };
 
   return (

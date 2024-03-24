@@ -1,8 +1,16 @@
-import { selectToken, selectDetailedIncome } from '../../redux/selectors';
+import {
+  selectToken,
+  selectDetailedIncome,
+  selectCurrentYear,
+  selectCurrentMonth,
+} from '../../redux/selectors';
 import icons_sprite from '../../svg/icons_sprite.svg';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIncomeCategories } from '../../redux/operations';
+import {
+  getDetailedCategory,
+  getIncomeCategories,
+} from '../../redux/operations';
 
 import {
   IncomeBox,
@@ -26,6 +34,8 @@ export function Income({ changeComponentVisibility, setSelectedCategory }) {
   const dispatch = useDispatch();
   const [incomeCategories, setIncomeCategories] = useState([]);
   const token = useSelector(selectToken);
+  const storeCurrentYear = useSelector(selectCurrentYear);
+  const storeCurrentMonth = useSelector(selectCurrentMonth);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -42,7 +52,13 @@ export function Income({ changeComponentVisibility, setSelectedCategory }) {
 
   const handleCategoryClick = category => {
     setSelectedCategory(category);
-    console.log('selected');
+    const credentials = {
+      year: storeCurrentYear,
+      month: storeCurrentMonth,
+      type: 'Income',
+      category: category,
+    };
+    dispatch(getDetailedCategory({ token, credentials }));
   };
 
   return (

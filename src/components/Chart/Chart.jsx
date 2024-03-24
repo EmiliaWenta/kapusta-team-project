@@ -144,21 +144,33 @@ export const Chart = ({ data, categories }) => {
   };
 
   const calculateExpensesByCategory = () => {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+
     const expensesByCategory = {};
 
     data.forEach(transaction => {
-      const category = transaction.category;
-      const description = transaction.description;
-      const amount = transaction.amount;
+      const transactionDate = new Date(transaction.date);
+      const transactionYear = transactionDate.getFullYear();
+      const transactionMonth = transactionDate.getMonth();
 
-      if (!expensesByCategory[category]) {
-        expensesByCategory[category] = {};
-      }
+      if (
+        transactionYear === currentYear &&
+        transactionMonth === currentMonth
+      ) {
+        const category = transaction.category;
+        const description = transaction.description;
+        const amount = transaction.amount;
 
-      if (!expensesByCategory[category][description]) {
-        expensesByCategory[category][description] = amount;
-      } else {
-        expensesByCategory[category][description] += amount;
+        if (!expensesByCategory[category]) {
+          expensesByCategory[category] = {};
+        }
+
+        if (!expensesByCategory[category][description]) {
+          expensesByCategory[category][description] = amount;
+        } else {
+          expensesByCategory[category][description] += amount;
+        }
       }
     });
 
@@ -180,11 +192,11 @@ export const Chart = ({ data, categories }) => {
   });
 
   const dataSettings = {
-    labels: labels,
+    labels: data.map(item => item.label),
     datasets: [
       {
-        label: 'Expenses',
-        data: datasets,
+        label: `${categories}`,
+        data: data.map(item => item.value),
         backgroundColor: colorCallback,
         borderRadius: 10,
         barThickness: determineBarThickness(),

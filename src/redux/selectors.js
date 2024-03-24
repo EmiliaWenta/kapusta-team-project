@@ -20,3 +20,5 @@ export const selectIncomeCategory = state =>
   state.transactions.incomeCategories;
 export const selectExpensesReport = state => state.report.expensesReport;
 export const selectIncomeReport = state => state.report.incomeReport;
+export const selectCurrentMonth = state => state.report.currentMonth;
+export const selectCurrentYear = state => state.report.currentYear;
