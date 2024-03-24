@@ -7,7 +7,6 @@ import { TransactionTable } from 'components/TransactionTable/TransactionTable';
 import { SummaryTable } from 'components/SummaryTable/SummaryTable';
 import headers from '../components/TransactionTable/headers.json';
 import transactions from '../components/TransactionTable/transactions.json';
-
 import {
   StyledFinance,
   TableWrapper,
@@ -15,18 +14,12 @@ import {
   BalanceWrapper,
   ExpensesWrapper,
   TransactionWrapper,
-  MobileButtonStyled,
 } from '../styles/Finance/finance';
-
-import MobileButtonBack from 'components/buttons/MobileButtonBack';
 
 const Finance = () => {
   return (
     <StyledFinance>
       <BackgroundTemplate />
-      <MobileButtonStyled>
-        <MobileButtonBack />
-      </MobileButtonStyled>
       <BalanceWrapper>
         <Balance />
         <ReportWrapper>

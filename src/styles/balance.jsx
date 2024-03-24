@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { above768px, above1280px } from './globalStyles';
 
 export const StyledForm = styled.form`
-  min-width: 282px;
-  height: 72px;
+  width: 100%;
+  height: 128px;
   aign-items: center;
   text-align: center;
 
@@ -24,7 +24,6 @@ export const StyledForm = styled.form`
 export const StyledParagraph = styled.p`
   font-size: 12px;
   font-weight: 600;
-  display: flex;
   align-items: center;
   color: rgba(82, 85, 95, 0.7);
 
@@ -38,9 +37,16 @@ export const StyledParagraph = styled.p`
   `)}
 `;
 
+export const StyledFormLabel = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+`;
+
 export const StyledInput = styled.input`
   box-sizing: border-box;
-  width: 140px;
+  display: flex;
+  width: auto;
   height: 44px;
   border: 2px solid #ffffff;
   font-weight: 600;

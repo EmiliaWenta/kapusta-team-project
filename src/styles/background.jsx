@@ -77,7 +77,7 @@ export const ImageWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 342px;
+  height: 400px;
   background-color: ${colors.backgroundColor};
   z-index: -1000;
   border-bottom-left-radius: 125px;
@@ -127,12 +127,12 @@ export const DoubleCabb = styled.div`
   `)}
 
   ${above1280px(css`
+    z-index: -1;
+    bottom: 0;
+    right: 0;
     background-image: url(${WalletBgr});
     background-repeat: repeat-x;
-    width: calc(100% - 150px);
-    height: 232px;
-    background-position: calc(100%-150px) calc(100% - 50px);
-    // top: 84, 5px;
-    // left: calc(100vw - 1270px);
+    width: calc(100% - 1px);
+    height: 29%;
   `)}
 `;

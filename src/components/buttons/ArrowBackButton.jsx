@@ -2,11 +2,10 @@ import React from 'react';
 import BackButton from 'components/buttons/BackButton';
 import svg from '../../svg/icons_sprite.svg';
 
-const MobileButtonBack = () => {
+const ArrowBack = () => {
   const leftarrowIcon = `${svg}#arrow_back`;
-  const buttonText = `  TO TRANSACTION`;
+  const buttonText = ` `;
   const iconSize = '9px';
-  const addStyles = { color: '#000', fontSize: '10px', fontWeight: 'bold' };
 
   const addStylesDiv = {
     left: `10px`,
@@ -20,7 +19,6 @@ const MobileButtonBack = () => {
         <BackButton
           leftArrowIcon={leftarrowIcon}
           buttonText={buttonText}
-          addStyles={addStyles}
           addStylesDiv={addStylesDiv}
           iconSize={iconSize}
         />
@@ -29,4 +27,4 @@ const MobileButtonBack = () => {
   );
 };
 
-export default MobileButtonBack;
+export default ArrowBack;
