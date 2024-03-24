@@ -66,7 +66,7 @@ export default function InputTransactionForm({ type }) {
     const formattedDate = format(dateObject, 'yyyy-MM-dd');
     const amount = event.target.amount.value;
     const positiveAmount = Math.abs(amount);
-    const data = {
+    const credentials = {
       date: formattedDate,
       type: transactionType,
       description: event.target.product.value,
@@ -74,7 +74,7 @@ export default function InputTransactionForm({ type }) {
       amount: positiveAmount,
       user: userId,
     };
-    const credentials = JSON.stringify(data);
+
     dispatch(addTransaction({ token, credentials }));
   };
 

@@ -31,7 +31,7 @@ const Finance = () => {
         <TableWrapper>
           <InputTransactionForm />
           <TransactionWrapper>
-            <TransactionTable headers={headers} columns={headers} />
+            <TransactionTable headers={headers} />
             <SummaryTable items={transactions} />
           </TransactionWrapper>
         </TableWrapper>
