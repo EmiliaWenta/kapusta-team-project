@@ -5,13 +5,13 @@ export const StyledTable = styled.table`
   width: 230px;
   border-collapse: collapse;
   font-size: 12px;
+  max-height: 280px;
   ${above768px(css`
     margin: 40px 0 60px 0;
-  `)}
-  ${above1280px(css`
+  `)} ${above1280px(css`
     max-width: 213px;
     margin: 60px 0 0 74px;
-  `)}
+  `)};
 `;
 
 export const StyledTableHeader = styled.thead`
@@ -36,7 +36,7 @@ export const StyledTableBody = styled.tbody`
 
   tr {
     border-bottom: 2px solid #fff;
-    height: 38px;
+    max-height: 38px;
     text-align: center;
     background-color: #f5f6fb;
     :first-child {
@@ -44,6 +44,7 @@ export const StyledTableBody = styled.tbody`
       padding-left: 22px;
       ${above1280px(css`
         padding-left: 12px;
+        max-height: 38px;
       `)}
     }
     :last-child {
@@ -51,12 +52,17 @@ export const StyledTableBody = styled.tbody`
       padding-right: 22px;
       ${above1280px(css`
         padding-right: 12px;
+        max-height: 38px;
       `)}
     }
     td {
       text-overflow: ellipsis;
       overflow: hidden;
       max-width: 170px;
+      height: 38px;
+      ${above1280px(css`
+        max-height: 38px;
+      `)}
     }
   }
 `;
