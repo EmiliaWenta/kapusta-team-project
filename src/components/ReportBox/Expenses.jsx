@@ -58,13 +58,21 @@ export function Expenses({ changeComponentVisibility }) {
       try {
         const categoryData = {};
         for (const category of Object.values(expenseCategories)) {
-          const response = await dispatch(
-            getDetailedCategory({
-              token,
-              credentials: { type: 'Expenses', category },
-            })
-          );
-          categoryData[category] = response.payload;
+          try {
+            const response = await dispatch(
+              getDetailedCategory({
+                token,
+                credentials: { type: 'Expenses', category },
+              })
+            );
+            categoryData[category] = response.payload;
+          } catch (error) {
+            if (error.response && error.response.status === 404) {
+              categoryData[category] = { report: [{ amount: 0 }] };
+            } else {
+              throw error;
+            }
+          }
         }
         setExpenseCategoriesData(categoryData);
       } catch (error) {
@@ -72,12 +80,18 @@ export function Expenses({ changeComponentVisibility }) {
       }
     };
 
-    fetchCategoryData();
-  }, [dispatch, expenseCategories, token, expensesCategoriesData]);
+    if (expenseCategories.length > 0 && token) {
+      fetchCategoryData();
+    }
+  }, [dispatch, expenseCategories, token]);
 
-  const categoryData = useSelector(selectCategoryData);
-  const catData = categoryData?.Alcohol?.report[0]?.amount || 0;
-  console.log(categoryData);
+  const categoryAmounts = {};
+
+  for (const category in expensesCategoriesData) {
+    const report = expensesCategoriesData[category]?.report;
+    const amount = report ? report[0]?.amount : 0;
+    categoryAmounts[category] = amount || 0;
+  }
 
   return (
     <ExpensesBox>
@@ -92,21 +106,25 @@ export function Expenses({ changeComponentVisibility }) {
       </ExpensesHeaderBox>
       <ExpensesList>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.products}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts.Products}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.productsSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[2]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{catData}</ExpensesListItemText>
+          <ExpensesListItemText>{categoryAmounts.Alcohol}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.alcoholSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[4]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.entertainment}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts.Entertainment}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.entertainmentSvg} />
           </ExpensesSvg>
@@ -114,21 +132,23 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.health}</ExpensesListItemText>
+          <ExpensesListItemText>{categoryAmounts.Health}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.healthSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[3]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.transport}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts.Transport}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.transportSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[0]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.housing}</ExpensesListItemText>
+          <ExpensesListItemText>{categoryAmounts.Housing}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.housingSvg} />
           </ExpensesSvg>
@@ -136,21 +156,27 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.technique}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts.Technique}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.techniqueSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[6]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.communal}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts['Communal, communication']}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.communalSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[7]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.hobbies}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts['Sports, hobbies']}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.hobbiesSvg} />
           </ExpensesSvg>
@@ -158,14 +184,16 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.education}</ExpensesListItemText>
+          <ExpensesListItemText>
+            {categoryAmounts.Education}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.educationSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[9]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
-          <ExpensesListItemText>{expenses.other}</ExpensesListItemText>
+          <ExpensesListItemText>{categoryAmounts.Other}</ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.otherSvg} />
           </ExpensesSvg>
