@@ -15,11 +15,14 @@ import {
   ExpensesWrapper,
   TransactionWrapper,
 } from '../styles/Finance/finance';
+import MobileButtonBack from 'components/buttons/MobileButtonBack';
+import ArrowBack from 'components/buttons/ArrowBackButton';
 
 const Finance = () => {
   return (
     <StyledFinance>
       <BackgroundTemplate />
+      <MobileButtonBack />
       <BalanceWrapper>
         <Balance />
         <ReportWrapper>
@@ -29,6 +32,7 @@ const Finance = () => {
       <ExpensesWrapper>
         <Tabs />
         <TableWrapper>
+          <ArrowBack />
           <InputTransactionForm />
           <TransactionWrapper>
             <TransactionTable headers={headers} />
