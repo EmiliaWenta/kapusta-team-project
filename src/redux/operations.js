@@ -10,10 +10,9 @@ export const register = createAsyncThunk(
     console.log(credentials);
     try {
       const response = await axios.post('users/signup', credentials);
-      console.log(response);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -23,10 +22,9 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('users/login', credentials);
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
