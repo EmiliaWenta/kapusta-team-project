@@ -45,12 +45,19 @@ export const SummaryTable = ({ items }) => {
       })
     : [];
 
+  const rowsToAdd = Math.max(0, 6 - (transformedReport.length || 0));
+
+  const emptyRows = Array.from({ length: rowsToAdd }, (_, index) => ({
+    id: `empty_${index}`,
+  }));
+  const allItems = [...transformedReport, ...emptyRows];
+
   return (
     <StyledTable>
-      <TableHeader deleteIcon={false} />
+      <TableHeader />
       <StyledTableBody>
-        {transformedReport.map((item, index) => (
-          <TableRow key={index} item={item} deleteIcon={false} />
+        {allItems.map((item, index) => (
+          <TableRow key={index} item={item} />
         ))}
       </StyledTableBody>
     </StyledTable>
