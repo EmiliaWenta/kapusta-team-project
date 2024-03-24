@@ -1,11 +1,16 @@
-import { selectToken } from '../../redux/selectors';
+import {
+  selectToken,
+  selectDetailedIncome,
+  selectCurrentYear,
+  selectCurrentMonth,
+} from '../../redux/selectors';
 import icons_sprite from '../../svg/icons_sprite.svg';
-import expenses from 'expenses.json';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIncomeCategories } from '../../redux/operations';
-
-import axios from 'axios';
+import {
+  getDetailedCategory,
+  getIncomeCategories,
+} from '../../redux/operations';
 
 import {
   IncomeBox,
@@ -24,27 +29,13 @@ const icons = {
   arrowRight: `${icons_sprite}#arrow_right`,
 };
 
-export function Income({ changeComponentVisibility }) {
-  const token = useSelector(selectToken);
-  const [incomeCategories, setIncomeCategories] = useState([]);
+export function Income({ changeComponentVisibility, setSelectedCategory }) {
+  const incomeAmount = useSelector(selectDetailedIncome);
   const dispatch = useDispatch();
-  const handleIconClick = async categoryName => {
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const response = await axios.get(
-        `https://kapusta-team-project-backend.onrender.com/api/report/detailed/category?type=Income&category=${categoryName}`,
-        config
-      );
-      console.log(categoryName);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Błąd podczas pobierania nazwy kategorii:', error);
-    }
-  };
+  const [incomeCategories, setIncomeCategories] = useState([]);
+  const token = useSelector(selectToken);
+  const storeCurrentYear = useSelector(selectCurrentYear);
+  const storeCurrentMonth = useSelector(selectCurrentMonth);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -58,6 +49,18 @@ export function Income({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
+
+  const handleCategoryClick = category => {
+    setSelectedCategory(category);
+    const credentials = {
+      year: storeCurrentYear,
+      month: storeCurrentMonth,
+      type: 'Income',
+      category: category,
+    };
+    dispatch(getDetailedCategory({ token, credentials }));
+  };
+
   return (
     <IncomeBox>
       <IncomeHeaderBox>
@@ -70,27 +73,23 @@ export function Income({ changeComponentVisibility }) {
         </IncomeSvg>
       </IncomeHeaderBox>
       <IncomeList>
-        <IncomeListItem>
+        <IncomeListItem onClick={() => handleCategoryClick('Salary')}>
           <IncomeListItemText>{incomeCategories[0]}</IncomeListItemText>
-          <IncomeSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('salary')}
-          >
+          <IncomeSvg width="56" height="56">
             <use href={icons.salarySvg}></use>
           </IncomeSvg>
-          <IncomeListItemText>{expenses.salary}</IncomeListItemText>
+          <IncomeListItemText>
+            {incomeAmount.Salary > 0 ? incomeAmount.Salary : 0}
+          </IncomeListItemText>
         </IncomeListItem>
-        <IncomeListItem>
+        <IncomeListItem onClick={() => handleCategoryClick('Add.Income')}>
           <IncomeListItemText>{incomeCategories[1]}</IncomeListItemText>
-          <IncomeSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('add.income')}
-          >
+          <IncomeSvg width="56" height="56">
             <use href={icons.incomeSvg}></use>
           </IncomeSvg>
-          <IncomeListItemText>{expenses.addIncome}</IncomeListItemText>
+          <IncomeListItemText>
+            {incomeAmount['Add.Income'] > 0 ? incomeAmount['Add.Income'] : 0}
+          </IncomeListItemText>
         </IncomeListItem>
       </IncomeList>
     </IncomeBox>

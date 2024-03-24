@@ -6,7 +6,10 @@ export const selectBalance = state => state.auth.user.balance;
 export const selectTransactionType = state => state.pageSettings;
 export const selectExpenses = state => state.transactions.expenses;
 export const selectIncome = state => state.transactions.income;
-export const selectReportData = state => state.report.reportData;
+export const selectReportData = state => state.report.detailedData;
+export const selectDetailedExpenses = state => state.report.detailedExpenses;
+export const selectDetailedIncome = state => state.report.detailedIncome;
+export const selectDetailedBalance = state => state.report.detailedBalance;
 export const selectCategoryData = state => state.report.categoryData;
 export const selectAddedTransaction = state =>
   state.transactions.addedTransaction;
@@ -17,6 +20,11 @@ export const selectIncomeCategory = state =>
   state.transactions.incomeCategories;
 export const selectExpensesReport = state => state.report.expensesReport;
 export const selectIncomeReport = state => state.report.incomeReport;
+
+export const selectCurrentMonth = state => state.report.currentMonth;
+export const selectCurrentYear = state => state.report.currentYear;
+
 export const selectRegisterError = state => state.auth.errors.registerError;
 export const selectRegisterSuccess = state => state.auth.registerSuccess;
 export const selectLoginError = state => state.auth.errors.loginError;
+

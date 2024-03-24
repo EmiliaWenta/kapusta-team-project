@@ -196,7 +196,7 @@ export const getDetailedReport = createAsyncThunk(
           },
         }
       );
-      return response.data;
+      return { response: response.data, year, month };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -207,9 +207,9 @@ export const getDetailedCategory = createAsyncThunk(
   'report/getDetailedCategory',
   async ({ token, credentials }, thunkAPI) => {
     try {
-      const { type, category } = credentials;
+      const { type, category, year, month } = credentials;
       const response = await axios.get(
-        `report/detailed/category?type=${type}&category=${category}`,
+        `report/detailed/category?type=${type}&category=${category}&year=${year}&month=${month}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

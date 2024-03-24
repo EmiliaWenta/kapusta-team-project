@@ -142,6 +142,55 @@ export const Chart = ({ data, categories }) => {
   const determineBarThickness = () => {
     return screenWidth < 768 ? 15 : 38;
   };
+
+  const calculateExpensesByCategory = () => {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+
+    const expensesByCategory = {};
+
+    data.forEach(transaction => {
+      const transactionDate = new Date(transaction.date);
+      const transactionYear = transactionDate.getFullYear();
+      const transactionMonth = transactionDate.getMonth();
+
+      if (
+        transactionYear === currentYear &&
+        transactionMonth === currentMonth
+      ) {
+        const category = transaction.category;
+        const description = transaction.description;
+        const amount = transaction.amount;
+
+        if (!expensesByCategory[category]) {
+          expensesByCategory[category] = {};
+        }
+
+        if (!expensesByCategory[category][description]) {
+          expensesByCategory[category][description] = amount;
+        } else {
+          expensesByCategory[category][description] += amount;
+        }
+      }
+    });
+
+    return expensesByCategory;
+  };
+
+  const expensesByCategory = calculateExpensesByCategory();
+
+  const labels = [];
+  const datasets = [];
+
+  Object.keys(expensesByCategory).forEach(category => {
+    Object.entries(expensesByCategory[category]).forEach(
+      ([description, total]) => {
+        labels.push(description);
+        datasets.push(total);
+      }
+    );
+  });
+
   const dataSettings = {
     labels: data.map(item => item.label),
     datasets: [
@@ -154,7 +203,6 @@ export const Chart = ({ data, categories }) => {
       },
     ],
   };
-
   return (
     <StyledDiv>
       <StyledChartContainer>

@@ -1,4 +1,9 @@
-import { selectCategoryData, selectToken } from '../../redux/selectors';
+import {
+  selectToken,
+  selectDetailedExpenses,
+  selectCurrentYear,
+  selectCurrentMonth,
+} from '../../redux/selectors';
 import {
   ExpensesList,
   ExpensesBox,
@@ -9,12 +14,11 @@ import {
   ExpensesListItemText,
   ExpensesHeaderBox,
 } from 'styles/ReportBox/Expenses';
-import expenses from 'expenses.json';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getExpensesCategories,
   getDetailedCategory,
+  getExpensesCategories,
 } from '../../redux/operations';
 
 import icons_sprite from '../../svg/icons_sprite.svg';
@@ -34,11 +38,13 @@ const icons = {
   arrowRight: `${icons_sprite}#arrow_right`,
 };
 
-export function Expenses({ changeComponentVisibility }) {
+export function Expenses({ changeComponentVisibility, setSelectedCategory }) {
+  const expensesAmount = useSelector(selectDetailedExpenses);
   const dispatch = useDispatch();
   const [expenseCategories, setExpenseCategories] = useState([]);
-  const [expensesCategoriesData, setExpenseCategoriesData] = useState({});
   const token = useSelector(selectToken);
+  const storeCurrentYear = useSelector(selectCurrentYear);
+  const storeCurrentMonth = useSelector(selectCurrentMonth);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -53,31 +59,16 @@ export function Expenses({ changeComponentVisibility }) {
     fetchCategories();
   }, [dispatch, token]);
 
-  useEffect(() => {
-    const fetchCategoryData = async () => {
-      try {
-        const categoryData = {};
-        for (const category of Object.values(expenseCategories)) {
-          const response = await dispatch(
-            getDetailedCategory({
-              token,
-              credentials: { type: 'Expenses', category },
-            })
-          );
-          categoryData[category] = response.payload;
-        }
-        setExpenseCategoriesData(categoryData);
-      } catch (error) {
-        console.error('Error fetching category data:', error);
-      }
+  const handleCategoryClick = category => {
+    setSelectedCategory(category);
+    const credentials = {
+      year: storeCurrentYear,
+      month: storeCurrentMonth,
+      type: 'Expenses',
+      category: category,
     };
-
-    fetchCategoryData();
-  }, [dispatch, expenseCategories, token, expensesCategoriesData]);
-
-  const categoryData = useSelector(selectCategoryData);
-  const catData = categoryData?.Alcohol?.report[0]?.amount || 0;
-  console.log(categoryData);
+    dispatch(getDetailedCategory({ token, credentials }));
+  };
 
   return (
     <ExpensesBox>
@@ -91,81 +82,113 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesSvg>
       </ExpensesHeaderBox>
       <ExpensesList>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.products}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Products')}>
+          <ExpensesListItemText>
+            {expensesAmount.Products > 0 ? expensesAmount.Products : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.productsSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[2]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{catData}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Alcohol')}>
+          <ExpensesListItemText>
+            {expensesAmount.Alcohol > 0 ? expensesAmount.Alcohol : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.alcoholSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[4]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.entertainment}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Entertainment')}>
+          <ExpensesListItemText>
+            {expensesAmount.Entertainment > 0
+              ? expensesAmount.Entertainment
+              : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.entertainmentSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[5]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.health}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Health')}>
+          <ExpensesListItemText>
+            {expensesAmount.Health > 0 ? expensesAmount.Health : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.healthSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[3]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.transport}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Transport')}>
+          <ExpensesListItemText>
+            {expensesAmount.Transport > 0 ? expensesAmount.Transport : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.transportSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[0]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.housing}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Housing')}>
+          <ExpensesListItemText>
+            {expensesAmount.Housing > 0 ? expensesAmount.Housing : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.housingSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[1]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.technique}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Technique')}>
+          <ExpensesListItemText>
+            {expensesAmount.Technique > 0 ? expensesAmount.Technique : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.techniqueSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[6]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.communal}</ExpensesListItemText>
+        <ExpensesListItem
+          onClick={() => handleCategoryClick('Communal, communication')}
+        >
+          <ExpensesListItemText>
+            {expensesAmount['Communal, communication'] > 0
+              ? expensesAmount['Communal, communication']
+              : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.communalSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[7]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.hobbies}</ExpensesListItemText>
+        <ExpensesListItem
+          onClick={() => handleCategoryClick('Sports, hobbies')}
+        >
+          <ExpensesListItemText>
+            {expensesAmount['Sports, hobbies'] > 0
+              ? expensesAmount['Sports, hobbies']
+              : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.hobbiesSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[8]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.education}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Education')}>
+          <ExpensesListItemText>
+            {expensesAmount.Education > 0 ? expensesAmount.Education : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.educationSvg} />
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[9]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
-          <ExpensesListItemText>{expenses.other}</ExpensesListItemText>
+        <ExpensesListItem onClick={() => handleCategoryClick('Other')}>
+          <ExpensesListItemText>
+            {expensesAmount.Other > 0 ? expensesAmount.Other : 0}
+          </ExpensesListItemText>
           <ExpensesSvg width="56" height="56">
             <use href={icons.otherSvg} />
           </ExpensesSvg>

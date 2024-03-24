@@ -30,6 +30,9 @@ export const ChartWrapper = styled.div`
   background-color: #ffffff;
 
   ${above768px`
+  justify-content: center;
+  align-items: center;
+  display: flex;
   margin: 32px 0px 80px;
   border-radius: 30px;
   box-shadow: 0px 10px 60px 0px #aab2c533;

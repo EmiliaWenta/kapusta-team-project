@@ -12,17 +12,14 @@ import {
 import { selectReportData, selectToken } from '../../redux/selectors';
 import { getDetailedReport } from '../../redux/operations';
 
-export function ExpIncInfo() {
+export function ExpIncInfo({ selectedMonth, selectedYear }) {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const credentials = {
-          year: 2024,
-          month: 3,
-        };
+        const credentials = { selectedMonth, selectedYear };
         await dispatch(getDetailedReport({ token, credentials }));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -30,7 +27,7 @@ export function ExpIncInfo() {
     };
 
     fetchData();
-  }, [dispatch, token]);
+  }, [dispatch, token, selectedMonth, selectedYear]);
 
   const reportData = useSelector(selectReportData);
   const expenses = reportData?.report?.Expenses || 0;
