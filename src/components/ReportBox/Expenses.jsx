@@ -1,4 +1,4 @@
-import { selectCategoryData, selectToken } from '../../redux/selectors';
+import { selectToken } from '../../redux/selectors';
 import {
   ExpensesList,
   ExpensesBox,
@@ -9,7 +9,6 @@ import {
   ExpensesListItemText,
   ExpensesHeaderBox,
 } from 'styles/ReportBox/Expenses';
-import expenses from 'expenses.json';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
