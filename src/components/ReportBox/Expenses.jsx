@@ -30,7 +30,7 @@ const icons = {
   arrowRight: `${icons_sprite}#arrow_right`,
 };
 
-export function Expenses({ changeComponentVisibility }) {
+export function Expenses({ changeComponentVisibility, setSelectedCategory }) {
   const expensesAmount = useSelector(selectDetailedExpenses);
   const dispatch = useDispatch();
   const [expenseCategories, setExpenseCategories] = useState([]);
@@ -48,6 +48,12 @@ export function Expenses({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
+
+  const handleCategoryClick = category => {
+    setSelectedCategory(category);
+    console.log('selected');
+  };
+
   return (
     <ExpensesBox>
       <ExpensesHeaderBox>
@@ -60,7 +66,7 @@ export function Expenses({ changeComponentVisibility }) {
         </ExpensesSvg>
       </ExpensesHeaderBox>
       <ExpensesList>
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Products')}>
           <ExpensesListItemText>
             {expensesAmount.Products > 0 ? expensesAmount.Products : 0}
           </ExpensesListItemText>
@@ -69,7 +75,7 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[2]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Alcohol')}>
           <ExpensesListItemText>
             {expensesAmount.Alcohol > 0 ? expensesAmount.Alcohol : 0}
           </ExpensesListItemText>
@@ -78,7 +84,7 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[4]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Entertainment')}>
           <ExpensesListItemText>
             {expensesAmount.Entertainment > 0
               ? expensesAmount.Entertainment
@@ -90,7 +96,7 @@ export function Expenses({ changeComponentVisibility }) {
           <ExpensesListItemText>{expenseCategories[5]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Health')}>
           <ExpensesListItemText>
             {expensesAmount.Health > 0 ? expensesAmount.Health : 0}
           </ExpensesListItemText>
@@ -99,7 +105,7 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[3]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Transport')}>
           <ExpensesListItemText>
             {expensesAmount.Transport > 0 ? expensesAmount.Transport : 0}
           </ExpensesListItemText>
@@ -108,7 +114,7 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[0]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Housing')}>
           <ExpensesListItemText>
             {expensesAmount.Housing > 0 ? expensesAmount.Housing : 0}
           </ExpensesListItemText>
@@ -118,7 +124,7 @@ export function Expenses({ changeComponentVisibility }) {
           <ExpensesListItemText>{expenseCategories[1]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Technique')}>
           <ExpensesListItemText>
             {expensesAmount.Technique > 0 ? expensesAmount.Technique : 0}
           </ExpensesListItemText>
@@ -127,7 +133,9 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[6]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem
+          onClick={() => handleCategoryClick('Communal, communication')}
+        >
           <ExpensesListItemText>
             {expensesAmount['Communal, communication'] > 0
               ? expensesAmount['Communal, communication']
@@ -138,7 +146,9 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[7]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem
+          onClick={() => handleCategoryClick('Sports, hobbies')}
+        >
           <ExpensesListItemText>
             {expensesAmount['Sports, hobbies'] > 0
               ? expensesAmount['Sports, hobbies']
@@ -150,7 +160,7 @@ export function Expenses({ changeComponentVisibility }) {
           <ExpensesListItemText>{expenseCategories[8]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Education')}>
           <ExpensesListItemText>
             {expensesAmount.Education > 0 ? expensesAmount.Education : 0}
           </ExpensesListItemText>
@@ -159,7 +169,7 @@ export function Expenses({ changeComponentVisibility }) {
           </ExpensesSvg>
           <ExpensesListItemText>{expenseCategories[9]}</ExpensesListItemText>
         </ExpensesListItem>
-        <ExpensesListItem>
+        <ExpensesListItem onClick={() => handleCategoryClick('Other')}>
           <ExpensesListItemText>
             {expensesAmount.Other > 0 ? expensesAmount.Other : 0}
           </ExpensesListItemText>

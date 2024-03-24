@@ -142,19 +142,55 @@ export const Chart = ({ data, categories }) => {
   const determineBarThickness = () => {
     return screenWidth < 768 ? 15 : 38;
   };
+
+  const calculateExpensesByCategory = () => {
+    const expensesByCategory = {};
+
+    data.forEach(transaction => {
+      const category = transaction.category;
+      const description = transaction.description;
+      const amount = transaction.amount;
+
+      if (!expensesByCategory[category]) {
+        expensesByCategory[category] = {};
+      }
+
+      if (!expensesByCategory[category][description]) {
+        expensesByCategory[category][description] = amount;
+      } else {
+        expensesByCategory[category][description] += amount;
+      }
+    });
+
+    return expensesByCategory;
+  };
+
+  const expensesByCategory = calculateExpensesByCategory();
+
+  const labels = [];
+  const datasets = [];
+
+  Object.keys(expensesByCategory).forEach(category => {
+    Object.entries(expensesByCategory[category]).forEach(
+      ([description, total]) => {
+        labels.push(description);
+        datasets.push(total);
+      }
+    );
+  });
+
   const dataSettings = {
-    labels: Object.keys(data),
+    labels: labels,
     datasets: [
       {
-        label: categories,
-        data: Object.values(data),
+        label: 'Expenses',
+        data: datasets,
         backgroundColor: colorCallback,
         borderRadius: 10,
         barThickness: determineBarThickness(),
       },
     ],
   };
-
   return (
     <StyledDiv>
       <StyledChartContainer>

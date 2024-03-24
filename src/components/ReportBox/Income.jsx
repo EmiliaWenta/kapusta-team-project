@@ -21,7 +21,7 @@ const icons = {
   arrowRight: `${icons_sprite}#arrow_right`,
 };
 
-export function Income({ changeComponentVisibility }) {
+export function Income({ changeComponentVisibility, setSelectedCategory }) {
   const incomeAmount = useSelector(selectDetailedIncome);
   const dispatch = useDispatch();
   const [incomeCategories, setIncomeCategories] = useState([]);
@@ -40,6 +40,11 @@ export function Income({ changeComponentVisibility }) {
     fetchCategories();
   }, [dispatch, token]);
 
+  const handleCategoryClick = category => {
+    setSelectedCategory(category);
+    console.log('selected');
+  };
+
   return (
     <IncomeBox>
       <IncomeHeaderBox>
@@ -52,7 +57,7 @@ export function Income({ changeComponentVisibility }) {
         </IncomeSvg>
       </IncomeHeaderBox>
       <IncomeList>
-        <IncomeListItem>
+        <IncomeListItem onClick={() => handleCategoryClick('Salary')}>
           <IncomeListItemText>{incomeCategories[0]}</IncomeListItemText>
           <IncomeSvg width="56" height="56">
             <use href={icons.salarySvg}></use>
@@ -61,7 +66,7 @@ export function Income({ changeComponentVisibility }) {
             {incomeAmount.Salary > 0 ? incomeAmount.Salary : 0}
           </IncomeListItemText>
         </IncomeListItem>
-        <IncomeListItem>
+        <IncomeListItem onClick={() => handleCategoryClick('Add.Income')}>
           <IncomeListItemText>{incomeCategories[1]}</IncomeListItemText>
           <IncomeSvg width="56" height="56">
             <use href={icons.incomeSvg}></use>

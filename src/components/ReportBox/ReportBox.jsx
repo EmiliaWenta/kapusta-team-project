@@ -1,33 +1,59 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Expenses } from './Expenses';
 import { Income } from './Income';
 import { ChartWrapper, ReportBoxWrapper } from 'styles/ReportBox/ReportBox';
 import { Chart } from 'components/Chart/Chart.jsx';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-  selectDetailedExpenses,
-  selectDetailedIncome,
+  selectExpenses,
+  selectToken,
+  selectIncome,
 } from '../../redux/selectors';
+import { getIncome, getExpenses } from '../../redux/operations';
 
 export function ReportBox() {
   const [showIncome, setShowIncome] = useState(false);
-  const expenseData = useSelector(selectDetailedExpenses);
-  const incomeData = useSelector(selectDetailedIncome);
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const expenseData = useSelector(selectExpenses);
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const incomeData = useSelector(selectIncome);
+
+  useEffect(() => {
+    dispatch(getIncome(token));
+    dispatch(getExpenses(token));
+  }, [dispatch, token]);
 
   const changeComponentVisibility = () => {
     setShowIncome(!showIncome);
   };
+
+  const dataToDisplay = showIncome ? incomeData : expenseData;
   return (
     <div>
       <ReportBoxWrapper>
         {showIncome ? (
-          <Income changeComponentVisibility={changeComponentVisibility} />
+          <Income
+            setSelectedCategory={setSelectedCategory}
+            changeComponentVisibility={changeComponentVisibility}
+          />
         ) : (
-          <Expenses changeComponentVisibility={changeComponentVisibility} />
+          <Expenses
+            setSelectedCategory={setSelectedCategory}
+            changeComponentVisibility={changeComponentVisibility}
+          />
         )}
       </ReportBoxWrapper>
       <ChartWrapper>
-        <Chart data={showIncome ? incomeData : expenseData} categories={''} />
+        {selectedCategory && (
+          <Chart
+            data={dataToDisplay.filter(
+              transaction => transaction.category === selectedCategory
+            )}
+            categories={selectedCategory}
+          />
+        )}
       </ChartWrapper>
     </div>
   );
