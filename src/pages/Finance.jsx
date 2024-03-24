@@ -1,39 +1,46 @@
-import BackgroundTemplate from 'components/Background/Background';
-import { Balance } from 'components/Balance/Balance';
-import { Report } from 'components/Report/Report';
+import { useState } from 'react';
+import { BalanceWrappComp } from 'components/FinanceBox/BallanceWrapper';
+import TransactionForm from 'components/FinanceBox/InputWrapper';
 import { Tabs } from 'components/WalletTabs';
-import InputTransactionForm from 'components/InputTransactionForm/InputTransactionForm';
 import { TransactionTable } from 'components/TransactionTable/TransactionTable';
 import { SummaryTable } from 'components/SummaryTable/SummaryTable';
 import headers from '../components/TransactionTable/headers.json';
 import transactions from '../components/TransactionTable/transactions.json';
+
 import {
   StyledFinance,
   TableWrapper,
-  ReportWrapper,
+  //ReportWrapper,
   BalanceWrapper,
   ExpensesWrapper,
+  InputWrapper,
   TransactionWrapper,
 } from '../styles/Finance/finance';
-import MobileButtonBack from 'components/buttons/MobileButtonBack';
-import ArrowBack from 'components/buttons/ArrowBackButton';
 
 const Finance = () => {
+  const [showBalancePage, setShowBalancePage] = useState(true);
+
+  const changeComponentVisibility = () => {
+    setShowBalancePage(!showBalancePage);
+  };
   return (
     <StyledFinance>
-      <BackgroundTemplate />
-      <MobileButtonBack />
-      <BalanceWrapper>
-        <Balance />
-        <ReportWrapper>
-          <Report />
-        </ReportWrapper>
-      </BalanceWrapper>
+      {showBalancePage ? (
+        <BalanceWrapper>
+          <BalanceWrappComp
+            changeComponentVisibility={changeComponentVisibility}
+          />
+        </BalanceWrapper>
+      ) : (
+        <InputWrapper>
+          <TransactionForm
+            changeComponentVisibility={changeComponentVisibility}
+          />
+        </InputWrapper>
+      )}
       <ExpensesWrapper>
         <Tabs />
         <TableWrapper>
-          <ArrowBack />
-          <InputTransactionForm />
           <TransactionWrapper>
             <TransactionTable headers={headers} />
             <SummaryTable items={transactions} />
