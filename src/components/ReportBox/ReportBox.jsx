@@ -28,7 +28,7 @@ export function ReportBox() {
   useEffect(() => {
     setCurrentYear(storeCurrentYear);
     setCurrentMonth(storeCurrentMonth);
-  }, [storeCurrentYear, storeCurrentMonth]);
+  }, [storeCurrentYear, storeCurrentMonth, currentMonth, currentYear]);
 
   const changeComponentVisibility = () => {
     setShowIncome(!showIncome);
