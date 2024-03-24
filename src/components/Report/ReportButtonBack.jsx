@@ -7,15 +7,15 @@ const ReportButtonBack = () => {
   const leftarrowIcon = `${svg}#arrow_back`;
   const buttonText = `Main Page`;
   const addStyles = {
-    'font-size': '14px',
-    'line- height': '14.06',
+    fontSize: '14px',
+    lineHeight: '14.06',
     color: `${colors.textBasicGray}B2`,
-    'margin-left': '15px',
+    marginLeft: '15px',
   };
 
   const addStylesDiv = {
     display: 'flex',
-    'align-items': 'center',
+    alignItems: 'center',
   };
 
   return (

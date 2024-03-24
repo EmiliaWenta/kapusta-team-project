@@ -12,10 +12,16 @@ import {
 } from '../../styles/ReportPage/reportButtons';
 import { useState } from 'react';
 import ReportButtonsData from './ReportButtonsData.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { selectToken } from '../../redux/selectors';
+import { getDetailedReport } from '../../redux/operations';
 
 export function BalanceReport() {
   const [currentYearIndex, setCurrentYearIndex] = useState(0);
   const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
 
   const handlePrevMonth = () => {
     if (currentMonthIndex === 0) {
@@ -43,6 +49,21 @@ export function BalanceReport() {
       setCurrentMonthIndex(currentMonthIndex + 1);
     }
   };
+
+  useEffect(() => {
+    const fetchDataForSelectedDate = async () => {
+      try {
+        const credentials = {
+          year: ReportButtonsData[currentYearIndex].year,
+          month: currentMonthIndex + 1,
+        };
+        await dispatch(getDetailedReport({ token, credentials }));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchDataForSelectedDate();
+  }, [dispatch, token, currentYearIndex, currentMonthIndex]);
 
   const currentYearData = ReportButtonsData[currentYearIndex];
   const currentYear = currentYearData.year;

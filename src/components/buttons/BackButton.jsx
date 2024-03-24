@@ -9,7 +9,8 @@ const BackButton = ({
   iconSize,
 }) => {
   return (
-    <NavLink to="/finance" style={{ 'text-decoration': 'none' }}>
+
+    <NavLink to="/finance" style={{ textDecoration: 'none' }}>
       <div style={addStylesDiv}>
         <svg width="18" height="18">
           <use href={leftArrowIcon} />

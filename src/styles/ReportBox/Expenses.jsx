@@ -55,6 +55,7 @@ export const ExpensesListItemText = styled.p`
   text-align: center;
   text-transform: uppercase;
   color: ${colors.textBasicGray};
+  width: 70px;
 `;
 
 export const ExpensesSvg = styled.svg`

@@ -6,6 +6,8 @@ export const selectBalance = state => state.auth.user.balance;
 export const selectTransactionType = state => state.pageSettings;
 export const selectExpenses = state => state.transactions.expenses;
 export const selectIncome = state => state.transactions.income;
+export const selectReportData = state => state.report.reportData;
+export const selectCategoryData = state => state.report.categoryData;
 export const selectAddedTransaction = state =>
   state.transactions.addedTransaction;
 export const selectDeletedId = state => state.transactions.idToDelete;

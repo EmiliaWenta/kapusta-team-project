@@ -179,11 +179,15 @@ export const getDetailedReport = createAsyncThunk(
   'report/getDetailedReport',
   async ({ token, credentials }, thunkAPI) => {
     try {
-      const response = await axios.post('report/detailed', credentials, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { year, month } = credentials;
+      const response = await axios.get(
+        `report/detailed?year=${year}&month=${month}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -195,9 +199,9 @@ export const getDetailedCategory = createAsyncThunk(
   'report/getDetailedCategory',
   async ({ token, credentials }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'report/detailed/category',
-        credentials,
+      const { type, category } = credentials;
+      const response = await axios.get(
+        `report/detailed/category?type=${type}&category=${category}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -273,6 +277,38 @@ export const getExpensesCategories = createAsyncThunk(
   }
 );
 
+export const getIncomeCategories = createAsyncThunk(
+  'transactions/getIncomeCategories',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.get('categories/income', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// CATEGORIES
+export const getExpensesCategories = createAsyncThunk(
+  'transactions/getExpencesCategories',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.get('categories/expenses', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 export const getIncomeCategories = createAsyncThunk(
   'transactions/getIncomeCategories',
   async (token, thunkAPI) => {

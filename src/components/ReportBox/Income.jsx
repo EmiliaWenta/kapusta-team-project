@@ -1,8 +1,10 @@
+import { selectToken } from '../../redux/selectors';
 import icons_sprite from '../../svg/icons_sprite.svg';
 import expenses from 'expenses.json';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIncomeCategories } from '../../redux/operations';
 
-import { useSelector } from 'react-redux';
-import { selectToken } from '../../redux/selectors';
 import axios from 'axios';
 
 import {
@@ -23,10 +25,11 @@ const icons = {
 };
 
 export function Income({ changeComponentVisibility }) {
-  const selector = useSelector(selectToken);
+  const token = useSelector(selectToken);
+  const [incomeCategories, setIncomeCategories] = useState([]);
+  const dispatch = useDispatch();
   const handleIconClick = async categoryName => {
     try {
-      const token = selector;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -42,6 +45,19 @@ export function Income({ changeComponentVisibility }) {
       console.error('Błąd podczas pobierania nazwy kategorii:', error);
     }
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await dispatch(getIncomeCategories(token));
+        setIncomeCategories(response.payload);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, [dispatch, token]);
   return (
     <IncomeBox>
       <IncomeHeaderBox>
@@ -55,7 +71,7 @@ export function Income({ changeComponentVisibility }) {
       </IncomeHeaderBox>
       <IncomeList>
         <IncomeListItem>
-          <IncomeListItemText>Salary</IncomeListItemText>
+          <IncomeListItemText>{incomeCategories[0]}</IncomeListItemText>
           <IncomeSvg
             width="56"
             height="56"
@@ -66,7 +82,7 @@ export function Income({ changeComponentVisibility }) {
           <IncomeListItemText>{expenses.salary}</IncomeListItemText>
         </IncomeListItem>
         <IncomeListItem>
-          <IncomeListItemText>Add.income</IncomeListItemText>
+          <IncomeListItemText>{incomeCategories[1]}</IncomeListItemText>
           <IncomeSvg
             width="56"
             height="56"
