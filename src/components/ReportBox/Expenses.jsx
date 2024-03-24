@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { selectToken } from '../../redux/selectors';
 import axios from 'axios';
 import {
@@ -12,6 +11,9 @@ import {
   ExpensesHeaderBox,
 } from 'styles/ReportBox/Expenses';
 import expenses from 'expenses.json';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getExpensesCategories } from '../../redux/operations';
 
 import icons_sprite from '../../svg/icons_sprite.svg';
 const icons = {
@@ -31,10 +33,11 @@ const icons = {
 };
 
 export function Expenses({ changeComponentVisibility }) {
-  const selector = useSelector(selectToken);
+  const dispatch = useDispatch();
+  const [expenseCategories, setExpenseCategories] = useState([]);
+  const token = useSelector(selectToken);
   const handleIconClick = async categoryName => {
     try {
-      const token = selector;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -50,6 +53,19 @@ export function Expenses({ changeComponentVisibility }) {
       console.error('Błąd podczas pobierania nazwy kategorii:', error);
     }
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await dispatch(getExpensesCategories(token));
+        setExpenseCategories(response.payload);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, [dispatch, token]);
 
   return (
     <ExpensesBox>
@@ -72,7 +88,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.productsSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>products</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[2]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.alcohol}</ExpensesListItemText>
@@ -83,7 +99,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.alcoholSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>alcohol</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[4]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.entertainment}</ExpensesListItemText>
@@ -94,7 +110,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.entertainmentSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>entertain</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[5]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
@@ -106,7 +122,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.healthSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>health</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[3]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.transport}</ExpensesListItemText>
@@ -117,7 +133,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.transportSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>transport</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[0]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.housing}</ExpensesListItemText>
@@ -128,7 +144,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.housingSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>housing</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[1]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
@@ -140,7 +156,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.techniqueSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>technique</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[6]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.communal}</ExpensesListItemText>
@@ -151,7 +167,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.communalSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>communal</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[7]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.hobbies}</ExpensesListItemText>
@@ -162,7 +178,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.hobbiesSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>hobbies</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[8]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
         <ExpensesListItem>
@@ -174,7 +190,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.educationSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>education</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[9]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesListItem>
           <ExpensesListItemText>{expenses.other}</ExpensesListItemText>
@@ -185,7 +201,7 @@ export function Expenses({ changeComponentVisibility }) {
           >
             <use href={icons.otherSvg} />
           </ExpensesSvg>
-          <ExpensesListItemText>other</ExpensesListItemText>
+          <ExpensesListItemText>{expenseCategories[10]}</ExpensesListItemText>
         </ExpensesListItem>
         <ExpensesDivider />
       </ExpensesList>
