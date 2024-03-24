@@ -3,13 +3,17 @@ import { above1280px, above768px, colors } from './globalStyles';
 
 export const AlertWrapper = styled.div`
   box-sizing: border-box;
-  position: relative;
-  margin-top: 20px;
-  top: -10px;
-  left: 4px;
+  position: absolute;
+  width: 100%;
+  top: 70%;
+  left: 2%;
   ${above768px(css`
-    top: -10px;
-    left: 115px;
+    top: 130%;
+    left: 40%;
+    z-index: 90;
+  `)};
+  ${above1280px(css`
+    left: 25%;
   `)};
 `;
 

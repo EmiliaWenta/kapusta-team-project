@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import { above768px, above1280px } from './globalStyles';
 
+export const StyledThumb = styled.div`
+  position: relative;
+  width: 280px;
+`;
 export const StyledForm = styled.form`
   width: 100%;
   height: 128px;
@@ -39,14 +43,15 @@ export const StyledParagraph = styled.p`
 
 export const StyledFormLabel = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-flow: row nowrap;
+  gap: 15px;
 `;
 
 export const StyledInput = styled.input`
   box-sizing: border-box;
   display: flex;
-  width: auto;
+  width: 140px;
   height: 44px;
   border: 2px solid #ffffff;
   font-weight: 600;
