@@ -28,3 +28,9 @@ export const above1280px = styles => css`
     ${styles}
   }
 `;
+
+export const below768px = styles => css`
+  @media screen and (max-width: 768px) {
+    ${styles}
+  }
+`;
