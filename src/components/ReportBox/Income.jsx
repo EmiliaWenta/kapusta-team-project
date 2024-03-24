@@ -1,11 +1,11 @@
 import { selectToken } from '../../redux/selectors';
 import icons_sprite from '../../svg/icons_sprite.svg';
-import expenses from 'expenses.json';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIncomeCategories } from '../../redux/operations';
-
-import axios from 'axios';
+import {
+  getIncomeCategories,
+  getDetailedCategory,
+} from '../../redux/operations';
 
 import {
   IncomeBox,
@@ -25,26 +25,10 @@ const icons = {
 };
 
 export function Income({ changeComponentVisibility }) {
-  const token = useSelector(selectToken);
-  const [incomeCategories, setIncomeCategories] = useState([]);
   const dispatch = useDispatch();
-  const handleIconClick = async categoryName => {
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const response = await axios.get(
-        `https://kapusta-team-project-backend.onrender.com/api/report/detailed/category?type=Income&category=${categoryName}`,
-        config
-      );
-      console.log(categoryName);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Błąd podczas pobierania nazwy kategorii:', error);
-    }
-  };
+  const [incomeCategories, setIncomeCategories] = useState([]);
+  const [incomeCategoriesData, setIncomeCategoriesData] = useState({});
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -58,6 +42,47 @@ export function Income({ changeComponentVisibility }) {
 
     fetchCategories();
   }, [dispatch, token]);
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const categoryData = {};
+        for (const category of Object.values(incomeCategories)) {
+          try {
+            const response = await dispatch(
+              getDetailedCategory({
+                token,
+                credentials: { type: 'Income', category },
+              })
+            );
+            categoryData[category] = response.payload;
+          } catch (error) {
+            if (error.response && error.response.status === 404) {
+              categoryData[category] = { report: [{ amount: 0 }] };
+            } else {
+              throw error;
+            }
+          }
+        }
+        setIncomeCategoriesData(categoryData);
+      } catch (error) {
+        console.error('Error fetching category data:', error);
+      }
+    };
+
+    if (incomeCategories.length > 0 && token) {
+      fetchCategoryData();
+    }
+  }, [dispatch, incomeCategories, token]);
+
+  const incomeCategoryAmounts = {};
+
+  for (const category in incomeCategoriesData) {
+    const report = incomeCategoriesData[category]?.report;
+    const amount = report ? report[0]?.amount : 0;
+    incomeCategoryAmounts[category] = amount || 0;
+  }
+
   return (
     <IncomeBox>
       <IncomeHeaderBox>
@@ -72,25 +97,21 @@ export function Income({ changeComponentVisibility }) {
       <IncomeList>
         <IncomeListItem>
           <IncomeListItemText>{incomeCategories[0]}</IncomeListItemText>
-          <IncomeSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('salary')}
-          >
+          <IncomeSvg width="56" height="56">
             <use href={icons.salarySvg}></use>
           </IncomeSvg>
-          <IncomeListItemText>{expenses.salary}</IncomeListItemText>
+          <IncomeListItemText>
+            {incomeCategoryAmounts.Salary}
+          </IncomeListItemText>
         </IncomeListItem>
         <IncomeListItem>
           <IncomeListItemText>{incomeCategories[1]}</IncomeListItemText>
-          <IncomeSvg
-            width="56"
-            height="56"
-            onClick={() => handleIconClick('add.income')}
-          >
+          <IncomeSvg width="56" height="56">
             <use href={icons.incomeSvg}></use>
           </IncomeSvg>
-          <IncomeListItemText>{expenses.addIncome}</IncomeListItemText>
+          <IncomeListItemText>
+            {incomeCategoryAmounts['Add.Income']}
+          </IncomeListItemText>
         </IncomeListItem>
       </IncomeList>
     </IncomeBox>

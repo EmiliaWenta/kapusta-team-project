@@ -19,10 +19,7 @@ export function ExpIncInfo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const credentials = {
-          year: 2024,
-          month: 3,
-        };
+        let credentials = {};
         await dispatch(getDetailedReport({ token, credentials }));
       } catch (error) {
         console.error('Error fetching data:', error);
