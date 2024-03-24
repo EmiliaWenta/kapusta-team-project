@@ -10,10 +10,9 @@ export const register = createAsyncThunk(
     console.log(credentials);
     try {
       const response = await axios.post('users/signup', credentials);
-      console.log(response);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -23,22 +22,31 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('users/login', credentials);
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 export const loginGoogle = createAsyncThunk(
-  // trzeba zmienić ścieżkę
   '/users/loginGoogle',
+
   async (credentials, thunkAPI) => {
     try {
-      //trzeba zmienić ścieżkę
-      const response = await axios.post('users/loginGoogle', credentials);
-      console.log(response.data);
+      const data = {
+        credentials,
+      };
+      const response = await axios.post(
+        'users/loginGoogle',
+        JSON.stringify(data),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

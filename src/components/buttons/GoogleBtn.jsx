@@ -8,11 +8,7 @@ export const GoogleBtn = () => {
   const dispatch = useDispatch();
   const login = useGoogleLogin({
     onSuccess: async response => {
-      try {
-        await dispatch(loginGoogle(response.access_token));
-      } catch (error) {
-        console.log('Login Failed', error);
-      }
+      dispatch(loginGoogle(response.access_token));
     },
   });
 

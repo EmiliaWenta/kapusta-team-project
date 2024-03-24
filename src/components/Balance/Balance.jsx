@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyledForm, StyledInput, StyledParagraph, StyledFormLabel } from '../../styles/balance';
+import {
+  StyledForm,
+  StyledInput,
+  StyledParagraph,
+  StyledFormLabel,
+  StyledThumb,
+} from '../../styles/balance';
 import { GreyButtonWithR } from 'components/buttons/GreyButtonWithR';
 import { getCurrentUser, updateBalance } from '../../redux/operations';
 import { selectBalance, selectToken } from '../../redux/selectors';
+import { BalanceAlert } from 'components/BalanceAlert/BalanceAlert';
 
 export const Balance = () => {
   const token = useSelector(selectToken);
@@ -29,7 +36,7 @@ export const Balance = () => {
   };
 
   return (
-    <>
+    <StyledThumb>
       <StyledForm onSubmit={handleSubmit}>
         <StyledParagraph>Balance:</StyledParagraph>
         <StyledFormLabel>
@@ -42,7 +49,8 @@ export const Balance = () => {
           </label>
           <GreyButtonWithR type="submit" text={'confirm'}></GreyButtonWithR>
         </StyledFormLabel>
+        {localBalance === null && <BalanceAlert />}
       </StyledForm>
-    </>
+    </StyledThumb>
   );
 };

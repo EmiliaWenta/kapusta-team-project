@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import ModalWindow from 'components/modalWindow/ModalWindow';
@@ -10,17 +10,25 @@ import {
   LoginFormInput,
   LoginFormBtnList,
   LoginFormErrorMessage,
+  LoginFormSuccessMessage,
 } from '../../styles/loginForm';
 
 import { TomatoButtonWithShadow } from 'components/buttons/TomatoButtonWithShadow';
 import { GreyButton } from 'components/buttons/GreyButton';
 import { GoogleBtn } from 'components/buttons/GoogleBtn';
 import { login, register } from '../../redux/operations';
+import {
+  selectLoginError,
+  selectRegisterError,
+  selectRegisterSuccess,
+} from '../../redux/selectors';
 
 function LoginForm() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-
+  const registerError = useSelector(selectRegisterError);
+  const loginError = useSelector(selectLoginError);
+  const registerSuccess = useSelector(selectRegisterSuccess);
   const dispatch = useDispatch();
   let typeOfOperation;
 
@@ -82,6 +90,17 @@ function LoginForm() {
                 <LoginFormErrorMessage>
                   This is a required field.
                 </LoginFormErrorMessage>
+              )}
+              {registerError && (
+                <LoginFormErrorMessage>{registerError}</LoginFormErrorMessage>
+              )}
+              {loginError && (
+                <LoginFormErrorMessage>{loginError}</LoginFormErrorMessage>
+              )}
+              {registerSuccess && (
+                <LoginFormSuccessMessage>
+                  Register success!
+                </LoginFormSuccessMessage>
               )}
             </li>
           </LoginFormLabelList>

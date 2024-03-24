@@ -84,3 +84,10 @@ export const LoginFormErrorMessage = styled.p`
   color: red;
   text-align: left;
 `;
+
+export const LoginFormSuccessMessage = styled.p`
+  font-size: 10px;
+  line-height: 11.72px;
+  color: green;
+  text-align: left;
+`;

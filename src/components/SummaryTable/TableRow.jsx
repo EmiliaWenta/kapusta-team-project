@@ -1,21 +1,16 @@
-import { DeleteIcon } from '../buttons/DeleteIcon';
-import { StyledIconCell } from 'styles/TransactionTable';
-
-export const TableRow = ({ item, deleteIcon }) => {
-  const keys = Object.keys(item);
+export const TableRow = ({ item }) => {
+  if (!item || Object.keys(item).length === 0) {
+    return (
+      <tr>
+        <td colSpan="2"></td>
+      </tr>
+    );
+  }
 
   return (
     <tr>
-      {keys.map((key, index) => (
-        <td key={index}>
-          {typeof item[key] === 'string' ? item[key].toUpperCase() : item[key]}
-        </td>
-      ))}
-      {deleteIcon && (
-        <StyledIconCell>
-          <DeleteIcon />
-        </StyledIconCell>
-      )}
+      <td>{item.month ? item.month.toUpperCase() : ''}</td>
+      <td>{item.sum}</td>
     </tr>
   );
 };
