@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { above1280px, above768px } from './globalStyles';
+import { above1280px, above768px, below768px } from './globalStyles';
 
 export const StyledTableContainer = styled.div`
   max-height: 384px;
@@ -16,6 +16,10 @@ export const StyledTableContainer = styled.div`
 
   ${above1280px(css`
     margin-top: 60px;
+  `)}
+
+  ${below768px(css`
+    margin-top: 0px;
   `)}
 `;
 
@@ -39,6 +43,9 @@ export const StyledTableHeader = styled.thead`
   :last-child {
     border-top-right-radius: 16px;
   }
+  ${below768px(css`
+    display: none;
+  `)}
 `;
 
 export const StyledTableBody = styled.tbody`
@@ -56,6 +63,13 @@ export const StyledTableBody = styled.tbody`
       max-width: 170px;
     }
   }
+  ${below768px(css`
+    tr {
+      td {
+        max-width: 100px;
+      }
+    }
+  `)}
 `;
 
 export const ColoredTextCell = styled.td`
