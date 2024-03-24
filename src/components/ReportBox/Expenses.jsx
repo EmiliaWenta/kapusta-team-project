@@ -37,7 +37,7 @@ const icons = {
 export function Expenses({ changeComponentVisibility }) {
   const dispatch = useDispatch();
   const [expenseCategories, setExpenseCategories] = useState([]);
-  const [expenseCategoriesData, setExpenseCategoriesData] = useState({});
+  const [expensesCategoriesData, setExpenseCategoriesData] = useState({});
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -67,14 +67,13 @@ export function Expenses({ changeComponentVisibility }) {
           categoryData[category] = response.payload;
         }
         setExpenseCategoriesData(categoryData);
-        console.log(categoryData);
       } catch (error) {
         console.error('Error fetching category data:', error);
       }
     };
 
     fetchCategoryData();
-  }, [dispatch, expenseCategories, token]);
+  }, [dispatch, expenseCategories, token, expensesCategoriesData]);
 
   const categoryData = useSelector(selectCategoryData);
   const catData = categoryData?.Alcohol?.report[0]?.amount || 0;

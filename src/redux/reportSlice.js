@@ -7,9 +7,13 @@ import {
   getIncomeReport,
 } from './operations';
 
-const initialState = { detailedData: [], expensesReport: {}, incomeReport: {}, reportData: null,
-  categoryData: null };
-
+const initialState = {
+  detailedData: [],
+  expensesReport: {},
+  incomeReport: {},
+  reportData: null,
+  categoryData: null,
+};
 
 const reportSlice = createSlice({
   name: 'report',
@@ -25,10 +29,10 @@ const reportSlice = createSlice({
         state.expensesReport = action.payload.expensesReport;
       })
       .addCase(getIncomeReport.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.incomeReport = action.payload.report;
+      })
       .addCase(getDetailedCategory.fulfilled, (state, action) => {
-        state.categoryData = action.payload;        
+        state.categoryData = action.payload;
       });
   },
 });
