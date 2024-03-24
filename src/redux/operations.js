@@ -260,40 +260,6 @@ export const getIncomeReport = createAsyncThunk(
 );
 
 // CATEGORIES
-
-export const getExpensesCategories = createAsyncThunk(
-  'transactions/getExpencesCategories',
-  async (token, thunkAPI) => {
-    try {
-      const response = await axios.get('categories/expenses', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const getIncomeCategories = createAsyncThunk(
-  'transactions/getIncomeCategories',
-  async (token, thunkAPI) => {
-    try {
-      const response = await axios.get('categories/income', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// CATEGORIES
 export const getExpensesCategories = createAsyncThunk(
   'transactions/getExpencesCategories',
   async (token, thunkAPI) => {
