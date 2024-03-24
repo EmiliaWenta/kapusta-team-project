@@ -3,12 +3,16 @@ import { Expenses } from './Expenses';
 import { Income } from './Income';
 import { ChartWrapper, ReportBoxWrapper } from 'styles/ReportBox/ReportBox';
 import { Chart } from 'components/Chart/Chart.jsx';
-import chartData from 'components/Chart/chartData';
-// import { useSelector } from 'react-redux';
-// import { selectDetailedExpenses } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
+import {
+  selectDetailedExpenses,
+  selectDetailedIncome,
+} from '../../redux/selectors';
 
 export function ReportBox() {
   const [showIncome, setShowIncome] = useState(false);
+  const expenseData = useSelector(selectDetailedExpenses);
+  const incomeData = useSelector(selectDetailedIncome);
 
   const changeComponentVisibility = () => {
     setShowIncome(!showIncome);
@@ -23,7 +27,7 @@ export function ReportBox() {
         )}
       </ReportBoxWrapper>
       <ChartWrapper>
-        <Chart data={chartData} categories={''} />
+        <Chart data={showIncome ? incomeData : expenseData} categories={''} />
       </ChartWrapper>
     </div>
   );

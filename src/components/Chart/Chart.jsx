@@ -143,11 +143,11 @@ export const Chart = ({ data, categories }) => {
     return screenWidth < 768 ? 15 : 38;
   };
   const dataSettings = {
-    labels: data.map(item => item.label),
+    labels: Object.keys(data),
     datasets: [
       {
-        label: `${categories}`,
-        data: data.map(item => item.value),
+        label: categories,
+        data: Object.values(data),
         backgroundColor: colorCallback,
         borderRadius: 10,
         barThickness: determineBarThickness(),
