@@ -31,6 +31,21 @@ export const login = createAsyncThunk(
   }
 );
 
+export const loginGoogle = createAsyncThunk(
+  // trzeba zmienić ścieżkę
+  '/users/loginGoogle',
+  async (credentials, thunkAPI) => {
+    try {
+      //trzeba zmienić ścieżkę
+      const response = await axios.post('users/loginGoogle', credentials);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logout = createAsyncThunk(
   '/users/logout',
   async (token, thunkAPI) => {
@@ -123,12 +138,16 @@ export const addTransaction = createAsyncThunk(
   'transactions/addTransation',
   async ({ token, credentials }, thunkAPI) => {
     try {
-      const response = await axios.post('transactions', credentials, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post(
+        'transactions',
+        JSON.stringify(credentials),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       return response.data;
     } catch (error) {
@@ -141,13 +160,13 @@ export const deleteTransaction = createAsyncThunk(
   'transactions/deleteTransation',
   async (credentials, thunkAPI) => {
     try {
-      const { token, _id, type } = credentials;
-      await axios.delete('transations/', {
+      const { token, id, type } = credentials;
+      await axios.delete(`transactions/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      return { _id, type };
+      return { id, type };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -200,11 +219,17 @@ export const getExpensesReport = createAsyncThunk(
   'report/getExpenses',
   async (token, thunkAPI) => {
     try {
-      const response = await axios.get('report/expenses', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      console.log(token);
+      const response = await axios.post(
+        'report/expenses',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -216,7 +241,47 @@ export const getIncomeReport = createAsyncThunk(
   'report/getIncome',
   async (token, thunkAPI) => {
     try {
-      const response = await axios.get('report/income', {
+      console.log(token);
+      const response = await axios.post(
+        'report/income',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// CATEGORIES
+
+export const getExpensesCategories = createAsyncThunk(
+  'transactions/getExpencesCategories',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.get('categories/expenses', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getIncomeCategories = createAsyncThunk(
+  'transactions/getIncomeCategories',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.get('categories/income', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

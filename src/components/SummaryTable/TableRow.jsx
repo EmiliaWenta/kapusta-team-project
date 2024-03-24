@@ -7,7 +7,9 @@ export const TableRow = ({ item, deleteIcon }) => {
   return (
     <tr>
       {keys.map((key, index) => (
-        <td key={index}>{item[key].toUpperCase()}</td>
+        <td key={index}>
+          {typeof item[key] === 'string' ? item[key].toUpperCase() : item[key]}
+        </td>
       ))}
       {deleteIcon && (
         <StyledIconCell>

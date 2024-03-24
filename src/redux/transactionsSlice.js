@@ -3,12 +3,18 @@ import {
   addTransaction,
   deleteTransaction,
   getExpenses,
+  getExpensesCategories,
   getIncome,
+  getIncomeCategories,
 } from './operations';
 
 const initialState = {
   income: [],
   expenses: [],
+  addedTransaction: {},
+  idToDelete: '',
+  expensesCategories: [],
+  incomeCategories: [],
 };
 
 const transactionsSlice = createSlice({
@@ -28,19 +34,28 @@ const transactionsSlice = createSlice({
         } else {
           state.income.push(action.payload);
         }
+        state.addedTransaction = action.payload;
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         if (action.payload.type === 'Expenses') {
           const index = state.expenses.findIndex(
-            transation => transation._id === action.payload._id
+            transation => transation.id === action.payload.id
           );
-          state.expences.splice(index, 1);
+
+          state.expenses.splice(index, 1);
         } else {
           const index = state.income.findIndex(
-            transation => transation._id === action.payload._id
+            transation => transation.id === action.payload.id
           );
           state.income.splice(index, 1);
         }
+        state.idToDelete = action.payload.id;
+      })
+      .addCase(getExpensesCategories.fulfilled, (state, action) => {
+        state.expensesCategories = action.payload;
+      })
+      .addCase(getIncomeCategories.fulfilled, (state, action) => {
+        state.incomeCategories = action.payload;
       });
   },
 });

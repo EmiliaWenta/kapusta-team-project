@@ -1,19 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const BackButton = ({
-  leftArrowIcon,
+const ForwardButton = ({
+  rightArrowIcon,
   buttonText,
   addStyles,
   addStylesDiv,
   iconSize,
 }) => {
   return (
-
-    <NavLink to="/finance" style={{ textDecoration: 'none' }}>
+    <NavLink to="/balance" style={{ textDecoration: 'none' }}>
       <div style={addStylesDiv}>
         <svg width="18" height="18">
-          <use href={leftArrowIcon} />
+          <use href={rightArrowIcon} />
         </svg>
         <span style={addStyles}>{buttonText}</span>
       </div>
@@ -21,4 +20,4 @@ const BackButton = ({
   );
 };
 
-export default BackButton;
+export default ForwardButton;

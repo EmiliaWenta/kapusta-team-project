@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyledForm, StyledInput, StyledParagraph } from '../../styles/balance';
+import { StyledForm, StyledInput, StyledParagraph, StyledFormLabel } from '../../styles/balance';
 import { GreyButtonWithR } from 'components/buttons/GreyButtonWithR';
 import { getCurrentUser, updateBalance } from '../../redux/operations';
 import { selectBalance, selectToken } from '../../redux/selectors';
@@ -32,14 +32,16 @@ export const Balance = () => {
     <>
       <StyledForm onSubmit={handleSubmit}>
         <StyledParagraph>Balance:</StyledParagraph>
-        <label>
-          <StyledInput
-            type="number"
-            name="balance"
-            placeholder={`${localBalance} PLN`}
-          />
-        </label>
-        <GreyButtonWithR type="submit" text={'confirm'}></GreyButtonWithR>
+        <StyledFormLabel>
+          <label>
+            <StyledInput
+              type="number"
+              name="balance"
+              placeholder={`${localBalance} PLN`}
+            />
+          </label>
+          <GreyButtonWithR type="submit" text={'confirm'}></GreyButtonWithR>
+        </StyledFormLabel>
       </StyledForm>
     </>
   );

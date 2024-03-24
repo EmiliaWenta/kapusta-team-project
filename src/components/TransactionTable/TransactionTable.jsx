@@ -7,14 +7,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { TableRow } from './TableRow.jsx';
 import { TableHeader } from './TableHeader.jsx';
 import { useEffect, useState } from 'react';
-import { selectToken, selectTransactionType } from '../../redux/selectors.js';
+import {
+  selectAddedTransaction,
+  selectDeletedId,
+  selectToken,
+  selectTransactionType,
+} from '../../redux/selectors.js';
 import { getExpenses, getIncome } from '../../redux/operations.js';
 
-export const TransactionTable = ({ headers, columns }) => {
+export const TransactionTable = ({ headers }) => {
   const transactionType = useSelector(selectTransactionType);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const [items, setItems] = useState([]);
+  const addedTransaction = useSelector(selectAddedTransaction);
+  const deletedId = useSelector(selectDeletedId);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +39,7 @@ export const TransactionTable = ({ headers, columns }) => {
     };
 
     fetchData();
-  }, [dispatch, transactionType, token]);
+  }, [dispatch, transactionType, token, addedTransaction, deletedId]);
 
   const rowsToAdd = Math.max(0, 9 - (items.length || 0));
 
@@ -48,12 +55,7 @@ export const TransactionTable = ({ headers, columns }) => {
         <TableHeader headers={headers} deleteIcon={true} />
         <StyledTableBody>
           {allItems.map((item, index) => (
-            <TableRow
-              key={index}
-              item={item}
-              columns={columns}
-              deleteIcon={true}
-            />
+            <TableRow key={index} item={item} deleteIcon={true} />
           ))}
         </StyledTableBody>
       </StyledTable>
