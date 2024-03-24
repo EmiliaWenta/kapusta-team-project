@@ -30,12 +30,21 @@ export const login = createAsyncThunk(
 );
 
 export const loginGoogle = createAsyncThunk(
-  // trzeba zmienić ścieżkę
   '/users/loginGoogle',
   async (credentials, thunkAPI) => {
     try {
-      //trzeba zmienić ścieżkę
-      const response = await axios.post('users/loginGoogle', credentials);
+      const data = {
+        credentials,
+      };
+      const response = await axios.post(
+        'users/loginGoogle',
+        JSON.stringify(data),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       console.log(response.data);
       return response.data;
     } catch (error) {
