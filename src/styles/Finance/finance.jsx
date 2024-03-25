@@ -85,7 +85,7 @@ export const TransactionWrapper = styled.div`
     display: flex;
     // justify-content: space-between;
     flex-direction: row;
-    flex-wrap: no-wrap;
+    flex-wrap: wrap;
   `)}
 `;
 export const MobileButtonStyled = styled.div`
