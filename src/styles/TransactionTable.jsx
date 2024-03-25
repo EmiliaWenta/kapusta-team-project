@@ -11,6 +11,7 @@ export const StyledTableContainer = styled.div`
   position: relative;
 
   ${above768px(css`
+    max-width: 810px;
     height: 624px;
   `)}
 
@@ -27,6 +28,9 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   font-size: 12px;
   height: 100%;
+
+  ${above768px`
+  width: 800px;`}
 
   ${above1280px`
   width: 1018px;`}
