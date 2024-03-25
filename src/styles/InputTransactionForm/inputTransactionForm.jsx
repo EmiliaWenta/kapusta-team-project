@@ -44,7 +44,7 @@ export const InputForm = styled.form`
     flex-wrap: wrap;
     column-gap: 32px;
     margin-left: 80px;
-    min-width: 1034px;
+    width: 934px;
   `)}
 `;
 export const InputGroupWrapper = styled.div`

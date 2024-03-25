@@ -15,8 +15,8 @@ export const StyledMobileButton = styled.div`
 // `;
 
 export const StyledBalance = styled.div`
-  // justify-content: center;
-  // padding-lef: 100px;
+  //   justify-content: center;
+  //   padding-lef: 100px;
 `;
 
 export const StyledArrBack = styled.div`

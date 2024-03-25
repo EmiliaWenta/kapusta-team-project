@@ -7,7 +7,7 @@ export const StyledTableContainer = styled.div`
   display: flex;
   overflow-y: auto;
   margin-left: 40px;
-  width: calc(100% - 140px);
+  width: auto;
   position: relative;
 
   ${above768px(css`
@@ -27,6 +27,9 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   font-size: 12px;
   height: 100%;
+
+  ${above1280px`
+  width: 1018px;`}
 `;
 
 export const StyledTableHeader = styled.thead`
