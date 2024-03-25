@@ -72,7 +72,7 @@ export const Finance = () => {
       ) : (
         <InputWrapper>
           <TransactionForm navigate={navigate} path="/financebox/finance" />
-          {isMobileView && <DatePickerComponent />}
+          {!isMobileView && <DatePickerComponent />}
         </InputWrapper>
       )}
       <ExpensesWrapper>

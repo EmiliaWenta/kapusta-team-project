@@ -46,7 +46,10 @@ export const StyledFormLabel = styled.div`
   display: flex;
   justify-content: center;
   flex-flow: row nowrap;
-  // gap: 15px;
+
+  ${above768px`
+  gap: 15px;
+  justify-content: flex-start;`}
 `;
 
 export const StyledInput = styled.input`

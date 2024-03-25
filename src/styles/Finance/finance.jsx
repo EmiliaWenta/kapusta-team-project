@@ -19,6 +19,7 @@ export const BalanceWrapper = styled.div`
   // flex-wrap: wrap;
   ${above768px(css`
     display: flex;
+    flex-direction: row;
     flex-wrap: no-wrap;
     padding: 40px 0 0 20px;
     justify-content: space-between;
