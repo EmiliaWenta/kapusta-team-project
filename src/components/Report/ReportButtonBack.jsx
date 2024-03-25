@@ -14,6 +14,7 @@ const ReportButtonBack = () => {
   };
 
   const addStylesDiv = {
+    maxHeight: '30px',
     display: 'flex',
     alignItems: 'center',
   };
