@@ -25,17 +25,7 @@ import {
 import { CustomSelect } from '../InputTransactionForm/CustomSelect';
 import { addTransaction } from '../../redux/operations';
 
-export default function InputTransactionForm({ type }) {
-  // const TRANSACTION_FORM_DATA = {
-  //   expense: {
-  //     description: 'Product description',
-  //     selectCategoryPlaceholder: 'Product category',
-  //   },
-  //   income: {
-  //     description: 'Income description',
-  //     selectCategoryPlaceholder: 'Income category',
-  //   },
-  // };
+export function InputTransactionForm({ type }) {
   const dispatch = useDispatch();
   const today = new Date();
 

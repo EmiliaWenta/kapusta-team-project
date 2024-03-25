@@ -6,10 +6,12 @@ export const MainContainer = styled.div`
   min-width: 280px;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 200px;
+  justify-content: center;
+  // padding-top: 200px;
   background-color: transparent;
   ${above768px(css`
     width: fit-content;
+    flex-wrap: no-wrap;
     padding: 0;
     justify-content: center;
     background-color: transparent;
@@ -17,7 +19,7 @@ export const MainContainer = styled.div`
   `)}
 
   ${above1280px(css`
-    flex-wrap: no-wrap;
+    // flex-wrap: no-wrap;
     min-width: 1034px;
     height: 44px;
     margin-bottom: 0;
@@ -33,7 +35,7 @@ export const InputForm = styled.form`
 
   ${above768px(css`
     display: flex;
-    flex-direction: row;
+    flex-wrap: no-wrap;;
     justify-content center;
     margin-right: 72px;
 
@@ -73,6 +75,7 @@ export const InputGroupWrapper = styled.div`
 
   ${above1280px(css`
     width: calc(100% - 485px);
+    left
   `)}
 `;
 
@@ -105,20 +108,25 @@ export const Input = styled.input`
 `;
 
 export const SelectWrapper = styled.div`
+  background-color: ${colors.inputBorder};
+  border-color: ${colors.modalBackgroundColor};
+};
+
   ${above768px(css`
     border-left: 2px solid ${colors.inputBorder};
     border-right: 2px solid ${colors.inputBorder};
   `)}
 `;
-
 export const InputProduct = styled(Input)`
   width: 280px;
   font-family: inherit;
   font-size: 12px;
-  padding-left: 20px;
+  // padding-left: 20px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   color: black;
+  background-color: ${colors.inputBorder};
+  border-color: ${colors.modalBackgroundColor};
 
   &::placeholder {
     font-family: inherit;
@@ -129,13 +137,15 @@ export const InputProduct = styled(Input)`
 
   &:focus {
     border: 2px solid ${colors.textBasicGray};
-    background-color: white;
+    background-color: ${colors.modalBackgroundColor};
   }
 
   ${above768px(css`
     min-width: 200px;
     border-top-left-radius: 16px;
     border-top-right-radius: 0;
+    background-color: ${colors.modalBackgroundColor};
+    border-color: ${colors.inputBorder};
   `)}
   ${above1280px(css`
     width: 290px;
@@ -143,7 +153,8 @@ export const InputProduct = styled(Input)`
 `;
 
 export const SelectAmountWrapper = styled.div`
-  display: flex;
+  // display: flex;
+  // flex-direction: row;
   padding: 0 20px;
   min-width: 280px;
   justify-content: center;
@@ -164,7 +175,9 @@ export const InputAmountWrapper = styled.div`
   box-sizing: border-box;
   position: relative;
   display: flex;
-  border-radius: 0 0 16px 0;
+  border-radius: 16px;
+  // background-color: ${colors.inputBorder};
+  // border-color: ${colors.modalBackgroundColor};
 
   & svg {
     position: absolute;
@@ -216,4 +229,5 @@ export const InputAmount = styled(Input)`
 export const ButtonsWrapper = styled.div`
   display: inline-flex;
   column-gap: 16px;
+  padding-top: 150px;
 `;

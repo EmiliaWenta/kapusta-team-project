@@ -9,6 +9,7 @@ export const StyledLink = styled(NavLink)`
   align-items: center;
   font-size: 12px;
   color: rgba(82, 85, 95, 0.7);
+  text-decoration: none;
 `;
 
 export const StyledSvg = styled.svg`

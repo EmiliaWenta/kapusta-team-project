@@ -3,43 +3,49 @@ import { above768px, above1280px } from 'styles/globalStyles';
 
 export const StyledFinance = styled.div`
   box-sizing: border-box;
+  display: flex;
   width: 100%;
   height: auto;
   padding: 13px 20px 12px 20px;
 `;
 
 export const BalanceWrapper = styled.div`
-  justify-content: center;
-  margin-top: 104px;
-  display: flex;
-  flex-wrap: no-wrap;
+  padding-top: 52px;
   width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   ${above768px(css`
     display: flex;
     flex-wrap: no-wrap;
+    padding: 40px 0 0 20px;
     justify-content: space-between;
-    margin: 40px 32px 0;
     min-width: 624px;
     width: 100%;
   `)}
   ${above1280px(css`
-    width: calc(100% - 200px);
+    width: calc(100%);
     justify-content: flex-end;
-    margin-top: 40px;
+    paddnig: 0;
   `)}
 `;
 export const ReportWrapper = styled.div`
   position: absolute;
-  top: 104px;
+  top: 115px;
   left: 40%;
   ${above768px(css`
     margin-right: 60px;
+    top: 0;
     position: static;
     justify-content: flex-end;
     padding-top: 10px;
   `)}
   ${above1280px(css`
-    margin: 0 106px 0 calc((100% - 360px) / 3);
+    margin-right: 91px;
+    margin-left: calc((100% - 960px));
+    justify-content: flex-end;
+    left: 0;
   `)}
 `;
 export const TableWrapper = styled.div`
@@ -96,6 +102,10 @@ export const MobileButtonStyled = styled.div`
 `;
 export const BalanceReportWrapper = styled.div``;
 
-export const InputWrapper = styled.div``;
+export const InputWrapper = styled.div`
+  justify-content: center;
+`;
 
 export const DateWrapper = styled.div``;
+
+export const StyledDatePic = styled.div``;

@@ -1,22 +1,41 @@
 import React from 'react';
-import MobileButton from 'components/buttons/MobileButtonBack';
+import sprite from '../../svg/icons_sprite.svg';
 
-const MobileButtonBack = () => {
+const MobileButtonBack = ({ buttonText, navigate, path }) => {
   return (
-    <MobileButton
-      buttonText="To Transaction"
-      destination="/path/to/components/InputWrapper"
-    />
+    <button
+      type="button"
+      onClick={() => navigate(path)}
+      style={{
+        color: '#000',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        border: 'none',
+        fontSize: '12px',
+      }}
+    >
+      <svg width="13" height="13">
+        <use href={sprite + `#arrow_back`}></use>
+      </svg>{' '}
+      {buttonText}
+    </button>
   );
 };
 
-const ArrowBack = () => {
+const ArrowBack = ({ navigate, path }) => {
   return (
-    <MobileButton
-      buttonText="To Transaction"
-      destination="/path/to/components/BalanceWrapper"
-    />
+    <button
+      type="button"
+      onClick={() => navigate(path)}
+      style={{
+        backgroundColor: 'transparent',
+        border: 'none',
+      }}
+    >
+      <svg width="18" height="18">
+        <use href={sprite + `#arrow_back`}></use>
+      </svg>{' '}
+    </button>
   );
 };
-
 export { MobileButtonBack, ArrowBack };

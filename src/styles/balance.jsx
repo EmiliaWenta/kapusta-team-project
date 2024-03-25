@@ -3,13 +3,14 @@ import { above768px, above1280px } from './globalStyles';
 
 export const StyledThumb = styled.div`
   position: relative;
-  width: 280px;
+  min-width: 280px;
 `;
 export const StyledForm = styled.form`
   width: 100%;
   height: 128px;
-  aign-items: center;
+  align-items: center;
   text-align: center;
+  justify-content: center;
 
   ${above768px(css`
     width: 369px;
@@ -45,7 +46,7 @@ export const StyledFormLabel = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-flow: row nowrap;
-  gap: 15px;
+  // gap: 15px;
 `;
 
 export const StyledInput = styled.input`
