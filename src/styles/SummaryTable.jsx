@@ -7,10 +7,10 @@ export const StyledTable = styled.table`
   font-size: 12px;
   max-height: 280px;
   ${above768px(css`
-    margin: 40px 0 60px 0;
+    margin: 170px 0 60px 19px;
   `)} ${above1280px(css`
     max-width: 213px;
-    margin: 60px 0 0 74px;
+    margin: 120px 0 0 74px;
   `)};
 `;
 

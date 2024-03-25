@@ -14,14 +14,17 @@ const ReportButtonBack = () => {
   };
 
   const addStylesDiv = {
+    maxHeight: '30px',
     display: 'flex',
     alignItems: 'center',
   };
+  const iconSize = 18;
 
   return (
     <div>
       <BackButton
         leftArrowIcon={leftarrowIcon}
+        iconSize={iconSize}
         buttonText={buttonText}
         addStyles={addStyles}
         addStylesDiv={addStylesDiv}
