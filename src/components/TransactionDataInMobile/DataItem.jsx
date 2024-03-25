@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { StyledIconCell } from 'styles/TransactionTable';
 import { selectToken, selectTransactionType } from '../../redux/selectors';
 import { parseISO, format } from 'date-fns';
 import { StyledButtonSvg, StyledSvg } from '../../styles/button.jsx';
