@@ -44,7 +44,7 @@ export const StyledParagraph = styled.p`
 
 export const StyledFormLabel = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-flow: row nowrap;
   // gap: 15px;
 `;

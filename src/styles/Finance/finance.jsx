@@ -7,15 +7,16 @@ export const StyledFinance = styled.div`
   width: 100%;
   height: auto;
   padding: 13px 20px 12px 20px;
+  flex-direction: column;
 `;
 
 export const BalanceWrapper = styled.div`
   padding-top: 52px;
   width: 100%;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  // flex-wrap: wrap;
   ${above768px(css`
     display: flex;
     flex-wrap: no-wrap;

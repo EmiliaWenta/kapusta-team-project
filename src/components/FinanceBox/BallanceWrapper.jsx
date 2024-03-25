@@ -13,13 +13,13 @@ export function BalanceWrappComp() {
   const [showBalanceWrapp, setShowBalanceWrapp] = useState(false);
   const navigate = useNavigate();
 
-  const changeComponentVisibilityY = () => {
+  const changeComponentVisibility = () => {
     setShowBalanceWrapp(!showBalanceWrapp);
     navigate('/FinanceBox/InputWrapper.jsx');
   };
 
   return (
-    <BalanceWrapper changeComponentVisibility={changeComponentVisibilityY}>
+    <BalanceWrapper changeComponentVisibility={changeComponentVisibility}>
       {showBalanceWrapp && <Balance />}
       <StyledMobileButton>
         <MobileButtonBack
