@@ -15,45 +15,30 @@ import {
   MainContainer,
   SelectAmountWrapper,
   SelectWrapper,
-} from '../../styles/InputTransactionForm/inputTransactionForm.';
+} from '../../styles/InputTransactionForm/inputTransactionForm';
 import {
   selectToken,
   selectTransactionType,
   selectUserId,
 } from '../../redux/selectors';
-
 import { CustomSelect } from '../InputTransactionForm/CustomSelect';
 import { addTransaction } from '../../redux/operations';
 
-export default function InputTransactionForm({ type }) {
-  // const TRANSACTION_FORM_DATA = {
-  //   expense: {
-  //     description: 'Product description',
-  //     selectCategoryPlaceholder: 'Product category',
-  //   },
-  //   income: {
-  //     description: 'Income description',
-  //     selectCategoryPlaceholder: 'Income category',
-  //   },
-  // };
+export function InputTransactionForm({ type }) {
   const dispatch = useDispatch();
   const today = new Date();
 
   const [date, setDate] = useState(today);
   const [category, setCategory] = useState(null);
-
   const [isActiveInput, setIsActiveInput] = useState(false);
   const [isActiveClear, setIsActiveClear] = useState(false);
-
   const transactionType = useSelector(selectTransactionType);
   const token = useSelector(selectToken);
   const userId = useSelector(selectUserId);
-
   const handleInputClick = () => {
     setIsActiveInput(true);
     setIsActiveClear(false);
   };
-
   const handleClearClick = () => {
     setIsActiveInput(false);
     setIsActiveClear(true);
@@ -74,10 +59,8 @@ export default function InputTransactionForm({ type }) {
       amount: positiveAmount,
       user: userId,
     };
-
     dispatch(addTransaction({ token, credentials }));
   };
-
   return (
     <MainContainer>
       <InputForm onSubmit={handleSubmit}>
@@ -93,7 +76,6 @@ export default function InputTransactionForm({ type }) {
             name="product"
             placeholder="Product description"
           />
-
           <SelectAmountWrapper>
             <SelectWrapper>
               <CustomSelect
