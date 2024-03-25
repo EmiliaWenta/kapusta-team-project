@@ -71,7 +71,7 @@ export const Finance = () => {
         </BalanceWrapper>
       ) : (
         <InputWrapper>
-          <TransactionForm navigate={navigate} path="/financebox/finance" />
+          <BalanceWrappComp />
           {!isMobileView && <DatePickerComponent />}
         </InputWrapper>
       )}
@@ -80,12 +80,10 @@ export const Finance = () => {
         <Tabs />
         <TableWrapper>
           <TransactionWrapper>
-            {/* tutaj */}
             {!isMobileView && (
               <TransactionForm navigate={navigate} path="/financebox/finance" />
             )}
 
-            {/* i tutaj */}
             {isMobileView ? (
               <TransactionDataInMobile id="transdata" />
             ) : (
@@ -100,5 +98,4 @@ export const Finance = () => {
     </StyledFinance>
   );
 };
-
 export default Finance;
