@@ -76,9 +76,16 @@ export const Finance = () => {
         </InputWrapper>
       )}
       <ExpensesWrapper>
+        <InputWrapper></InputWrapper>
         <Tabs />
         <TableWrapper>
           <TransactionWrapper>
+            {/* tutaj */}
+            {!isMobileView && (
+              <TransactionForm navigate={navigate} path="/financebox/finance" />
+            )}
+
+            {/* i tutaj */}
             {isMobileView ? (
               <TransactionDataInMobile id="transdata" />
             ) : (

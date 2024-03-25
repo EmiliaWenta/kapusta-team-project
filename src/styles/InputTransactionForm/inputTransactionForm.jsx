@@ -36,6 +36,7 @@ export const InputForm = styled.form`
     margin-right: 72px;
     row-gap: 34px;
     column-gap: 34px;
+    padding: 0px 20px;
   `)}
   ${above1280px(css`
     height: 44px;
@@ -204,5 +205,5 @@ export const InputAmount = styled(Input)`
 export const ButtonsWrapper = styled.div`
   display: inline-flex;
   column-gap: 16px;
-  padding-top: 150px;
+  // padding-top: 150px;
 `;
