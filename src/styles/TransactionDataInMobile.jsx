@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const StyledDataWrapper = styled.div`
   width: 280px;
   height: 100%;
+  margin-left: 25px;
 `;
 
 export const StyledDataList = styled.ul`
